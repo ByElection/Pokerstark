@@ -2,8 +2,7 @@
   <form>
   <div class="form-group">
     <label for="exampleInputEmail1">Usuario</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Usuario">
-    <small id="emailHelp" class="form-text text-muted">dasdsa</small>
+    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Usuario">
   </div>
   <div class="form-group">
     <label for="exampleInputPassword1">Contraseña</label>

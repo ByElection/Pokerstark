@@ -1,37 +1,22 @@
 <?php
-  require_once "Controllers/ControllerLogin.php";
-  require_once "Controllers/ControllerPlayer.php";
-  
-  $action = $_GET["action"];
-  define("URL_BASE", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/');
-  define("URL_LOGIN", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/login');
-  define("URL_PLAYER", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/player');
-  define("URL_PLAY", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/play');
-  define("URL_FRIENDS", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/friends');
-  define("URL_TOURNAMENT", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/tournament');
-  define("URL_RANKED", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/ranked');
+  require_once "Controllers/LoginController.php";
+  require_once "Controllers/PlayerController.php";
+  require_once "Controllers/RegisterController.php";
+  require_once "Router.php";
 
-  $controller = new ControllerPlayer();
+  define("BASE_URL", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/');
+  define("LOGIN", BASE_URL . 'login');
+  define("REGISTER", BASE_URL . 'register');
 
-  if($action == ''){
-    $controller->GetPlayer();
-}else{
-    if (isset($action)){
-        $partesURL = explode("/", $action);
+  $r = new Router();
 
-        if($partesURL[0] == "player"){
-            $controller->GetTareas();
-        }elseif($partesURL[0] == "login") {
-            $controllerUser = new ControllerLogin();
-            $controllerUser->Login();
-        }elseif($partesURL[0] == "iniciarSesion") {
-            $controllerUser = new ControllerLogin();
-            $controllerUser->IniciarSesion();
-        }elseif($partesURL[0] == "logout") {
-            $controllerUser = new ControllerLogin();
-            $controllerUser->Logout();
-        }
-    }
-}
+  $r->addRoute("login", "GET", "LoginController", "showLogin");
+  $r->addRoute("verify", "POST", "LoginController", "verifyUser");
+  $r->addRoute("logout", "GET", "LoginController", "logout");
+  $r->addRoute("register", "GET", "RegisterController", "showRegister");
+
+  $r->setDefaultRoute("LoginController", "showLogin");
+
+  $r->route($_GET['action'], $_SERVER['REQUEST_METHOD']);
 
 ?>
