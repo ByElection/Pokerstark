@@ -279,7 +279,7 @@
       <div class="input-group mb-3">
         <div class="custom-file">
           <input type="file" class="custom-file-input" id="inputGroupFile02">
-          <label class="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02">Choose file</label>
+          <label class="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02">Inserte foto de Perfil</label>
         </div>
       </div>
     </div>
@@ -289,13 +289,10 @@
   <div class="form-check">
     <input class="form-check-input is-invalid" type="checkbox" value="" id="invalidCheck3" required>
     <label class="form-check-label" for="invalidCheck3">
-      Agree to terms and conditions
+      Acepto terminos y condiciones
     </label>
-    <div class="invalid-feedback">
-      You must agree before submitting.
-    </div>
   </div>
 </div>
-<button class="btn btn-primary" type="submit">Submit form</button>
+<button class="btn btn-primary" type="submit">Registrarse</button>
 </form>
 {include file="footer.tpl"}
