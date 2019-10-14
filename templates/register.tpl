@@ -1,4 +1,4 @@
-{include file="nav.tpl"}
+{include file="header.tpl"}
 <form>
   <div class="form-row">
     <div class="col-md-4 mb-3">
@@ -293,6 +293,6 @@
     </label>
   </div>
 </div>
-<button class="btn btn-primary" type="submit">Registrarse</button>
+<button class="btn btn-primary" type="submit">Reg</button>
 </form>
 {include file="footer.tpl"}

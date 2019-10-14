@@ -14,3 +14,4 @@
       $this->smarty->display('templates/register.tpl');
     }
   }
+?>

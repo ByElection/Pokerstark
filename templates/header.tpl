@@ -9,8 +9,9 @@
 
     <title>PokerStark</title>
 </head>
-<body>
+<body class="">
   <header>
     <div class="">
       <img src="img/PokerStark.png" alt="">
     </div>
+  </header>
