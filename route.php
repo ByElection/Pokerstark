@@ -1,37 +1,33 @@
 <?php
-  require_once "Controllers/ControllerLogin.php";
-  require_once "Controllers/ControllerPlayer.php";
+  require_once "Controllers/LoginController.php";
+  require_once "Controllers/RegisterController.php";
+  require_once "Controllers/ProfileController.php";
+  require_once "Controllers/TournamentController.php";
+  require_once "Controllers/TablesController.php";
+  require_once "Controllers/RankingController.php";
+  require_once "Router.php";
+
+  define("BASE_URL", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/');
+  define("LOGIN", BASE_URL . 'login');
+  define("REGISTER", BASE_URL . 'register');
+  define("PROFILE", BASE_URL . 'profile');
+  define("TOURNAMENT",BASE_URL . 'tournament');
+  define("TABLES",BASE_URL . 'tables');
+  define("RANKING",BASE_URL . 'ranking');
+
+  $r = new Router();
+
+  $r->addRoute("login", "GET", "LoginController", "showLogin");
+  $r->addRoute("verify", "POST", "LoginController", "verifyUser");
+  $r->addRoute("logout", "GET", "LoginController", "logout");
+  $r->addRoute("register", "GET", "RegisterController", "showRegister");
+  $r->addRoute("profile","GET", "ProfileController", "showProfile");
+  $r->addRoute("tournament","GET","TournamentController", "showTournament");
+  $r->addRoute("tables", "GET", "TablesController", "showTables");
+  $r->addRoute("ranking", "GET", "RankingController", "showRanking");
   
-  $action = $_GET["action"];
-  define("URL_BASE", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/');
-  define("URL_LOGIN", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/login');
-  define("URL_PLAYER", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/player');
-  define("URL_PLAY", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/play');
-  define("URL_FRIENDS", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/friends');
-  define("URL_TOURNAMENT", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/tournament');
-  define("URL_RANKED", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/ranked');
+  $r->setDefaultRoute("LoginController", "showLogin");
 
-  $controller = new ControllerPlayer();
-
-  if($action == ''){
-    $controller->GetPlayer();
-}else{
-    if (isset($action)){
-        $partesURL = explode("/", $action);
-
-        if($partesURL[0] == "player"){
-            $controller->GetTareas();
-        }elseif($partesURL[0] == "login") {
-            $controllerUser = new ControllerLogin();
-            $controllerUser->Login();
-        }elseif($partesURL[0] == "iniciarSesion") {
-            $controllerUser = new ControllerLogin();
-            $controllerUser->IniciarSesion();
-        }elseif($partesURL[0] == "logout") {
-            $controllerUser = new ControllerLogin();
-            $controllerUser->Logout();
-        }
-    }
-}
+  $r->route($_GET['action'], $_SERVER['REQUEST_METHOD']);
 
 ?>
