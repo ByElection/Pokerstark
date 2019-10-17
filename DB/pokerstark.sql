@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-10-2019 a las 03:07:14
--- Versión del servidor: 10.3.15-MariaDB
--- Versión de PHP: 7.3.6
+-- Tiempo de generación: 17-10-2019 a las 08:36:56
+-- Versión del servidor: 10.4.6-MariaDB
+-- Versión de PHP: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -161,7 +161,7 @@ ALTER TABLE `mesas`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restricciones para tablas volcadas
