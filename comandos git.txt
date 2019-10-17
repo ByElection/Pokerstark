@@ -14,6 +14,6 @@ git diff (archivo): para ver las diferencias hechas en los archivos
 git branch: muestra las "versiones"
 git branch nombreDeRama: agrega otra version
 git checkout nombreDeRama: es para moverme a esa "version" o rama, los archivos que estan en una rama no se ven en otra, si los comitie solamente en esa rama
-git remote add nombreRepositorio (pagina): Esto sube tu repositorio local al remoto
-git push nombreRepositorio nombreDeRama: lo termina de subir
+git remote add origin (pagina): Esto sube tu repositorio local al remoto
+git push -u origin master: lo termina de subir
 git clone direccion: copia del repositorio remoto al local

@@ -1,41 +1,33 @@
 {include file="header.tpl"}
-<form>
+<form action="register" method="post">
   <div class="form-row">
     <div class="col-md-4 mb-3">
-      <label for="validationServer01">Nombre</label>
-      <input type="text" class="form-control is-valid" id="validationServer01" placeholder="Nombre" required>
-      <div class="valid-feedback">
-        Looks good!
-      </div>
+      <label>Nombre</label>
+      <input type="text" class="form-control" name="nombre" placeholder="Nombre" required>
     </div>
     <div class="col-md-4 mb-3">
-      <label for="validationServer02">Apellido</label>
-      <input type="text" class="form-control is-valid" id="validationServer02" placeholder="Apellido" required>
-      <div class="valid-feedback">
-        Looks good!
-      </div>
+      <label>Apellido</label>
+      <input type="text" class="form-control" name="apellido" placeholder="Apellido" required>
     </div>
     <div class="col-md-4 mb-3">
-      <label for="validationServerUsername">Usuario</label>
+      <label>Usuario</label>
       <div class="input-group">
-        <input type="text" class="form-control is-invalid" id="validationServerUsername" placeholder="Usuario" aria-describedby="inputGroupPrepend3" required>
-        <div class="invalid-feedback">
-          Please choose a username.
-        </div>
+        <input type="text" class="form-control" name="username" placeholder="Usuario" aria-describedby="inputGroupPrepend3" required>
       </div>
     </div>
   </div>
   <div class="form-row">
     <div class="col-md-4 mb-3">
-      <label for="validationServer03">Contraseña</label>
-      <input type="password" class="form-control is-invalid" id="validationServer03" placeholder="Contraseña" required>
-      <div class="invalid-feedback">
-        Please provide a valid city.
-      </div>
+      <label>Contraseña</label>
+      <input type="password" class="form-control" name="password_1" placeholder="Contraseña" required>
+    </div>
+    <div class="col-md-4 mb-3">
+      <label>Repetir Contraseña</label>
+      <input type="password" class="form-control" name="password_2" placeholder="Contraseña" required>
     </div>
     <div class="input-group col-md-4 mb-3">
-      <select class="custom-select" id="inputGroupSelect01">
-        <option value="Elegir" id="Null">Elegir pais</option>
+      <label>Pais</label>
+      <select class="form-control" name="pais">
         <option value="Afganistán" id="AF">Afganistán</option>
         <option value="Albania" id="AL">Albania</option>
         <option value="Alemania" id="DE">Alemania</option>
@@ -47,7 +39,7 @@
         <option value="Antillas holandesas" id="AN">Antillas holandesas</option>
         <option value="Arabia Saudí" id="SA">Arabia Saudí</option>
         <option value="Argelia" id="DZ">Argelia</option>
-        <option value="Argentina" id="AR">Argentina</option>
+        <option value="Argentina" id="AR" selected>Argentina</option>
         <option value="Armenia" id="AM">Armenia</option>
         <option value="Aruba" id="AW">Aruba</option>
         <option value="Australia" id="AU">Australia</option>
@@ -275,24 +267,8 @@
         <option value="Zimbabue" id="ZW">Zimbabue</option>
       </select>
     </div>
-    <div class="col-md-3 mb-3">
-      <div class="input-group mb-3">
-        <div class="custom-file">
-          <input type="file" class="custom-file-input" id="inputGroupFile02">
-          <label class="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02">Inserte foto de Perfil</label>
-        </div>
-      </div>
-    </div>
   </div>
 </div>
-<div class="form-group">
-  <div class="form-check">
-    <input class="form-check-input is-invalid" type="checkbox" value="" id="invalidCheck3" required>
-    <label class="form-check-label" for="invalidCheck3">
-      Acepto terminos y condiciones
-    </label>
-  </div>
-</div>
-<button class="btn btn-primary" type="submit">Reg</button>
+<button class="btn btn-primary" type="submit">Registrarse</button>
 </form>
 {include file="footer.tpl"}
