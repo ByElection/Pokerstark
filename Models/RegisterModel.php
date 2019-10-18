@@ -8,17 +8,25 @@ class RegisterModel{
 
   public function addUsuario($user,$password,$nombre,$apellido,$pais){
     $errors = array();
-    $usuarios = $this->db->prepare("SELECT 'usuario' FROM 'usuarios' WHERE ?");
-    $usuarios->execute(array($user));
+    $usuarios = $this->db->prepare("SELECT username FROM usuarios WHERE username=?");
+    $ok=$usuarios->execute(array($user));
+    if(!$ok){
+             var_dump($usuarios->errorInfo());
+            die();
+        }
+
     $username = $usuarios->fetch(PDO::FETCH_OBJ);
-    if (isset($username)) { // if user exists
-      if ($username['username'] === $user) {
-        array_push($errors, "Username already exists");
-      }
+    if (isset($username)&&$username['username'] === $user) { // if user exists
+        echo "el usuario ya existe";
     }else{
       $password = md5($password);
-      $usuarios = $this->db->prepare("INSERT INTO 'usuarios' ('username', 'password', 'nombre', 'apellido', 'pais') VALUES (?,?,?,?,?)");
-      $usuarios->execute(array($user,$password,$nombre,$apellido,$pais));
+      $usuarios = $this->db->prepare("INSERT INTO usuarios (username, password, nombre, apellido, pais) VALUES (?,?,?,?,?)");
+      $ok=$usuarios->execute(array($user,$password,$nombre,$apellido,$pais));
+      if(!$ok){
+             var_dump($usuarios->errorInfo());
+            die();
+        }
+
     }
   }
 }

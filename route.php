@@ -24,7 +24,7 @@
   $r->addRoute("profile","GET", "ProfileController", "showProfile");
   $r->addRoute("tournament","GET","TournamentController", "showTournament");
   $r->addRoute("tables", "GET", "TablesController", "showTables");
-
+  $r->addRoute("register", "POST", "RegisterController", "userRegister");
 
   $r->setDefaultRoute("LoginController", "showLogin");
 
