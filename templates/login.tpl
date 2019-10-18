@@ -7,10 +7,10 @@
 
       <form>
         <div class="form-group">
-          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Usuario">
+          <input name="user" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Usuario">
         </div>
         <div class="form-group">
-          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Contraseña">
+          <input name="pass" type="password" class="form-control" id="exampleInputPassword1" placeholder="Contraseña">
         </div>
         <div class="form-group form-check">
           <input type="checkbox" class="form-check-input" id="exampleCheck1">
@@ -19,7 +19,7 @@
         <div class="row">
           <div class="col-3">
 
-            <button type="submit" class="btn btn-primary">Entrar</button>
+            <button type="submit" value="Login" class="btn btn-primary">Entrar</button>
           </div>
           <div class="col-6">
 

@@ -3,14 +3,14 @@
   <div class="form-row">
     <div class="col-md-4 mb-3">
       <label for="validationServer01">Nombre</label>
-      <input type="text" class="form-control is-valid" id="validationServer01" placeholder="Nombre" required>
+      <input type="text" class="form-control is-valid" name="nombre" placeholder="Nombre" required>
       <div class="valid-feedback">
         Looks good!
       </div>
     </div>
     <div class="col-md-4 mb-3">
       <label for="validationServer02">Apellido</label>
-      <input type="text" class="form-control is-valid" id="validationServer02" placeholder="Apellido" required>
+      <input type="text" class="form-control is-valid" name="apellido" placeholder="Apellido" required>
       <div class="valid-feedback">
         Looks good!
       </div>
@@ -18,7 +18,7 @@
     <div class="col-md-4 mb-3">
       <label for="validationServerUsername">Usuario</label>
       <div class="input-group">
-        <input type="text" class="form-control is-invalid" id="validationServerUsername" placeholder="Usuario" aria-describedby="inputGroupPrepend3" required>
+        <input type="text" class="form-control is-invalid" name="username" placeholder="Usuario" aria-describedby="inputGroupPrepend3" required>
         <div class="invalid-feedback">
           Please choose a username.
         </div>
@@ -28,13 +28,16 @@
   <div class="form-row">
     <div class="col-md-4 mb-3">
       <label for="validationServer03">Contraseña</label>
-      <input type="password" class="form-control is-invalid" id="validationServer03" placeholder="Contraseña" required>
-      <div class="invalid-feedback">
-        Please provide a valid city.
+      <input type="password" class="form-control is-invalid" name="pasword1" placeholder="Contraseña" required>
+    </div>
+    <div class="form-row">
+      <div class="col-md-4 mb-3">
+        <label for="validationServer03">Repetir Contraseña</label>
+        <input type="password" class="form-control is-invalid" name="pasword2" placeholder="Contraseña" required>
       </div>
     </div>
     <div class="input-group col-md-4 mb-3">
-      <select class="custom-select" id="inputGroupSelect01">
+      <select name="pais" class="custom-select" id="inputGroupSelect01">
         <option value="Elegir" id="Null">Elegir pais</option>
         <option value="Afganistán" id="AF">Afganistán</option>
         <option value="Albania" id="AL">Albania</option>
@@ -278,7 +281,7 @@
     <div class="col-md-3 mb-3">
       <div class="input-group mb-3">
         <div class="custom-file">
-          <input type="file" class="custom-file-input" id="inputGroupFile02">
+          <input name="foto" type="file" class="custom-file-input" id="inputGroupFile02">
           <label class="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02">Inserte foto de Perfil</label>
         </div>
       </div>
