@@ -16,17 +16,17 @@ class LoginController {
 
 
     public function verifyUser() {
-      $password = $_POST['pass'];
+      $password = $_POST['password'];
 
-       $usuario = $this->model->GetPassword($_POST['user']);
+       $usuario = $this->model->GetPassword($_POST['username']);
 
        if (isset($usuario) && $usuario != null && password_verify($password, $usuario->password)){
            session_start();
-           $_SESSION['user'] = $usuario->usuario;
-           $_SESSION['userId'] = $usuario->id_usuario;
-           header("Location: " . URL_PROFILE);
+           $_SESSION['username'] = $usuario->usuario;
+           $_SESSION['id_usuario'] = $usuario->id_usuario;
+           header("Location: " . PROFILE);
        }else{
-           header("Location: " . URL_PROFILE  ); //GUARDA ACA PARA PROBAR
+           header("Location: " . LOGIN); //GUARDA ACA PARA PROBAR
        }
 
     }
@@ -34,7 +34,7 @@ class LoginController {
     public function logout() {
       session_start();
       session_destroy();
-      header('Location: ' . URL_LOGIN);
+      header('Location: ' . LOGIN);
     }
     public function showLogin() {
         $this->view->showLogin();

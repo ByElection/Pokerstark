@@ -18,14 +18,14 @@
   $r = new Router();
 
   $r->addRoute("login", "GET", "LoginController", "showLogin");
-  $r->addRoute("verify", "POST", "LoginController", "verifyUser");
+  $r->addRoute("login", "POST", "LoginController", "verifyUser");
   $r->addRoute("logout", "GET", "LoginController", "logout");
   $r->addRoute("register", "GET", "RegisterController", "showRegister");
   $r->addRoute("profile","GET", "ProfileController", "showProfile");
   $r->addRoute("tournament","GET","TournamentController", "showTournament");
   $r->addRoute("tables", "GET", "TablesController", "showTables");
   $r->addRoute("ranking", "GET", "RankingController", "showRanking");
-  
+
   $r->setDefaultRoute("LoginController", "showLogin");
 
   $r->route($_GET['action'], $_SERVER['REQUEST_METHOD']);
