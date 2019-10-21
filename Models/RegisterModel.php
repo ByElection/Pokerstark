@@ -19,7 +19,7 @@ class RegisterModel{
     if (isset($username)&&$username['username'] === $user) { // if user exists
         echo "el usuario ya existe";
     }else{
-      $password = md5($password);
+      $password =  password_hash($password);
       $usuarios = $this->db->prepare("INSERT INTO usuarios (username, password, nombre, apellido, pais) VALUES (?,?,?,?,?)");
       $ok=$usuarios->execute(array($user,$password,$nombre,$apellido,$pais));
       if(!$ok){
