@@ -8,9 +8,10 @@
       $this->smarty->assign('basehref', BASE_URL);
     }
 
-    public function showTables($error = null) {
+    public function showTables($mesas) {
       $this->smarty->assign('titulo','Mesas');
-      $this->smarty->assign('error',$error);
+      $this->$smarty->assign('mesas',$mesas);
+      $this->$smarty->assign('count',0);
       $this->smarty->display('templates/tables.tpl');
     }
   }

@@ -26,6 +26,8 @@
   $r->addRoute("tables", "GET", "TablesController", "showTables");
   $r->addRoute("register", "POST", "RegisterController", "userRegister");
   $r->addRoute("ranking", "GET", "RankingController", "showRanking");
+  $r->addRoute("tables", "POST", "TablesController", "enterTable");
+
   $r->setDefaultRoute("LoginController", "showLogin");
 
   $r->route($_GET['action'], $_SERVER['REQUEST_METHOD']);

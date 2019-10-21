@@ -11,7 +11,8 @@
       $this->model = new TablesModel();
     }
     public function showTables() {
-      $this->view->showTables();
+      $mesas = $this->model->getMesas();
+      $this->view->showTables($mesas);
     }
   }
 ?>
