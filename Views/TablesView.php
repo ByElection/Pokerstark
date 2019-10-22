@@ -10,8 +10,7 @@
 
     public function showTables($mesas) {
       $this->smarty->assign('titulo','Mesas');
-      $this->$smarty->assign('mesas',$mesas);
-      $this->$smarty->assign('count',0);
+      $this->smarty->assign('mesas',$mesas);
       $this->smarty->display('templates/tables.tpl');
     }
   }

@@ -13,27 +13,27 @@
         <tr>
           <th scope="row">{$mesa->id_mesa}</th>
           <td>{$mesa->ciega_chica}/{$mesa->ciega_grande}</td>
-          {if $mesa->silla1 != null}
+          {$count=0}
+          {if $mesa->silla1 != NULL}
             {$count=$count+1}
-          {elseif $mesa->silla2 != null}
+          {elseif $mesa->silla2 != NULL}
             {$count=$count+1}
-          {elseif $mesa->silla3 != null}
+          {elseif $mesa->silla3 != NULL}
             {$count=$count+1}
-          {elseif $mesa->silla4 != null}
+          {elseif $mesa->silla4 != NULL}
           { $count=$count+1}
-          {elseif $mesa->silla5 != null}
+          {elseif $mesa->silla5 != NULL}
             {$count=$count+1}
-          {elseif $mesa->silla6 != null}
+          {elseif $mesa->silla6 != NULL}
             {$count=$count+1}
-          {elseif $mesa->silla7 != null}
+          {elseif $mesa->silla7 != NULL}
             {$count=$count+1}
-          {elseif $mesa->silla8 != null}
+          {elseif $mesa->silla8 != NULL}
             {$count=$count+1}
-          {elseif $mesa->silla9 != null}
+          {elseif $mesa->silla9 != NULL}
             {$count=$count+1}
           {/if}
           <td>{$count}/9<button type="button" class="btn btn-primary">Entrar</button></td>
-          {$count=0}
         </tr>
       {/foreach}
     </tbody>

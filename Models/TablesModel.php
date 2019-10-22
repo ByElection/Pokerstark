@@ -13,8 +13,8 @@
         var_dump($mesas->errorInfo());
         die();
       }
-      $mesasrt = $mesas->fetchAll(PDO::FETCH_OBJ);
-      return $mesasrt;
+      $mesas = $mesas->fetchAll(PDO::FETCH_OBJ);
+      return $mesas;
     }
 
     public function getMesa($id){
