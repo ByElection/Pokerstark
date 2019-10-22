@@ -10,9 +10,9 @@
       </div>
     </div>
     <div class="col-3">
-        <h4>Nombre</h4>
-        <h4>Pais</h4>
-        <h4>Fichas:agregar icono de fichas y mas</h4>
+        <h4>{$nombre}</h4>
+        <h4>{$pais}</h4>
+        <h4>{$fichas}</h4>
     </div>
     <div class="col-6">
       <h3>Ganancias</h3>
