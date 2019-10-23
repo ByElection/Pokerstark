@@ -31,13 +31,27 @@ class LoginController {
 
     }
 
+      public function checkLogIn(){
+              session_start();
+
+              if(!isset($_SESSION['id_usuario'])){
+                  header("Location: " . LOGIN);
+                  die();
+              }
+
+              if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 5000)) {
+                  header("Location: " . LOGIN);
+                  die(); // destruye la sesión, y vuelve al login
+              }
+              $_SESSION['LAST_ACTIVITY'] = time();
+          }
     public function logout() {
       session_start();
       session_destroy();
-      header('Location: ' . LOGIN);
     }
     public function showLogin() {
-        $this->view->showLogin();
+      $this->logout();
+      $this->view->showLogin();
     }
 }
 ?>

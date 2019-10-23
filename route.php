@@ -14,6 +14,7 @@
   define("TOURNAMENT",BASE_URL . 'tournament');
   define("TABLES",BASE_URL . 'tables');
   define("RANKING",BASE_URL . 'ranking');
+  define("LOGOUT",BASE_URL . 'logout');
 
   $r = new Router();
 
@@ -27,6 +28,7 @@
   $r->addRoute("tables", "GET", "TablesController", "showTables");
   $r->addRoute("register", "POST", "RegisterController", "userRegister");
   $r->addRoute("ranking", "GET", "RankingController", "showRanking");
+
   $r->setDefaultRoute("LoginController", "showLogin");
 
   $r->route($_GET['action'], $_SERVER['REQUEST_METHOD']);
