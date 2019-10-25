@@ -24,6 +24,7 @@ class LoginController {
            session_start();
            $_SESSION['username'] = $usuario->usuario;
            $_SESSION['id_usuario'] = $usuario->id_usuario;
+           $_SESSION['admin'] = $usuario->admin;
            header("Location: " . PROFILE);
        }else{
            header("Location: " . LOGIN); //GUARDA ACA PARA PROBAR
@@ -48,10 +49,16 @@ class LoginController {
     public function logout() {
       session_start();
       session_destroy();
+      header("Location: " . LOGIN);
     }
     public function showLogin() {
-      $this->logout();
-      $this->view->showLogin();
+        session_start();
+        if (isset($_SESSION['id_usuario'])) {
+          header("Location: " . PROFILE);
+        }
+        else {
+          $this->view->showLogin();
+        }
     }
 }
 ?>
