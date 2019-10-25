@@ -1,4 +1,4 @@
-{include file="header.tpl"}
+{include file="navinvitado.tpl"}
 <div class="conteiner-fluid">
   <div class="row">
     <div class="col-4">
@@ -26,7 +26,7 @@
           </div>
           <div class="col-3">
 
-            <button type="submit" class="btn btn-primary" >Registrarse</button> 
+            <button type="submit" class="btn btn-primary" >Registrarse</button>
           </div>
 
         </div>

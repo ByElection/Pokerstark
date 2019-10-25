@@ -1,4 +1,4 @@
-{include file="header.tpl"}
+{include file="navinvitado.tpl"}
 <form action="register" method="post">
   <div class="form-row">
     <div class="col-md-4 mb-3">

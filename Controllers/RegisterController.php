@@ -9,10 +9,12 @@ class RegisterController {
   public function __construct() {
     $this->view = new RegisterView();
     $this->model = new RegisterModel();
+
   }
 
   public function showRegister() {
     $this->view->showRegister();
+
   }
   public function userRegister(){
     $user = $_POST['username'];

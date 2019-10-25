@@ -14,8 +14,10 @@ class RankingController {
     $this->check = new LoginController();
   }
   public function showRanking() {
-    $this->check->checkLogIn();
-    $this->view->showRanking();
+    session_start();
+    $esta=$this->check->logeado();
+    $this->view->showRanking($esta);
   }
+
 }
 ?>

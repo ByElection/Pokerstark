@@ -1,4 +1,8 @@
-{include file="nav.tpl"}
+{if $esta}
+  {include file="nav.tpl"}
+{else}
+  {include file="navinvitado.tpl"}
+{/if}
 <div class="container">
   <table class="table table-hover">
     <thead>

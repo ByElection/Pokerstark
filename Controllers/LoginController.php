@@ -14,7 +14,16 @@ class LoginController {
     }
 
 
+    public function logeado() {
 
+        if(isset($_SESSION['id_usuario'])){
+            return true;
+        }
+        else {
+          return false;
+        }
+
+      }
     public function verifyUser() {
       $password = $_POST['password'];
 
@@ -57,8 +66,18 @@ class LoginController {
           header("Location: " . PROFILE);
         }
         else {
-          $this->view->showLogin();
+          $esta=$this->logeado();
+          $this->view->showLogin($esta);
         }
+    }
+    public function checkAdmin() {
+      session_start();
+      if ($_SESSION['admin']!=0) {
+        return true;
+      }
+      else {
+        return false;
+      }
     }
 }
 ?>
