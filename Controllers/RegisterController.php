@@ -13,7 +13,13 @@ class RegisterController {
   }
 
   public function showRegister() {
-    $this->view->showRegister();
+    session_start();
+    if (isset($_SESSION['id_usuario'])) {
+      header("Location: " . PROFILE);
+    }
+    else {
+      $this->view->showRegister();
+    }
 
   }
   public function userRegister(){

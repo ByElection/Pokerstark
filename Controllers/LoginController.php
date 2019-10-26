@@ -34,7 +34,12 @@ class LoginController {
            $_SESSION['username'] = $usuario->usuario;
            $_SESSION['id_usuario'] = $usuario->id_usuario;
            $_SESSION['admin'] = $usuario->admin;
-           header("Location: " . PROFILE);
+           if (($_SESSION['admin']) == 0) {
+             header("Location: " . PROFILE);
+           }
+           else {
+             header("Location: " . ADMIN);
+           }
        }else{
            header("Location: " . LOGIN); //GUARDA ACA PARA PROBAR
        }
@@ -66,8 +71,8 @@ class LoginController {
           header("Location: " . PROFILE);
         }
         else {
-          $esta=$this->logeado();
-          $this->view->showLogin($esta);
+          //$esta=$this->logeado(); SIN ESTO ANDA IGUAL Y SIN EL PARAMETO ABAJO EN SHOW LOGIN
+          $this->view->showLogin();
         }
     }
     public function checkAdmin() {
