@@ -12,10 +12,6 @@
         <div class="form-group">
           <input name="password" type="password" class="form-control" placeholder="Contraseña">
         </div>
-        <div class="form-group form-check">
-          <input type="checkbox" class="form-check-input">
-          <label class="form-check-label" for="exampleCheck1">Recordarme</label>
-        </div>
         <div class="row">
           <div class="col-3">
 
@@ -26,7 +22,7 @@
           </div>
           <div class="col-3">
 
-            <button type="submit" class="btn btn-primary" >Registrarse</button>
+            <button type="submit" value="Admin" class="btn btn-primary" >Admin</button>
           </div>
 
         </div>
