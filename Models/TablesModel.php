@@ -18,17 +18,35 @@
     }
 
     public function getMesa($id){
-      $mesas = $this->db->prepare("SELECT * FROM mesas WHERE id_mesa=?");
+      $mesas = $this->db->prepare("SELECT * FROM jugadores WHERE id_mesa = ?");
       $ok=$mesas->execute(array($id));
-      if(!$ok){
-        var_dump($mesas->errorInfo());
-        die();
-      }
-      $mesa = $mesas->fetch(PDO::FETCH_OBJ);
+	  if(!$ok){
+			var_dump($mesas->errorInfo());
+			die();
+		  }
+      $mesa = $mesas->fetchAll(PDO::FETCH_OBJ);
       return $mesa;
     }
-
-
+	public function getCiegas(){
+		$ciegas = $this->db->prepare("SELECT * FROM ciegas");
+		$ok=$ciegas->execute();
+		if(!$ok){
+			var_dump($ciegas->errorInfo());
+			die();
+		}
+		$ciegas = $ciegas->fetchAll(PDO::FETCH_OBJ);
+		return $ciegas;
+	}
+	public function getJugadores(){
+		$jugadores = $this->db->prepare("SELECT * FROM jugadores");
+		  $ok=$jugadores->execute();
+		  if(!$ok){
+			var_dump($jugadores->errorInfo());
+			die();
+		  }
+		  $jugadores = $jugadores->fetchAll(PDO::FETCH_OBJ);
+		  return $jugadores;
+	}
 
   }
 ?>

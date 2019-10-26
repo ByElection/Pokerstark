@@ -5,6 +5,7 @@
   require_once "Controllers/TournamentController.php";
   require_once "Controllers/TablesController.php";
   require_once "Controllers/RankingController.php";
+  require_once "Controllers/MesaController.php";
   require_once "Router.php";
 
   define("BASE_URL", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/');
@@ -14,6 +15,9 @@
   define("TOURNAMENT",BASE_URL . 'tournament');
   define("TABLES",BASE_URL . 'tables');
   define("RANKING",BASE_URL . 'ranking');
+  define("MESA",BASE_URL . 'mesa');
+
+
 
   $r = new Router();
 
@@ -27,6 +31,8 @@
   $r->addRoute("register", "POST", "RegisterController", "userRegister");
   $r->addRoute("ranking", "GET", "RankingController", "showRanking");
   $r->addRoute("tables", "POST", "TablesController", "enterTable");
+  $r->addRoute("mesa/:ID", "GET", "MesaController", "showMesa");
+
 
   $r->setDefaultRoute("LoginController", "showLogin");
 

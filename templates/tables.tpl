@@ -12,28 +12,25 @@
       {foreach from=$mesas item=mesa}
         <tr>
           <th scope="row">{$mesa->id_mesa}</th>
-          <td>{$mesa->ciega_chica}/{$mesa->ciega_grande}</td>
-          {$count=0}
-          {if $mesa->silla1 != NULL}
-            {$count=$count+1}
-          {elseif $mesa->silla2 != NULL}
-            {$count=$count+1}
-          {elseif $mesa->silla3 != NULL}
-            {$count=$count+1}
-          {elseif $mesa->silla4 != NULL}
-          { $count=$count+1}
-          {elseif $mesa->silla5 != NULL}
-            {$count=$count+1}
-          {elseif $mesa->silla6 != NULL}
-            {$count=$count+1}
-          {elseif $mesa->silla7 != NULL}
-            {$count=$count+1}
-          {elseif $mesa->silla8 != NULL}
-            {$count=$count+1}
-          {elseif $mesa->silla9 != NULL}
-            {$count=$count+1}
-          {/if}
-          <td>{$count}/9<button type="button" class="btn btn-primary">Entrar</button></td>
+		  {foreach from=$ciegas item=ciega}
+			{if $mesa->id_ciegas == $ciega->id_ciegas}
+				<td>{$ciega->ciega_chica}/{$ciega->ciega_grande}</td>
+			{/if}
+		  {/foreach}
+		  {$count=0}
+          {foreach from=$jugadores item=jugador}
+			{if $jugador->id_mesa == $mesa->id_mesa}
+				{$count = $count+1}
+			{/if}
+		  {/foreach}
+          <td>{$count}/{$mesa->sillas}
+			{if $count == $mesa->sillas}
+				<button type="button" class="btn btn-primary" disabled>Entrar</button>
+			{else}
+				
+				<a href="mesa/{$mesa->id_mesa}" class="btn btn-primary stretched-link">Entrar</a>
+			{/if}
+		   </td>
         </tr>
       {/foreach}
     </tbody>
