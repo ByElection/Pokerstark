@@ -7,7 +7,6 @@ class RegisterModel{
   }
 
   public function addUsuario($user,$password,$nombre,$apellido,$pais){
-    $errors = array();
     $usuarios = $this->db->prepare("SELECT username FROM usuarios WHERE username=?");
     $ok=$usuarios->execute(array($user));
     if(!$ok){

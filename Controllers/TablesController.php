@@ -11,7 +11,10 @@
       $this->model = new TablesModel();
     }
     public function showTables() {
-      $this->view->showTables();
+      $mesas = $this->model->getMesas();
+	  $ciegas = $this->model->getCiegas();
+	  $jugadores = $this->model->getJugadores();
+      $this->view->showTables($mesas,$ciegas,$jugadores);
     }
   }
 ?>

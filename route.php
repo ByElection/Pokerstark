@@ -6,6 +6,7 @@
   require_once "Controllers/TablesController.php";
   require_once "Controllers/RankingController.php";
   require_once "Controllers/AdminController.php";
+  require_once "Controllers/MesaController.php";
   require_once "Router.php";
 
   define("BASE_URL", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/');
@@ -17,6 +18,7 @@
   define("RANKING",BASE_URL . 'ranking');
   define("LOGOUT",BASE_URL . 'logout');
   define("ADMIN",BASE_URL . 'admin');
+  define("MESA",BASE_URL . 'mesa');
 
   $r = new Router();
 
@@ -32,6 +34,10 @@
   $r->addRoute("ranking", "GET", "RankingController", "showRanking");
   $r->addRoute("admin", "GET", "AdminController", "showAdmin");
   $r->addRoute("admin", "POST", "AdminController", "verifyAdmin");
+  $r->addRoute("tables", "POST", "TablesController", "enterTable");
+  $r->addRoute("mesa/:ID", "GET", "MesaController", "showMesa");
+  $r->addRoute("mesa/sentarse/:ID/:ID", "GET", "MesaController", "sentarse");
+  $r->addRoute("mesa/pararse/:ID", "GET", "MesaController", "pararse");
 
   $r->setDefaultRoute("LoginController", "showLogin");
 
