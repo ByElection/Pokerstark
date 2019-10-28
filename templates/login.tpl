@@ -12,17 +12,18 @@
         <div class="form-group">
           <input name="password" type="password" class="form-control" placeholder="Contraseña">
         </div>
+        <div class="form-group">
+          <input name="check-admin" type="checkbox" class="form-check-input">
+          <label>admin</label>
+        </div>
+
         <div class="row">
           <div class="col-3">
 
-            <button type="submit" value="Login" class="btn btn-primary">Entrar</button>
+            <button type="submit" value="login" class="btn btn-primary">Entrar</button>
           </div>
           <div class="col-6">
 
-          </div>
-          <div class="col-3">
-
-            <button type="submit" value="Admin" class="btn btn-primary" >Admin</button>
           </div>
 
         </div>

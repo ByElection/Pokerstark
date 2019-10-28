@@ -5,6 +5,7 @@
   require_once "Controllers/TournamentController.php";
   require_once "Controllers/TablesController.php";
   require_once "Controllers/RankingController.php";
+  require_once "Controllers/AdminController.php";
   require_once "Router.php";
 
   define("BASE_URL", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/');
@@ -15,6 +16,7 @@
   define("TABLES",BASE_URL . 'tables');
   define("RANKING",BASE_URL . 'ranking');
   define("LOGOUT",BASE_URL . 'logout');
+  define("ADMIN",BASE_URL . 'admin');
 
   $r = new Router();
 
@@ -28,6 +30,8 @@
   $r->addRoute("tables", "GET", "TablesController", "showTables");
   $r->addRoute("register", "POST", "RegisterController", "userRegister");
   $r->addRoute("ranking", "GET", "RankingController", "showRanking");
+  $r->addRoute("admin", "GET", "AdminController", "showAdmin");
+  $r->addRoute("admin", "POST", "AdminController", "verifyAdmin");
 
   $r->setDefaultRoute("LoginController", "showLogin");
 

@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-10-2019 a las 08:36:56
--- Versión del servidor: 10.4.6-MariaDB
--- Versión de PHP: 7.3.9
+-- Tiempo de generación: 26-10-2019 a las 03:09:52
+-- Versión del servidor: 10.3.15-MariaDB
+-- Versión de PHP: 7.3.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,26 +25,24 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `amigos`
+-- Estructura de tabla para la tabla `ciegas`
 --
 
-CREATE TABLE `amigos` (
-  `id_usuario1` int(11) NOT NULL,
-  `id_usuario2` int(11) NOT NULL
+CREATE TABLE `ciegas` (
+  `id_ciegas` int(11) NOT NULL,
+  `ciega_chica` int(11) NOT NULL,
+  `ciega_grande` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
--- --------------------------------------------------------
-
 --
--- Estructura de tabla para la tabla `items`
+-- Volcado de datos para la tabla `ciegas`
 --
 
-CREATE TABLE `items` (
-  `id_item` int(11) NOT NULL,
-  `nombre` text COLLATE latin1_spanish_ci NOT NULL,
-  `valor` int(11) NOT NULL,
-  `rondas` int(11) NOT NULL DEFAULT 5
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+INSERT INTO `ciegas` (`id_ciegas`, `ciega_chica`, `ciega_grande`) VALUES
+(1, 50, 100),
+(2, 100, 200),
+(3, 200, 400),
+(4, 500, 1000);
 
 -- --------------------------------------------------------
 
@@ -53,10 +51,19 @@ CREATE TABLE `items` (
 --
 
 CREATE TABLE `jugadores` (
-  `id_usuario` int(11) NOT NULL,
+  `id_usuario` int(11) DEFAULT NULL,
   `fichas_mesa` int(11) NOT NULL,
-  `id_item` int(11) DEFAULT NULL
+  `id_mesa` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `jugadores`
+--
+
+INSERT INTO `jugadores` (`id_usuario`, `fichas_mesa`, `id_mesa`) VALUES
+(1, 1000, 2),
+(3, 1000, 2),
+(2, 1000, 2);
 
 -- --------------------------------------------------------
 
@@ -66,19 +73,20 @@ CREATE TABLE `jugadores` (
 
 CREATE TABLE `mesas` (
   `id_mesa` int(11) NOT NULL,
-  `ciega_chica` int(11) NOT NULL DEFAULT 50,
-  `ciega_grande` int(11) NOT NULL DEFAULT 100,
+  `id_ciegas` int(11) NOT NULL,
   `pozo` int(11) NOT NULL DEFAULT 0,
-  `silla1` int(11) DEFAULT NULL,
-  `silla2` int(11) DEFAULT NULL,
-  `silla3` int(11) DEFAULT NULL,
-  `silla4` int(11) DEFAULT NULL,
-  `silla5` int(11) DEFAULT NULL,
-  `silla6` int(11) DEFAULT NULL,
-  `silla7` int(11) DEFAULT NULL,
-  `silla8` int(11) DEFAULT NULL,
-  `silla9` int(11) DEFAULT NULL
+  `sillas` int(11) NOT NULL DEFAULT 9
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `mesas`
+--
+
+INSERT INTO `mesas` (`id_mesa`, `id_ciegas`, `pozo`, `sillas`) VALUES
+(1, 1, 0, 9),
+(2, 2, 0, 3),
+(3, 3, 0, 9),
+(4, 4, 0, 9);
 
 -- --------------------------------------------------------
 
@@ -93,47 +101,42 @@ CREATE TABLE `usuarios` (
   `nombre` text COLLATE latin1_spanish_ci NOT NULL,
   `apellido` text COLLATE latin1_spanish_ci NOT NULL,
   `pais` text COLLATE latin1_spanish_ci NOT NULL,
-  `fichas` int(11) NOT NULL DEFAULT 2000
+  `fichas` int(11) NOT NULL DEFAULT 2000,
+  `admin` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`id_usuario`, `username`, `password`, `nombre`, `apellido`, `pais`, `fichas`, `admin`) VALUES
+(1, 'ByElection', '$2y$10$3ZZ.tShVVlrBwJw/iWwuBezFfj2r2KAUhhZSjNhsJqz4UENbFE6OC', 'Gonzalo', 'Zarzabal', 'Argentina', 2000, 1),
+(2, 'robertito', '$2y$10$udMc/EsZsv4yPYMxYDbGruewerBP2tnzAn38HDqNuLroMDdhidGSa', 'roberto', 'carlos', 'Brasil', 2000, 0),
+(3, 'pechofrio', '$2y$10$ICEY9uvast08K7SOs3G15OsZzuS7T3QXuYsswYiOkx2dXCSG6lQPq', 'Lionel', 'Messi', 'España', 2000, 0);
 
 --
 -- Índices para tablas volcadas
 --
 
 --
--- Indices de la tabla `amigos`
+-- Indices de la tabla `ciegas`
 --
-ALTER TABLE `amigos`
-  ADD PRIMARY KEY (`id_usuario1`,`id_usuario2`),
-  ADD KEY `id_usuario2` (`id_usuario2`);
-
---
--- Indices de la tabla `items`
---
-ALTER TABLE `items`
-  ADD PRIMARY KEY (`id_item`);
+ALTER TABLE `ciegas`
+  ADD PRIMARY KEY (`id_ciegas`);
 
 --
 -- Indices de la tabla `jugadores`
 --
 ALTER TABLE `jugadores`
-  ADD PRIMARY KEY (`id_usuario`),
-  ADD KEY `id_item` (`id_item`);
+  ADD KEY `id_mesa` (`id_mesa`),
+  ADD KEY `id_usuario` (`id_usuario`);
 
 --
 -- Indices de la tabla `mesas`
 --
 ALTER TABLE `mesas`
   ADD PRIMARY KEY (`id_mesa`),
-  ADD UNIQUE KEY `silla1` (`silla1`),
-  ADD UNIQUE KEY `silla2` (`silla2`),
-  ADD UNIQUE KEY `silla3` (`silla3`),
-  ADD UNIQUE KEY `silla4` (`silla4`),
-  ADD UNIQUE KEY `silla5` (`silla5`),
-  ADD UNIQUE KEY `silla6` (`silla6`),
-  ADD UNIQUE KEY `silla7` (`silla7`),
-  ADD UNIQUE KEY `silla8` (`silla8`),
-  ADD UNIQUE KEY `silla9` (`silla9`);
+  ADD KEY `id_ciegas` (`id_ciegas`);
 
 --
 -- Indices de la tabla `usuarios`
@@ -146,54 +149,39 @@ ALTER TABLE `usuarios`
 --
 
 --
--- AUTO_INCREMENT de la tabla `items`
+-- AUTO_INCREMENT de la tabla `ciegas`
 --
-ALTER TABLE `items`
-  MODIFY `id_item` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `ciegas`
+  MODIFY `id_ciegas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `mesas`
 --
 ALTER TABLE `mesas`
-  MODIFY `id_mesa` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_mesa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restricciones para tablas volcadas
 --
 
 --
--- Filtros para la tabla `amigos`
---
-ALTER TABLE `amigos`
-  ADD CONSTRAINT `amigos_ibfk_1` FOREIGN KEY (`id_usuario1`) REFERENCES `usuarios` (`id_usuario`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `amigos_ibfk_2` FOREIGN KEY (`id_usuario2`) REFERENCES `usuarios` (`id_usuario`) ON UPDATE CASCADE;
-
---
 -- Filtros para la tabla `jugadores`
 --
 ALTER TABLE `jugadores`
-  ADD CONSTRAINT `jugadores_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `jugadores_ibfk_2` FOREIGN KEY (`id_item`) REFERENCES `items` (`id_item`) ON DELETE SET NULL ON UPDATE CASCADE;
+  ADD CONSTRAINT `jugadores_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `jugadores_ibfk_2` FOREIGN KEY (`id_mesa`) REFERENCES `mesas` (`id_mesa`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `mesas`
 --
 ALTER TABLE `mesas`
-  ADD CONSTRAINT `mesas_ibfk_1` FOREIGN KEY (`silla1`) REFERENCES `jugadores` (`id_usuario`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `mesas_ibfk_2` FOREIGN KEY (`silla2`) REFERENCES `jugadores` (`id_usuario`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `mesas_ibfk_3` FOREIGN KEY (`silla3`) REFERENCES `jugadores` (`id_usuario`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `mesas_ibfk_4` FOREIGN KEY (`silla4`) REFERENCES `jugadores` (`id_usuario`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `mesas_ibfk_5` FOREIGN KEY (`silla5`) REFERENCES `jugadores` (`id_usuario`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `mesas_ibfk_6` FOREIGN KEY (`silla6`) REFERENCES `jugadores` (`id_usuario`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `mesas_ibfk_7` FOREIGN KEY (`silla7`) REFERENCES `jugadores` (`id_usuario`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `mesas_ibfk_8` FOREIGN KEY (`silla8`) REFERENCES `jugadores` (`id_usuario`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `mesas_ibfk_9` FOREIGN KEY (`silla9`) REFERENCES `jugadores` (`id_usuario`) ON DELETE SET NULL ON UPDATE CASCADE;
+  ADD CONSTRAINT `mesas_ibfk_1` FOREIGN KEY (`id_ciegas`) REFERENCES `ciegas` (`id_ciegas`) ON DELETE NO ACTION ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

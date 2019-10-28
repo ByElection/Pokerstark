@@ -26,24 +26,24 @@ class LoginController {
       }
     public function verifyUser() {
       $password = $_POST['password'];
-
-       $usuario = $this->model->GetPassword($_POST['username']);
+      $checkadmin =$_POST['check-admin'];
+       $usuario = $this->model->GetUser($_POST['username']);
 
        if (isset($usuario) && $usuario != null && password_verify($password, $usuario->password)){
            session_start();
            $_SESSION['username'] = $usuario->usuario;
            $_SESSION['id_usuario'] = $usuario->id_usuario;
-           $_SESSION['admin'] = $usuario->admin;
-           if (($_SESSION['admin']) == 0) {
-             header("Location: " . PROFILE);
+          if (($usuario->admin !=0) && (isset($checkadmin))) {
+            $_SESSION['admin'] = 1;
+            header("Location: " . ADMIN);
            }
            else {
-             header("Location: " . ADMIN);
+             header("Location: " . PROFILE);
            }
-       }else{
+       }
+       else {
            header("Location: " . LOGIN); //GUARDA ACA PARA PROBAR
        }
-
     }
 
       public function checkLogIn(){
@@ -67,7 +67,10 @@ class LoginController {
     }
     public function showLogin() {
         session_start();
-        if (isset($_SESSION['id_usuario'])) {
+        if (isset($_SESSION['id_usuario']) && isset($_SESSION['admin'])) {
+          header("Location: " . ADMIN);
+        }
+        elseif (isset($_SESSION['id_usuario'])) {
           header("Location: " . PROFILE);
         }
         else {
@@ -77,6 +80,7 @@ class LoginController {
     }
     public function checkAdmin() {
       session_start();
+
       if ($_SESSION['admin']!=0) {
         return true;
       }
