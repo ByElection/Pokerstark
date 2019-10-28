@@ -32,7 +32,7 @@
 
     public function deletMesa($id) {
         $sentencia = $this->db->prepare("DELETE FROM mesas WHERE id_mesa=?");
-        $sentencia->execute(array($id));
+        $sentencia->execute(array($id[":ID"]));
     }
     public function getCiegas() {
       $sentencia = $this->db->prepare("SELECT * FROM ciegas");
