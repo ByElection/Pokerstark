@@ -32,7 +32,8 @@
   $r->addRoute("ranking", "GET", "RankingController", "showRanking");
   $r->addRoute("tables", "POST", "TablesController", "enterTable");
   $r->addRoute("mesa/:ID", "GET", "MesaController", "showMesa");
-
+  $r->addRoute("mesa/sentarse/:ID/:ID", "GET", "MesaController", "sentarse");
+  $r->addRoute("mesa/pararse/:ID", "GET", "MesaController", "pararse");
 
   $r->setDefaultRoute("LoginController", "showLogin");
 
