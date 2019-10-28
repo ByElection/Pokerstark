@@ -2,10 +2,12 @@
   background-color: black;
   margin: 0;
   padding: 0;
-
+  color: white;
 }
-
-header img {
+div.mesa{
+  background-image: url(../img/mesa.jpg);
+}
+img.full {
     width: 100%;
 }
 img {

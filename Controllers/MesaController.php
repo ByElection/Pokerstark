@@ -22,9 +22,10 @@ class MesaController {
 	public function pararse($id){
 		$this->model->pararse($id);
 	}
-	public function sentarse($id_mesa,$id_usuario){
-		$fichas = $_POST['fichas'];
-		$this->model->sentarse($id_usuario,$fichas,$id_mesa);
+	public function sentarse($parametros){
+		var_dump($parametros);
+		$fichas = $_POST["checkin"];
+		$this->model->sentarse($parametros[":IDUSUARIO"],$fichas,$parametros[":IDMESA"]);
 	}
 	
 }

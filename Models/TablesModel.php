@@ -88,7 +88,7 @@
 	}
 	public function pararse($id){
 		$jugadores = $this->db->prepare("DELETE FROM jugadores WHERE id_usuario = ?");
-		$jugadores->execute(array($id));
+		$jugadores->execute(array($id[":ID"]));
 		header("Location: " . TABLES);
 	}
 	public function sentarse($id_usuario,$fichas,$id_mesa){
