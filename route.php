@@ -33,7 +33,8 @@
   $r->addRoute("register", "POST", "RegisterController", "userRegister");
   $r->addRoute("ranking", "GET", "RankingController", "showRanking");
   $r->addRoute("admin", "GET", "AdminController", "showAdmin");
-  $r->addRoute("admin", "POST", "AdminController", "verifyAdmin");
+  $r->addRoute("agregar", "POST", "AdminController", "addMesa");
+  $r->addRoute("mesa/:ID", "DELETE", "AdminController","deletMesa");
   $r->addRoute("tables", "POST", "TablesController", "enterTable");
   $r->addRoute("mesa/:ID", "GET", "MesaController", "showMesa");
   $r->addRoute("mesa/sentarse/:ID/:ID", "GET", "MesaController", "sentarse");
