@@ -35,6 +35,7 @@ class RegisterController {
     }
     else{
       $this->model->addUsuario($user,$password_1,$nombre,$apellido,$pais);
+      header("Location: " . LOGIN);
     }
   }
 }

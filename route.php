@@ -17,7 +17,7 @@
   define("TABLES",BASE_URL . 'tables');
   define("RANKING",BASE_URL . 'ranking');
   define("LOGOUT",BASE_URL . 'logout');
-  define("ADMIN",BASE_URL . 'admin');
+  define("ADMIN",BASE_URL . 'mesasadmin');
   define("MESA",BASE_URL . 'mesa');
 
   $r = new Router();
@@ -32,8 +32,12 @@
   $r->addRoute("tables", "GET", "TablesController", "showTables");
   $r->addRoute("register", "POST", "RegisterController", "userRegister");
   $r->addRoute("ranking", "GET", "RankingController", "showRanking");
-  $r->addRoute("admin", "GET", "AdminController", "showAdmin");
-  $r->addRoute("admin", "POST", "AdminController", "verifyAdmin");
+  $r->addRoute("mesasadmin", "GET", "AdminController", "mesasAdmin");
+  $r->addRoute("ciegasadmin", "GET", "AdminController", "ciegasAdmin");
+  $r->addRoute("agregar", "POST", "AdminController", "addMesa");
+  $r->addRoute("delet/:ID", "GET", "AdminController","deletMesa");
+  $r->addRoute("edit/:ID", "GET", "AdminController","getMesa");
+  $r->addRoute("edit/edit/:ID", "POST", "AdminController","editMesa");
   $r->addRoute("tables", "POST", "TablesController", "enterTable");
   $r->addRoute("mesa/:ID", "GET", "MesaController", "showMesa");
   $r->addRoute("mesa/sentarse/:IDMESA/:IDUSUARIO", "POST", "MesaController", "sentarse");
