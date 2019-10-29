@@ -35,7 +35,13 @@ class AdminController {
     $this->checkLogIn();
     $ciegas = $this->model->getCiegas();
     $this->view->ciegasAdmin($ciegas);
-}
+  }
+  public function editCiegas($id) { //ACA TE ARME EL CONTROLLER DE EDIT CIEGAS FALTA PONER EN ROUTE
+    $this->checkLogIn();
+    $ciega = $this->model->getCiega($id);
+    $ciegas = $this->model->getCiegas();
+    $this->view->ciegasAdmin($ciegas,$ciega);
+  }
   public function addMesa() {
     $this->checkLogIn();
     $ciegas = $_POST['ciegas'];
@@ -52,8 +58,6 @@ class AdminController {
     $this->checkLogIn();
     $ciegas = $_POST['ciegas'];
     $sillas = $_POST['sillas'];
-    var_dump($ciegas);
-    var_dump($sillas);
     $this->model->editMesa($id,$ciegas,$sillas);
     header("Location: " . ADMIN);
   }
@@ -63,7 +67,7 @@ class AdminController {
     $mesas = $this->model->getMesas();
     $ciegas = $this->model->getCiegas();
     $jugadores = $this->model->getJugadores();
-    $this->view->editMesa($mesas,$ciegas,$jugadores,$mesa);
+    $this->view->mesasAdmin($mesas,$ciegas,$jugadores,$mesa);
   }
 }
   ?>

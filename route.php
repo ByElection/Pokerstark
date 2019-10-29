@@ -30,6 +30,7 @@
   $r->addRoute("profile","GET", "ProfileController", "getUser");
   $r->addRoute("tournament","GET","TournamentController", "showTournament");
   $r->addRoute("tables", "GET", "TablesController", "showTables");
+  $r->addRoute("tables", "POST", "TablesController", "showTablesFilter");
   $r->addRoute("register", "POST", "RegisterController", "userRegister");
   $r->addRoute("ranking", "GET", "RankingController", "showRanking");
   $r->addRoute("mesasadmin", "GET", "AdminController", "mesasAdmin");

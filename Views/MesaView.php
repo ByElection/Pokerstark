@@ -13,7 +13,7 @@ class MesaView {
 		$this->smarty->assign('mesa',$mesa);
 		$this->smarty->assign('ciegas',$ciegas);
 		$this->smarty->assign('titulo','Mesa '.$mesa->id_mesa);
-		$this->smarty->display('mesa.tpl'); //falta que el jugador se siente con fichas y que se borre de la db al pararse
+		$this->smarty->display('mesa.tpl');
 	}
 }
 ?>
