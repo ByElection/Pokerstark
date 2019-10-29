@@ -58,7 +58,7 @@
         $sentencia =  $this->db->prepare("UPDATE mesas SET ciega_chica=?,ciega_grande=? WHERE id_ciegas=?");
         $sentencia->execute(array($ciega_chica,$ciega_grande,$id));
     }
-    public function getMesa($id) {
+    public function getCiega($id) {
       $sentencia = $this->db->prepare("SELECT * FROM ciegas WHERE id_ciegas = ?");
       $sentencia->execute(array($id[":ID"]));
       $ciega = $sentencia->fetch(PDO::FETCH_OBJ);

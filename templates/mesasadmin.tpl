@@ -1,4 +1,4 @@
-{include file="header.tpl"}
+{include file="navadmin.tpl"}
 <a class="nav-link" href="logout">Salir</a>
 <div class="container-fluid">
   <form id="myform" action="edit/{$editmesa->id_mesa}" method="POST">

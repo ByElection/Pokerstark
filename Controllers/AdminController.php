@@ -24,13 +24,18 @@ class AdminController {
           }
           $_SESSION['LAST_ACTIVITY'] = time();
       }
-  public function showAdmin() {
+  public function mesasAdmin() {
     $this->checkLogIn();
     $mesas = $this->model->getMesas();
     $ciegas = $this->model->getCiegas();
     $jugadores = $this->model->getJugadores();
-    $this->view->showAdmin($mesas,$ciegas,$jugadores);
+    $this->view->mesasAdmin($mesas,$ciegas,$jugadores);
   }
+  public function ciegasAdmin() {
+    $this->checkLogIn();
+    $ciegas = $this->model->getCiegas();
+    $this->view->ciegasAdmin($ciegas);
+}
   public function addMesa() {
     $this->checkLogIn();
     $ciegas = $_POST['ciegas'];
