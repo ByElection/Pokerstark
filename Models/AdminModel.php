@@ -15,19 +15,19 @@
 
     public function getMesa($id) {
       $sentencia = $this->db->prepare("SELECT * FROM mesas WHERE id_mesa = ?");
-      $sentencia->execute([$id]);
+      $sentencia->execute(array($id[":ID"]));
       $mesa = $sentencia->fetch(PDO::FETCH_OBJ);
       return $mesa;
     }
 
-    public function addMesa($ciegas,$pozo,$sillas) {
-        $sentencia = $this->db->prepare("INSERT INTO mesas(id_ciegas,pozo, sillas) VALUES(?,?,?)");
-        $sentencia->execute(array($ciegas,$pozo,$sillas));
+    public function addMesa($ciegas,$sillas) {
+        $sentencia = $this->db->prepare("INSERT INTO mesas(id_ciegas,sillas) VALUES(?,?)");
+        $sentencia->execute(array($ciegas,$sillas));
     }
 
-    public function editMesa($id,$ciegas,$pozo,$sillas) {
-        $sentencia =  $this->db->prepare("UPDATE mesas SET ciegas=?, pozo=?, sillas=? WHERE id_mesa=?");
-        $sentencia->execute(array($ciegas, $pozo, $sillas, $id));
+    public function editMesa($id,$ciegas,$sillas) {
+        $sentencia =  $this->db->prepare("UPDATE mesas SET id_ciegas=?,sillas=? WHERE id_mesa=?");
+        $sentencia->execute(array($ciegas,$sillas,$id));
     }
 
     public function deletMesa($id) {
