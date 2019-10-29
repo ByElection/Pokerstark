@@ -11,25 +11,40 @@ class AdminController {
     $this->model = new AdminModel();
   }
 
+  public function checkLogIn(){
+          session_start();
+          if(!isset($_SESSION['id_usuario']) || ($_SESSION['admin'])==0){
+              header("Location: " . LOGIN);
+              die();
+          }
 
+          if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 5000)) {
+              header("Location: " . LOGIN);
+              die(); // destruye la sesión, y vuelve al login
+          }
+          $_SESSION['LAST_ACTIVITY'] = time();
+      }
   public function showAdmin() {
-    session_start();
+    $this->checkLogIn();
     $mesas = $this->model->getMesas();
     $ciegas = $this->model->getCiegas();
     $jugadores = $this->model->getJugadores();
     $this->view->showAdmin($mesas,$ciegas,$jugadores);
   }
   public function addMesa() {
+    $this->checkLogIn();
     $ciegas = $_POST['ciegas'];
     $sillas = $_POST['sillas'];
     $this->model->addMesa($ciegas,$sillas);
     header("Location: " . ADMIN);
   }
   public function deletMesa($id) {
+    $this->checkLogIn();
     $this->model->deletMesa($id);
     header("Location: " . ADMIN);
   }
   public function editMesa($id) {
+    $this->checkLogIn();
     $ciegas = $_POST['ciegas'];
     $sillas = $_POST['sillas'];
     var_dump($ciegas);
@@ -38,6 +53,7 @@ class AdminController {
     header("Location: " . ADMIN);
   }
   public function getMesa($id) {
+    $this->checkLogIn();
     $mesa = $this->model->getMesa($id);
     $mesas = $this->model->getMesas();
     $ciegas = $this->model->getCiegas();

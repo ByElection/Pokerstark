@@ -36,7 +36,7 @@
   $r->addRoute("agregar", "POST", "AdminController", "addMesa");
   $r->addRoute("delet/:ID", "GET", "AdminController","deletMesa");
   $r->addRoute("edit/:ID", "GET", "AdminController","getMesa");
-  $r->addRoute("edit/:ID", "POST", "AdminController","editMesa");
+  $r->addRoute("edit/edit/:ID", "POST", "AdminController","editMesa");
   $r->addRoute("tables", "POST", "TablesController", "enterTable");
   $r->addRoute("mesa/:ID", "GET", "MesaController", "showMesa");
   $r->addRoute("mesa/sentarse/:ID/:ID", "GET", "MesaController", "sentarse");

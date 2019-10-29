@@ -27,7 +27,7 @@
 
     public function editMesa($id,$ciegas,$sillas) {
         $sentencia =  $this->db->prepare("UPDATE mesas SET id_ciegas=?,sillas=? WHERE id_mesa=?");
-        $sentencia->execute(array($ciegas,$sillas,$id));
+        $sentencia->execute(array($ciegas,$sillas,$id[":ID"]));
     }
 
     public function deletMesa($id) {
@@ -46,4 +46,23 @@
       $jugadores = $sentencia->fetchAll(PDO::FETCH_OBJ);
       return $jugadores;
     }
+    public function addCiega($ciega_chica,$ciega_grande) {
+        $sentencia = $this->db->prepare("INSERT INTO ciegas(ciega_chica,ciega_grande) VALUES(?,?)");
+        $sentencia->execute(array($ciega_chica,$ciega_grande));
+    }
+    public function deletCiega($id) {
+        $sentencia = $this->db->prepare("DELETE FROM ciegas WHERE id_ciegas=?");
+        $sentencia->execute(array($id[":ID"]));
+    }
+    public function editCiega($id,$ciega_chica,$ciega_grande) {
+        $sentencia =  $this->db->prepare("UPDATE mesas SET ciega_chica=?,ciega_grande=? WHERE id_ciegas=?");
+        $sentencia->execute(array($ciega_chica,$ciega_grande,$id));
+    }
+    public function getMesa($id) {
+      $sentencia = $this->db->prepare("SELECT * FROM ciegas WHERE id_ciegas = ?");
+      $sentencia->execute(array($id[":ID"]));
+      $ciega = $sentencia->fetch(PDO::FETCH_OBJ);
+      return $ciega;
+    }
+
 }

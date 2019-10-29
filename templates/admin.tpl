@@ -1,6 +1,7 @@
 {include file="header.tpl"}
 <a class="nav-link" href="logout">Salir</a>
 <div class="container-fluid">
+  <form id="myform" action="edit/{$editmesa->id_mesa}" method="POST">
   <table class="table table-hover">
     <thead>
       <tr>
@@ -15,13 +16,12 @@
           <th scope="row">{$mesa->id_mesa}</th>
           {if $editmesa != null && $editmesa->id_mesa == $mesa->id_mesa}
           <td>
-            <form action="edit/{$editmesa->id_mesa}" method="POST">
-              <select name="ciegas">
+              <select name="ciegas" form="myform">
                 {foreach from=$ciegas item=ciega}
                   {if $mesa->id_ciegas==$editmesa->id_ciegas}
-                    <option value="{$ciega->id_ciega}" selected>{$ciega->ciega_chica}/{$ciega->ciega_grande}</option>
+                    <option value="{$ciega->id_ciegas}" selected>{$ciega->ciega_chica}/{$ciega->ciega_grande}</option>
                   {else}
-                    <option value="{$ciega->id_ciega}">{$ciega->ciega_chica}/{$ciega->ciega_grande}</option>
+                    <option value="{$ciega->id_ciegas}">{$ciega->ciega_chica}/{$ciega->ciega_grande}</option>
                   {/if}
                 {/foreach}
               </select>
@@ -32,7 +32,7 @@
                 {$count = $count+1}
               {/if}
             {/foreach}
-            <td>{$count}/<input type="number" min="{$count}" value="{$mesa->sillas}">
+            <td>{$count}/<input type="number" name="sillas" min="{$count}" value="{$mesa->sillas}">
           {else}
           {foreach from=$ciegas item=ciega}
             {if $mesa->id_ciegas == $ciega->id_ciegas}
@@ -49,8 +49,7 @@
           {/if}
                 <a href="delet/{$mesa->id_mesa}" class="btn btn-primary stretched-link">Eliminar</a>
                 {if $editmesa != null && $editmesa->id_mesa == $mesa->id_mesa}
-                  <button type="submit" class="btn btn-primary stretched-link">Editar</button>
-                  </form>
+                  <button form="myform" type="submit" class="btn btn-primary stretched-link">Editar</button>
                 {else}
                   <a href="edit/{$mesa->id_mesa}" class="btn btn-primary stretched-link">Editar</a>
                 {/if}
@@ -59,6 +58,7 @@
           {/foreach}
         </tbody>
       </table>
+    </form>
     </div>
     <div class="conteiner">
       <div class="row">

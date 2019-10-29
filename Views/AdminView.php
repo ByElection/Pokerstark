@@ -8,6 +8,7 @@
       $this->smarty = new Smarty();
       $this->smarty->assign('basehref', BASE_URL);
     }
+
     public function showAdmin($mesas,$ciegas,$jugadores,$mesa = null) {
       $this->smarty->assign('titulo', 'Admin');
       $this->smarty->assign('mesas',$mesas);
