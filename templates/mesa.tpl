@@ -2,6 +2,7 @@
 <div id="mesa">
 	<div class="row">
 		{$count=0}
+		{$estasentado=false}
 		{foreach from=$jugadoresmesa item=jugador}
 			<div class="jugador col">
 				{foreach from=$usuariosmesa item=usuario}
@@ -12,6 +13,7 @@
 				<h5>Fichas: {$jugador->fichas_mesa}</h5>
 				{if $jugador->id_usuario == $usuariologeado->id_usuario}
 					<a href="pararse/{$usuariologeado->id_usuario}" class="btn btn-primary stretched-link">Pararse</a>
+					{$estasentado=true}
 				{/if}
 				{$count=$count+1}
 			</div>
@@ -21,12 +23,14 @@
 		{for $i=$count to $mesa->sillas-1}
 			<div class="jugador col">
 				<h4>Silla Vacia</h4>
-				<form id="form{$formidnum}" action="sentarse/{$mesa->id_mesa}/{$usuariologeado->id_usuario}" method="POST">
-					<input type="range" onchange="cambiaLabel({$formidnum})" value="{$ciegas->ciega_grande}" name="checkin" min="{$ciegas->ciega_grande}" max="{$usuariologeado->fichas}" step="1">
-					<label>{$ciegas->ciega_grande}</label>
-					<button type="submit" class="btn btn-primary stretched-link">Sentarce</button>
-					{$formidnum=$formidnum+1}
-				</form>
+				{if !$estasentado}
+					<form id="form{$formidnum}" action="sentarse/{$mesa->id_mesa}/{$usuariologeado->id_usuario}" method="POST">
+						<input type="range" onchange="cambiaLabel({$formidnum})" value="{$ciegas->ciega_grande}" name="checkin" min="{$ciegas->ciega_grande}" max="{$usuariologeado->fichas}" step="1">
+						<label>{$ciegas->ciega_grande}</label>
+						<button type="submit" class="btn btn-primary stretched-link">Sentarce</button>
+						{$formidnum=$formidnum+1}
+					</form>
+				{/if}
 			</div>
 		{/for}
 		{/if}
