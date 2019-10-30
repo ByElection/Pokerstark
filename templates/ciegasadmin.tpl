@@ -36,6 +36,7 @@
       <form action="agregarciega" method="post">
         Ciega chica: <input class="ciegagrandeadd" type="number" name="ciega_chica" min="10" onchange="ciegagrandeadd()">
         Ciega grande: <span class="ciegagrandeadd">0</span>
+        <button type="submit" class="btn btn-primary stretched-link">AGREGAR CIEGA</button>
       </form>
     </div>
   </div>
