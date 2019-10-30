@@ -1,4 +1,3 @@
--edit ciegas y tabla de ciegas
 -tabla de ciegas usuarios comunes
 
 

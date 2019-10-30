@@ -1,6 +1,8 @@
 {include file="navadmin.tpl"}
 <div class="container-fluid">
+  {if $editciega!=null}
   <form id="myform-ciegas" action="editciega/{$editciega->id_ciegas}" method="post">
+  {/if}
     <table class="table table-hover">
       <thead>
         <tr>
@@ -12,21 +14,18 @@
         {foreach from=$ciegas item=ciega}
           <tr>
             <th scope="row">{$ciega->id_ciegas}</th>
-              {if $editciega != null && $editciega->id_ciegas == $ciega->id_ciegas}
                 <td>
-                  <input type="number" name="ciega_chica" min="10" value="{$ciega->id_ciegas}">/{$ciega_chica * 2}
-                </td>
-                  {/if}
-                  <td>
-                    <a href="deletciega/{$ciega->id_ciegas}" class="btn btn-primary stretched-link">Eliminar</a>
                     {if $editciega != null && $editciega->id_ciegas == $ciega->id_ciegas}
+                      <input form="myform-ciegas" type="number" name="ciega_chica" min="10" value="{$ciega->ciega_chica}" class="ciegagrandeedit" onchange="ciegagrandeedit()">/<span class="ciegagrandeedit">{$ciega->ciega_chica*2}</span>
                       <button form="myform-ciegas" type="submit" class="btn btn-primary stretched-link">Editar</button>
                     {else}
+                      {$ciega->ciega_chica}/{$ciega->ciega_grande}
                       <a href="editciega/{$ciega->id_ciegas}" class="btn btn-primary stretched-link">Editar</a>
+                      <a href="deletciega/{$ciega->id_ciegas}" class="btn btn-primary stretched-link">Eliminar</a>
                     {/if}
-                  </td>
+                </td>
           </tr>
-        {/foreach}}
+        {/foreach}
       </tbody>
     </table>
   </form>
@@ -35,10 +34,12 @@
   <div class="row">
     <div class="col-2">
       <form action="agregarciega" method="post">
-        Ciega chica: <input type="number" name="ciega_chica" min="10">
-        Ciega grande: <label id='ciegagrande'>JAVASCRIP</label>
+        Ciega chica: <input class="ciegagrandeadd" type="number" name="ciega_chica" min="10" onchange="ciegagrandeadd()">
+        Ciega grande: <span class="ciegagrandeadd">0</span>
       </form>
     </div>
   </div>
 </div>
+<script type="text/javascript" src="./js/scriptciegas.js"></script>
+<script type="text/javascript" src="../js/scriptciegas.js"></script>
 {include file="footer.tpl"}

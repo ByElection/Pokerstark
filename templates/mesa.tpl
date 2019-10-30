@@ -5,7 +5,7 @@
 		{foreach from=$jugadoresmesa item=jugador}
 			<div class="jugador col">
 				{foreach from=$usuariosmesa item=usuario}
-					{if $usuario->id_usuario == $jugador->id_usuario} 
+					{if $usuario->id_usuario == $jugador->id_usuario}
 						<h4>{$usuario->username}</h4>
 					{/if}
 				{/foreach}
@@ -31,8 +31,7 @@
 		{/for}
 		{/if}
 	</div>
-	<div class="row mesa">
-		<img class="full" src="../img/mesa.jpg">
+	<div class="container-fluid row mesa">
 		<div class="col">
 			<h2>Ciega Chica/Grande: {$ciegas->ciega_chica}/{$ciegas->ciega_grande}</h2>
 			<h3>Pozo: {$mesa->pozo}</h3>

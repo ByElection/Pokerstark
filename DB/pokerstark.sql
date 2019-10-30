@@ -51,9 +51,9 @@ INSERT INTO `ciegas` (`id_ciegas`, `ciega_chica`, `ciega_grande`) VALUES
 --
 
 CREATE TABLE `jugadores` (
-  `id_usuario` int(11) DEFAULT NULL,
+  `id_usuario` int(11) NOT NULL,
   `fichas_mesa` int(11) NOT NULL,
-  `id_mesa` int(11) DEFAULT NULL
+  `id_mesa` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 --
@@ -174,8 +174,8 @@ ALTER TABLE `usuarios`
 -- Filtros para la tabla `jugadores`
 --
 ALTER TABLE `jugadores`
-  ADD CONSTRAINT `jugadores_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE SET NULL ON UPDATE CASCADE,
-  ADD CONSTRAINT `jugadores_ibfk_2` FOREIGN KEY (`id_mesa`) REFERENCES `mesas` (`id_mesa`) ON DELETE SET NULL ON UPDATE CASCADE;
+  ADD CONSTRAINT `jugadores_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `jugadores_ibfk_2` FOREIGN KEY (`id_mesa`) REFERENCES `mesas` (`id_mesa`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `mesas`

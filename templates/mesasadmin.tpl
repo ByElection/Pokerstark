@@ -1,6 +1,8 @@
 {include file="navadmin.tpl"}
 <div class="container-fluid">
+  {if $editmesa!=null}
   <form id="myform" action="edit/{$editmesa->id_mesa}" method="POST">
+  {/if}
   <table class="table table-hover">
     <thead>
       <tr>

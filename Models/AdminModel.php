@@ -31,6 +31,8 @@
     }
 
     public function deletMesa($id) {
+        $sentencia = $this->db->prepare("DELETE FROM jugadores WHERE id_mesa=?");
+        $sentencia->execute(array($id[":ID"]));
         $sentencia = $this->db->prepare("DELETE FROM mesas WHERE id_mesa=?");
         $sentencia->execute(array($id[":ID"]));
     }
@@ -51,12 +53,14 @@
         $sentencia->execute(array($ciega_chica,$ciega_grande));
     }
     public function deletCiega($id) {
-        $sentencia = $this->db->prepare("DELETE FROM ciegas WHERE id_ciegas=?");
+        $sentencia = $this->db->prepare("DELETE FROM mesas WHERE id_ciegas=?");
         $sentencia->execute(array($id[":ID"]));
+        $sentencia = $this->db->prepare("DELETE FROM ciegas WHERE id_ciegas=?");
+        $ok=$sentencia->execute(array($id[":ID"]));
     }
     public function editCiega($id,$ciega_chica,$ciega_grande) {
-        $sentencia =  $this->db->prepare("UPDATE mesas SET ciega_chica=?,ciega_grande=? WHERE id_ciegas=?");
-        $sentencia->execute(array($ciega_chica,$ciega_grande,$id));
+        $sentencia =  $this->db->prepare("UPDATE ciegas SET ciega_chica=?,ciega_grande=? WHERE id_ciegas=?");
+        $sentencia->execute(array($ciega_chica,$ciega_grande,$id[":ID"]));
     }
     public function getCiega($id) {
       $sentencia = $this->db->prepare("SELECT * FROM ciegas WHERE id_ciegas = ?");
@@ -66,4 +70,4 @@
     }
 
 }
-?> 
+?>
