@@ -10,6 +10,7 @@ class MesaController {
 		$this->model = new TablesModel();
 	}
 	public function showMesa($id){
+		$admin=$this->checkAdmin();
 		$jugadoresmesa = $this->model->getJugadoresMesa($id);
 		$usuariosmesa=$this->model->getUsuariosMesa($jugadoresmesa);
 		$mesa=$this->model->getMesa($id);
@@ -17,7 +18,7 @@ class MesaController {
 		session_start();
 		$idusuario=$_SESSION['id_usuario'];
 		$usuario=$this->model->getUser($idusuario);
-		$this->view->showMesa($jugadoresmesa,$usuariosmesa,$mesa,$ciegas,$usuario);
+		$this->view->showMesa($admin,$jugadoresmesa,$usuariosmesa,$mesa,$ciegas,$usuario);
 	}
 	public function pararse($id){
 		$this->model->pararse($id);
@@ -27,6 +28,15 @@ class MesaController {
 		$fichas = $_POST["checkin"];
 		$this->model->sentarse($parametros[":IDUSUARIO"],$fichas,$parametros[":IDMESA"]);
 	}
-	
+  public function checkAdmin() {
+    if (isset($_SESSION['admin'])){
+	    if ($_SESSION['admin']!=0) {
+	      return true;
+	    }
+	    else {
+	      return false;
+	    }
+	  }
+	}
 }
 ?>

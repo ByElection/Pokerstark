@@ -74,18 +74,18 @@ class LoginController {
           header("Location: " . PROFILE);
         }
         else {
-          //$esta=$this->logeado(); SIN ESTO ANDA IGUAL Y SIN EL PARAMETO ABAJO EN SHOW LOGIN
-          $this->view->showLogin();
+          $admin=$this->checkAdmin();
+          $this->view->showLogin($admin);
         }
     }
     public function checkAdmin() {
-      session_start();
-
-      if ($_SESSION['admin']!=0) {
-        return true;
-      }
-      else {
-        return false;
+      if (isset($_SESSION['admin'])){
+        if ($_SESSION['admin']!=0) {
+          return true;
+        }
+        else {
+          return false;
+        }
       }
     }
 }

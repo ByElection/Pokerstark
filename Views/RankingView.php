@@ -8,9 +8,10 @@
       $this->smarty->assign('basehref', BASE_URL);
     }
 
-    public function showRanking($esta,$error = null) {
+    public function showRanking($admin,$esta,$users) {
       $this->smarty->assign('titulo','Torneos');
-      $this->smarty->assign('error',$error);
+      $this->smarty->assign('admin', $admin);
+      $this->smarty->assign('users',$users);
       $this->smarty->assign('esta',$esta);
       $this->smarty->display('templates/ranking.tpl');
     }

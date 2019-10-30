@@ -6,8 +6,9 @@ class MesaView {
 		$this->smarty = new Smarty();
 		$this->smarty->assign('basehref', BASE_URL);
 	}
-	public function showMesa($jugadoresmesa,$usuariosmesa,$mesa,$ciegas,$usuario){
+	public function showMesa($admin,$jugadoresmesa,$usuariosmesa,$mesa,$ciegas,$usuario){
 		$this->smarty->assign('usuariologeado',$usuario);
+		$this->smarty->assign('admin', $admin);
 		$this->smarty->assign('jugadoresmesa',$jugadoresmesa);
 		$this->smarty->assign('usuariosmesa',$usuariosmesa);
 		$this->smarty->assign('mesa',$mesa);

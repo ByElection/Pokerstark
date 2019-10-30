@@ -18,7 +18,8 @@ class RegisterController {
       header("Location: " . PROFILE);
     }
     else {
-      $this->view->showRegister();
+      $admin=$this->checkAdmin();
+      $this->view->showRegister($admin);
     }
 
   }
@@ -36,6 +37,16 @@ class RegisterController {
     else{
       $this->model->addUsuario($user,$password_1,$nombre,$apellido,$pais);
       header("Location: " . LOGIN);
+    }
+  }
+  public function checkAdmin() {
+    if (isset($_SESSION['admin'])){
+      if ($_SESSION['admin']!=0) {
+        return true;
+      }
+      else {
+        return false;
+      }
     }
   }
 }

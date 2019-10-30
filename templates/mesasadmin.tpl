@@ -1,4 +1,4 @@
-{include file="navadmin.tpl"}
+{include file="nav.tpl"}
 <div class="container-fluid">
   {if $editmesa!=null}
   <form id="myform" action="edit/{$editmesa->id_mesa}" method="POST">

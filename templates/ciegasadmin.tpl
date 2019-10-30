@@ -1,4 +1,4 @@
-{include file="navadmin.tpl"}
+{include file="nav.tpl"}
 <div class="container-fluid">
   {if $editciega!=null}
   <form id="myform-ciegas" action="editciega/{$editciega->id_ciegas}" method="post">

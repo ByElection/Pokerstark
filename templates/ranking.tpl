@@ -13,10 +13,14 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Tupapi</td>
-        <td>10000</td>
-      </tr>
+      {$count=1}
+      {foreach from=$users item=user}
+        <tr>
+          <th scope="row">{$count}</th>
+          <td>{$user->username}</td>
+          <td>{$user->fichas}</td>
+        </tr>
+        {$count=$count+1}
+      {/foreach}
     </tbody>
   </div>

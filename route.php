@@ -2,7 +2,7 @@
   require_once "Controllers/LoginController.php";
   require_once "Controllers/RegisterController.php";
   require_once "Controllers/ProfileController.php";
-  require_once "Controllers/TournamentController.php";
+  require_once "Controllers/CiegasController.php";
   require_once "Controllers/TablesController.php";
   require_once "Controllers/RankingController.php";
   require_once "Controllers/AdminController.php";
@@ -13,7 +13,7 @@
   define("LOGIN", BASE_URL . 'login');
   define("REGISTER", BASE_URL . 'register');
   define("PROFILE", BASE_URL . 'profile');
-  define("TOURNAMENT",BASE_URL . 'tournament');
+  define("CIEGAS",BASE_URL . 'ciegas');
   define("TABLES",BASE_URL . 'tables');
   define("RANKING",BASE_URL . 'ranking');
   define("LOGOUT",BASE_URL . 'logout');
@@ -29,7 +29,7 @@
   $r->addRoute("register", "GET", "RegisterController", "showRegister");
   $r->addRoute("profile","GET", "ProfileController", "showProfile");
   $r->addRoute("profile","GET", "ProfileController", "getUser");
-  $r->addRoute("tournament","GET","TournamentController", "showTournament");
+  $r->addRoute("ciegas","GET","CiegasController", "showCiegas");
   $r->addRoute("tables", "GET", "TablesController", "showTables");
   $r->addRoute("tables", "POST", "TablesController", "showTablesFilter");
   $r->addRoute("register", "POST", "RegisterController", "userRegister");

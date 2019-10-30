@@ -12,11 +12,14 @@
         <a class="nav-link" href="tables">Juego</a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="tournament">Torneos</a>
+        <a class="nav-link" href="ciegas">Ciegas</a>
       </li>
       <li class="nav-item active">
         <a class="nav-link" href="ranking">Ranking</a>
       </li>
+      {if $admin}
+        {include file="navadmin.tpl"}
+      {/if}
       <li class="nav-item active">
         <a class="nav-link" href="logout">Salir</a>
       </li>

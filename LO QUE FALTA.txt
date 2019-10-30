@@ -1,5 +1,0 @@
--tabla de ciegas usuarios comunes
-
-
-
-ULTIMO El sitio debe generar su base de datos con datos iniciales al momento de cargarlo por primera vez

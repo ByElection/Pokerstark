@@ -8,8 +8,9 @@
       $this->smarty->assign('basehref', BASE_URL);
     }
 
-    public function showProfile($nombre,$pais,$fichas) {
+    public function showProfile($admin,$nombre,$pais,$fichas) {
       $this->smarty->assign('titulo', 'Perfil');
+      $this->smarty->assign('admin', $admin);
       $this->smarty->assign('nombre',$nombre);
       $this->smarty->assign('pais',$pais);
       $this->smarty->assign('fichas',$fichas);

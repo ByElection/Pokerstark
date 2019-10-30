@@ -9,16 +9,18 @@
       $this->smarty->assign('basehref', BASE_URL);
     }
 
-    public function mesasAdmin($mesas,$ciegas,$jugadores,$mesa = null) { //JUNTE LOS VIEWS Y ACOMODE LOS CONTROLLERS PARA NO REPETIR CODIGO
+    public function mesasAdmin($admin,$mesas,$ciegas,$jugadores,$mesa = null) {
       $this->smarty->assign('titulo', 'Admin-mesas');
+      $this->smarty->assign('admin', $admin);
       $this->smarty->assign('mesas',$mesas);
       $this->smarty->assign('ciegas',$ciegas);
       $this->smarty->assign('jugadores',$jugadores);
       $this->smarty->assign('editmesa',$mesa);
       $this->smarty->display('templates/mesasadmin.tpl');
     }
-    public function ciegasAdmin($ciegas,$ciega=null) {
+    public function ciegasAdmin($admin,$ciegas,$ciega=null) {
       $this->smarty->assign('titulo', 'Admin-Ciegas');
+      $this->smarty->assign('admin', $admin);
       $this->smarty->assign('ciegas',$ciegas);
       $this->smarty->assign('editciega',$ciega);
       $this->smarty->display('templates/ciegasadmin.tpl');

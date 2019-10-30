@@ -26,15 +26,17 @@ class AdminController {
       }
   public function mesasAdmin() {
     $this->checkLogIn();
+    $admin=$this->checkAdmin();
     $mesas = $this->model->getMesas();
     $ciegas = $this->model->getCiegas();
     $jugadores = $this->model->getJugadores();
-    $this->view->mesasAdmin($mesas,$ciegas,$jugadores);
+    $this->view->mesasAdmin($admin,$mesas,$ciegas,$jugadores);
   }
   public function ciegasAdmin() {
     $this->checkLogIn();
+    $admin=$this->checkAdmin();
     $ciegas = $this->model->getCiegas();
-    $this->view->ciegasAdmin($ciegas);
+    $this->view->ciegasAdmin($admin,$ciegas);
   }
   public function addMesa() {
     $this->checkLogIn();
@@ -76,17 +78,29 @@ class AdminController {
   }
   public function getMesa($id) {
     $this->checkLogIn();
+    $admin=$this->checkAdmin();
     $mesa = $this->model->getMesa($id);
     $mesas = $this->model->getMesas();
     $ciegas = $this->model->getCiegas();
     $jugadores = $this->model->getJugadores();
-    $this->view->mesasAdmin($mesas,$ciegas,$jugadores,$mesa);
+    $this->view->mesasAdmin($admin,$mesas,$ciegas,$jugadores,$mesa);
   }
   public function getCiega($id) {
     $this->checkLogIn();
+    $admin=$this->checkAdmin();
     $ciega = $this->model->getCiega($id);
     $ciegas = $this->model->getCiegas();
-    $this->view->ciegasAdmin($ciegas,$ciega);
+    $this->view->ciegasAdmin($admin,$ciegas,$ciega);
+  }
+  public function checkAdmin() {
+    if (isset($_SESSION['admin'])){
+      if ($_SESSION['admin']!=0) {
+        return true;
+      }
+      else {
+        return false;
+      }
+    }
   }
 }
   ?>

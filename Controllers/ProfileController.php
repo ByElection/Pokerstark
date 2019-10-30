@@ -19,10 +19,19 @@ class ProfileController {
 
   public function showProfile() {
     $this->check->checkLogIn();
+    $admin=$this->checkAdmin();
     $usuario = $this->model->getUser($_SESSION['id_usuario']);
-    $this->view->showProfile($usuario->nombre.' '.$usuario->apellido,$usuario->pais,$usuario->fichas);
+    $this->view->showProfile($admin,$usuario->nombre.' '.$usuario->apellido,$usuario->pais,$usuario->fichas);
   }
-
-
+  public function checkAdmin() {
+    if (isset($_SESSION['admin'])){
+      if ($_SESSION['admin']!=0) {
+        return true;
+      }
+      else {
+        return false;
+      }
+    }
+  }
 }
 ?>
