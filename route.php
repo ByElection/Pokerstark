@@ -37,12 +37,12 @@
   $r->addRoute("mesasadmin", "GET", "AdminController", "mesasAdmin");
   $r->addRoute("edit/:ID", "GET", "AdminController","getMesa");
   $r->addRoute("agregar", "POST", "AdminController", "addMesa");
-  $r->addRoute("edit/edit/:ID", "POST", "AdminController","editMesa");
+  $r->addRoute("edit/:ID", "POST", "AdminController","editMesa");
   $r->addRoute("delet/:ID", "GET", "AdminController","deletMesa");
   $r->addRoute("ciegasadmin", "GET", "AdminController", "ciegasAdmin");
   $r->addRoute("agregarciega", "POST", "AdminController", "addCiega");
   $r->addRoute("editciega/:ID", "GET", "AdminController","getCiega");
-  $r->addRoute("editciega/editciega/:ID", "POST", "AdminController","editCiega");
+  $r->addRoute("editciega/:ID", "POST", "AdminController","editCiega");
   $r->addRoute("deletciega/:ID", "GET", "AdminController","deletCiega");
   $r->addRoute("tables", "POST", "TablesController", "enterTable");
   $r->addRoute("mesa/:ID", "GET", "MesaController", "showMesa");
