@@ -1,26 +1,36 @@
 <?php
 include_once('./Views/ProfileView.php');
-include_once('./Models/ProfileModel.php');
+include_once('./Models/UsuariosModel.php');
+include_once('./Models/JugadoresModel.php');
+include_once('./Models/MesasModel.php');
+include_once('./Models/CiegasModel.php');
 include_once('LoginController.php');
 
 class ProfileController {
   private $view;
-  private $model;
+  private $modelusuarios;
+  private $modeljugadores;
+  private $modelmesas;
+  private $modelciegas;
   private $check;
 
   public function __construct() {
     $this->view = new ProfileView();
-    $this->model = new ProfileModel();
+    $this->modelusuarios = new UsuariosModel();
+    $this->modeljugadores = new JugadoresModel();
+    $this->modelmesas = new MesasModel();
+    $this->modelciegas = new CiegasModel();
     $this->check = new LoginController();
   }
 
-
-
-
-  public function showProfile() {
+  public function showProfile($cargarfichas=null) {
     $this->check->checkLogIn();
     $admin=$this->checkAdmin();
-    $usuario = $this->model->getUser($_SESSION['id_usuario']);
+    $id=$_SESSION['id_usuario'];
+    if ($cargarfichas!=null){
+      $this->modelusuarios->addFichas($id,$cargarfichas[":fichas"]);
+    }
+    $usuario = $this->modelusuarios->getUserById($id);
     $this->view->showProfile($admin,$usuario->nombre.' '.$usuario->apellido,$usuario->pais,$usuario->fichas);
   }
   public function checkAdmin() {

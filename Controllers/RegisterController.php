@@ -1,25 +1,24 @@
 <?php
 include_once('./Views/RegisterView.php');
-include_once('./Models/RegisterModel.php');
+include_once('./Models/UsuariosModel.php');
 
 class RegisterController {
   private $view;
-  private $model;
+  private $modelusuarios;
 
   public function __construct() {
     $this->view = new RegisterView();
-    $this->model = new RegisterModel();
-
+    $this->modelusuarios = new UsuariosModel();
   }
 
-  public function showRegister() {
+  public function showRegister($error=null) {
     session_start();
     if (isset($_SESSION['id_usuario'])) {
       header("Location: " . PROFILE);
     }
     else {
       $admin=$this->checkAdmin();
-      $this->view->showRegister($admin);
+      $this->view->showRegister($admin,$error);
     }
 
   }
@@ -30,12 +29,13 @@ class RegisterController {
     $pais = $_POST['pais'];
     $password_1 = $_POST['password_1'];
     $password_2 = $_POST['password_2'];
-
-    if ($password_1 != $password_2) {
-      echo "las contraseñas son distintas";
-    }
-    else{
-      $this->model->addUsuario($user,$password_1,$nombre,$apellido,$pais);
+    $username=$this->modelusuarios->getUserByUsername($user);
+    if (isset($username)&& $username->username === $user) {
+      header("Location: " . REGISTER . "/username");
+    }elseif ($password_1 != $password_2) {
+      header("Location: " . REGISTER . "/password");
+    }else{
+      $this->modelusuarios->addUsuario($user,$password_1,$nombre,$apellido,$pais);
       header("Location: " . LOGIN);
     }
   }

@@ -1,32 +1,42 @@
 <?php
 include_once('./Views/MesaView.php');
-include_once('./Models/TablesModel.php');
+include_once('./Models/UsuariosModel.php');
+include_once('./Models/JugadoresModel.php');
+include_once('./Models/MesasModel.php');
+include_once('./Models/CiegasModel.php');
 
 class MesaController {
 	private $view;
-	private $model;
+	private $modelusuarios;
+	private $modeljugadores;
+	private $modelmesas;
+	private $modelciegas;
+
 	public function __construct(){
 		$this->view = new MesaView();
-		$this->model = new TablesModel();
+		$this->modelusuarios = new UsuariosModel();
+		$this->modeljugadores = new JugadoresModel();
+		$this->modelmesas = new MesasModel();
+		$this->modelciegas = new CiegasModel();
 	}
 	public function showMesa($id){
 		$admin=$this->checkAdmin();
-		$jugadoresmesa = $this->model->getJugadoresMesa($id);
-		$usuariosmesa=$this->model->getUsuariosMesa($jugadoresmesa);
-		$mesa=$this->model->getMesa($id);
-		$ciegas=$this->model->getCiegasX($mesa->id_ciegas);
+		$jugadoresmesa = $this->modeljugadores->getJugadoresMesa($id[":ID"]);
+		$usuariosmesa=$this->modelusuarios->getUsuariosMesa($jugadoresmesa);
+		$mesa=$this->modelmesas->getMesa($id[":ID"]);
+		$ciegas=$this->modelciegas->getCiegasById($mesa->id_ciegas);
 		session_start();
 		$idusuario=$_SESSION['id_usuario'];
-		$usuario=$this->model->getUser($idusuario);
+		$usuario=$this->modelusuarios->getUserById($idusuario);
 		$this->view->showMesa($admin,$jugadoresmesa,$usuariosmesa,$mesa,$ciegas,$usuario);
 	}
 	public function pararse($id){
-		$this->model->pararse($id);
+		$this->modeljugadores->pararse($id[":ID"]);
 	}
 	public function sentarse($parametros){
 		var_dump($parametros);
 		$fichas = $_POST["checkin"];
-		$this->model->sentarse($parametros[":IDUSUARIO"],$fichas,$parametros[":IDMESA"]);
+		$this->modeljugadores->sentarse($parametros[":IDUSUARIO"],$fichas,$parametros[":IDMESA"]);
 	}
   public function checkAdmin() {
     if (isset($_SESSION['admin'])){

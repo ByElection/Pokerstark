@@ -10,8 +10,9 @@
     }
 
 
-    public function showLogin($admin) {
+    public function showLogin($admin,$error) {
          $this->smarty->assign('titulo', 'Login');
+         $this->smarty->assign('error', $error);
          $this->smarty->assign('admin', $admin);
          $this->smarty->display('templates/login.tpl');
      }

@@ -1,16 +1,16 @@
 <?php
 include_once('./Views/LoginView.php');
-include_once('./Models/LoginModel.php');
+include_once('./Models/UsuariosModel.php');
 
 
 class LoginController {
 
     private $view;
-    private $model;
+    private $modelusuarios;
 
     public function __construct() {
-        $this->view = new LoginView();
-        $this->model = new LoginModel();
+      $this->view = new LoginView();
+      $this->modelusuarios = new UsuariosModel();
     }
 
 
@@ -27,22 +27,26 @@ class LoginController {
     public function verifyUser() {
       $password = $_POST['password'];
       $checkadmin =$_POST['check-admin'];
-       $usuario = $this->model->GetUser($_POST['username']);
+      $usuario = $this->modelusuarios->getUserByUsername($_POST['username']);
 
        if (isset($usuario) && $usuario != null && password_verify($password, $usuario->password)){
+         if(isset($checkadmin)&&$usuario->admin==0){
+           header("Location: " . LOGIN . "/admin");
+         }else{
            session_start();
            $_SESSION['username'] = $usuario->usuario;
            $_SESSION['id_usuario'] = $usuario->id_usuario;
-          if (($usuario->admin !=0) && (isset($checkadmin))) {
+          if (isset($checkadmin) && $usuario->admin!=0) {
             $_SESSION['admin'] = 1;
             header("Location: " . ADMIN);
-           }
-           else {
+          }elseif(isset($checkadmin)){
+            header("Location: " . LOGIN . "/admin");
+          }else{
              header("Location: " . PROFILE);
            }
-       }
-       else {
-           header("Location: " . LOGIN); //GUARDA ACA PARA PROBAR
+         }
+       }else {
+           header("Location: " . LOGIN . "/userpass");
        }
     }
 
@@ -51,12 +55,12 @@ class LoginController {
 
               if(!isset($_SESSION['id_usuario'])){
                   header("Location: " . LOGIN);
-                  die();
+                  session_destroy();
               }
 
               if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 5000)) {
                   header("Location: " . LOGIN);
-                  die(); // destruye la sesión, y vuelve al login
+                  session_destroy();
               }
               $_SESSION['LAST_ACTIVITY'] = time();
           }
@@ -65,7 +69,7 @@ class LoginController {
       session_destroy();
       header("Location: " . LOGIN);
     }
-    public function showLogin() {
+    public function showLogin($error=null) {
         session_start();
         if (isset($_SESSION['id_usuario']) && isset($_SESSION['admin'])) {
           header("Location: " . ADMIN);
@@ -75,7 +79,7 @@ class LoginController {
         }
         else {
           $admin=$this->checkAdmin();
-          $this->view->showLogin($admin);
+          $this->view->showLogin($admin,$error);
         }
     }
     public function checkAdmin() {

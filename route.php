@@ -24,11 +24,13 @@
   $r = new Router();
 
   $r->addRoute("login", "GET", "LoginController", "showLogin");
+  $r->addRoute("login/:error", "GET", "LoginController", "showLogin");
   $r->addRoute("login", "POST", "LoginController", "verifyUser");
   $r->addRoute("logout", "GET", "LoginController", "logout");
   $r->addRoute("register", "GET", "RegisterController", "showRegister");
+  $r->addRoute("register/:error", "GET", "RegisterController", "showRegister");
   $r->addRoute("profile","GET", "ProfileController", "showProfile");
-  $r->addRoute("profile","GET", "ProfileController", "getUser");
+  $r->addRoute("profile/:fichas","GET", "ProfileController", "showProfile");
   $r->addRoute("ciegas","GET","CiegasController", "showCiegas");
   $r->addRoute("tables", "GET", "TablesController", "showTables");
   $r->addRoute("tables", "POST", "TablesController", "showTablesFilter");

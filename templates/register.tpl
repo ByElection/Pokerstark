@@ -17,6 +17,15 @@
     </div>
   </div>
   <div class="form-row">
+    <div class="col-md-4 mb-3"></div>
+    <div class="col-md-4 mb-3"></div>
+    <div class="col-md-4 mb-3">
+      {if $error!=null && $error[':error'] == "username"}
+        <small class="form-text text-muted">EL USUARIO YA EXISTE</small>
+      {/if}
+    </div>
+  </div>
+  <div class="form-row">
     <div class="col-md-4 mb-3">
       <label>Contraseña</label>
       <input type="password" class="form-control" name="password_1" placeholder="Contraseña" required>
@@ -25,7 +34,7 @@
       <label>Repetir Contraseña</label>
       <input type="password" class="form-control" name="password_2" placeholder="Contraseña" required>
     </div>
-    <div class="input-group col-md-4 mb-3">
+    <div class="form-group col-md-4 mb-3">
       <label>Pais</label>
       <select class="form-control" name="pais">
         <option value="Afganistán" id="AF">Afganistán</option>
@@ -267,6 +276,15 @@
         <option value="Zimbabue" id="ZW">Zimbabue</option>
       </select>
     </div>
+  </div>
+  <div class="form-row">
+    <div class="col-md-4 mb-3"></div>
+    <div class="col-md-4 mb-3">
+      {if $error!=null && $error[':error'] == "password"}
+        <small class="form-text text-muted">LAS CONTRASEÑAS NO COINCIDEN</small>
+      {/if}
+    </div>
+    <div class="col-md-4 mb-3"></div>
   </div>
 </div>
 <button class="btn btn-primary" type="submit">Registrarse</button>

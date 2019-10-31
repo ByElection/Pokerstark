@@ -19,7 +19,7 @@
           <td>
               <select name="ciegas" form="myform">
                 {foreach from=$ciegas item=ciega}
-                  {if $mesa->id_ciegas==$editmesa->id_ciegas}
+                  {if $mesa->id_ciegas==$editmesa->id_ciegas && $editmesa->id_ciegas==$ciega->id_ciegas}
                     <option value="{$ciega->id_ciegas}" selected>{$ciega->ciega_chica}/{$ciega->ciega_grande}</option>
                   {else}
                     <option value="{$ciega->id_ciegas}">{$ciega->ciega_chica}/{$ciega->ciega_grande}</option>

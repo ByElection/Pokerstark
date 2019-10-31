@@ -12,7 +12,7 @@
     <div class="col-6">
         <h4>Nombre: {$nombre}</h4>
         <h4>Pais: {$pais}</h4>
-        <h4>Fichas: {$fichas}</h4>
+        <h4>Fichas: {$fichas} <a href="profile/{$fichas+1000}" class="btn btn-primary stretched-link">+</a></h4>
     </div>
   </div>
 

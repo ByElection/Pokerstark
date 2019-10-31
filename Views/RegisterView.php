@@ -8,9 +8,10 @@ class RegisterView {
     $this->smarty->assign('basehref', BASE_URL);
   }
 
-  public function showRegister($admin) {
+  public function showRegister($admin,$error) {
     $this->smarty->assign('titulo', 'Registrarse');
     $this->smarty->assign('admin', $admin);
+    $this->smarty->assign('error', $error);
     $this->smarty->display('templates/register.tpl');
   }
 }
