@@ -6,7 +6,7 @@
         <img class="avatar" src="./img/Ironman.jpg" alt="foto de perfil">
       </div>
       <div class="row">
-        <button type="button" class="btn btn-primary" disabled>Cambiar foto</button>
+        <button type="button" class="btn btn-primary">Cambiar foto</button>
       </div>
     </div>
     <div class="col-6">
