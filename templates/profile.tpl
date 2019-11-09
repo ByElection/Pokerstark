@@ -3,10 +3,16 @@
   <div class="row">
     <div class="col-6">
       <div class="row">
-        <img class="avatar" src="./img/Ironman.jpg" alt="foto de perfil">
+        <img class="avatar" src="./img/1.jpg" alt="foto de perfil">
       </div>
       <div class="row">
-        <button type="button" class="btn btn-primary">Cambiar foto</button>
+        <button type="button" class="btn btn-primary avatars">Cambiar foto</button>
+        <div class="row avatars">
+            <img class="avatar" src="./img/1.jpg" alt="foto de perfil">
+            <img class="avatar" src="./img/2.jpg" alt="foto de perfil">
+            <img class="avatar" src="./img/3.jpg" alt="foto de perfil">
+            <img class="avatar" src="./img/4.jpg" alt="foto de perfil">
+        </div>
       </div>
     </div>
     <div class="col-6">
@@ -15,5 +21,6 @@
         <h4>Fichas: {$fichas} <a href="profile/{$fichas+1000}" class="btn btn-primary stretched-link">+</a></h4>
     </div>
   </div>
-
+  <script src="./js/script.js" charset="utf-8"></script>
+  <script src="./js/scriptperfil.js" charset="utf-8"></script>
 </div>

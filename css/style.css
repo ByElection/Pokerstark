@@ -8,6 +8,9 @@ img.avatar{
   width: 128px;
   height: 128px;
 }
+div.avatars{
+  display: none;
+}
 div.mesa{
   background-color: transparent;
   background-image: url("../img/mesa.jpg");
