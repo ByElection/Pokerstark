@@ -8,10 +8,7 @@
       <div class="row">
         <button type="button" class="btn btn-primary avatars">Cambiar foto</button>
         <div class="row avatars">
-            <img class="avatar" src="./img/1.jpg" alt="foto de perfil">
-            <img class="avatar" src="./img/2.jpg" alt="foto de perfil">
-            <img class="avatar" src="./img/3.jpg" alt="foto de perfil">
-            <img class="avatar" src="./img/4.jpg" alt="foto de perfil">
+      
         </div>
       </div>
     </div>
