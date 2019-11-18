@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 31-10-2019 a las 11:59:52
+-- Tiempo de generación: 18-11-2019 a las 22:40:21
 -- Versión del servidor: 10.4.6-MariaDB
 -- Versión de PHP: 7.3.9
 
@@ -21,8 +21,17 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `pokerstark`
 --
-CREATE DATABASE IF NOT EXISTS `pokerstark` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `pokerstark`;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `avatars`
+--
+
+CREATE TABLE `avatars` (
+  `id_avatar` int(11) NOT NULL,
+  `img` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -93,6 +102,7 @@ CREATE TABLE `usuarios` (
   `apellido` text COLLATE latin1_spanish_ci NOT NULL,
   `pais` text COLLATE latin1_spanish_ci NOT NULL,
   `fichas` int(11) NOT NULL DEFAULT 2000,
+  `id_avatar` int(11) NOT NULL DEFAULT 1,
   `admin` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
@@ -100,14 +110,20 @@ CREATE TABLE `usuarios` (
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`id_usuario`, `username`, `password`, `nombre`, `apellido`, `pais`, `fichas`, `admin`) VALUES
-(1, 'ByElection', '$2y$10$3ZZ.tShVVlrBwJw/iWwuBezFfj2r2KAUhhZSjNhsJqz4UENbFE6OC', 'Gonzalo', 'Zarzabal', 'Argentina', 207000, 1),
-(2, 'robertito', '$2y$10$udMc/EsZsv4yPYMxYDbGruewerBP2tnzAn38HDqNuLroMDdhidGSa', 'roberto', 'carlos', 'Brasil', 30000, 0),
-(3, 'pechofrio', '$2y$10$ICEY9uvast08K7SOs3G15OsZzuS7T3QXuYsswYiOkx2dXCSG6lQPq', 'Lionel', 'Messi', 'España', 10000, 0);
+INSERT INTO `usuarios` (`id_usuario`, `username`, `password`, `nombre`, `apellido`, `pais`, `fichas`, `id_avatar`, `admin`) VALUES
+(1, 'ByElection', '$2y$10$3ZZ.tShVVlrBwJw/iWwuBezFfj2r2KAUhhZSjNhsJqz4UENbFE6OC', 'Gonzalo', 'Zarzabal', 'Argentina', 207000, 1, 1),
+(2, 'robertito', '$2y$10$udMc/EsZsv4yPYMxYDbGruewerBP2tnzAn38HDqNuLroMDdhidGSa', 'roberto', 'carlos', 'Brasil', 30000, 1, 0),
+(3, 'pechofrio', '$2y$10$ICEY9uvast08K7SOs3G15OsZzuS7T3QXuYsswYiOkx2dXCSG6lQPq', 'Lionel', 'Messi', 'España', 10000, 1, 0);
 
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `avatars`
+--
+ALTER TABLE `avatars`
+  ADD PRIMARY KEY (`id_avatar`);
 
 --
 -- Indices de la tabla `ciegas`
@@ -140,6 +156,12 @@ ALTER TABLE `usuarios`
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
+
+--
+-- AUTO_INCREMENT de la tabla `avatars`
+--
+ALTER TABLE `avatars`
+  MODIFY `id_avatar` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `ciegas`
