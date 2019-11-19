@@ -11,7 +11,7 @@
 
     $r->addRoute("addavatar", "POST", "AvatarsApiController", "addAvatar");
     $r->addRoute("getavatars", "GET", "AvatarsApiController", "getAvatars");
-
+    $r->addRoute("setavatar", "PUT", "AvatarsApiController", "setAvatar");
 
     //run
     $r->route($_GET['resource'], $_SERVER['REQUEST_METHOD']);

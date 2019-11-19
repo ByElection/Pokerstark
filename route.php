@@ -50,9 +50,8 @@
   $r->addRoute("mesa/:ID", "GET", "MesaController", "showMesa");
   $r->addRoute("mesa/sentarse/:IDMESA/:IDUSUARIO", "POST", "MesaController", "sentarse");
   $r->addRoute("mesa/pararse/:ID", "GET", "MesaController", "pararse");
-
-  $r->setDefaultRoute("LoginController", "showLogin");
-
+  $r->addRoute("profile/addavatar","POST","ProfileController","addAvatar");
+  
   $r->route($_GET['action'], $_SERVER['REQUEST_METHOD']);
 
 ?>

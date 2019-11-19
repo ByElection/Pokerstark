@@ -48,6 +48,9 @@
       $sentencia =  $this->db->prepare("UPDATE usuarios SET fichas=? WHERE id_usuario=?");
       $sentencia->execute(array($fichas,$id));
     }
-
+    public function setAvatar($userid,$avatarid){
+        $sentencia = $this->db->prepare("UPDATE usuarios SET id_avatar=? WHERE id_usuario=?");
+        $sentencia->execute([$avatarid,$userid]);
+    }
   }
  ?>
