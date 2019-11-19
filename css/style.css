@@ -57,3 +57,14 @@ body {
   display: inline-block;
    text-align: center;
 }
+/*div.avatars div {
+  position: relative;
+  overflow: hidden;
+}
+div.avatars input {
+  position: absolute;
+  font-size: 50px;
+  opacity: 0;
+  right: 0;
+  top: 0;
+}*/

@@ -6,13 +6,13 @@ require_once("./api/JSONView.php");
 class AvatarsApiController extends ApiController{
   private $modelavatars;
   public function  __construct(){
-    super();
+    parent::__construct();
     $this->modelavatars = new AvatarsModel();
   }
   public function addAvatar($params=null) {
     $avatar = $this->getData();
 
-    $avatarUrl = $this->modelavatars->addAvatar($avatar->url);
+    $avatarUrl = $this->modelavatars->addAvatar($avatar->img);
     $avatarNueva = $this->modelavatars->getAvatar($avatarUrl);
 
     if ($avatarNueva)
@@ -21,7 +21,7 @@ class AvatarsApiController extends ApiController{
         $this->view->response("Error al insertar tarea", 500);
   }
   public function getAvatars($params=null) {
-    $avatars = $this->model->getAvatars();
+    $avatars = $this->modelavatars->getAvatars();
     $this->view->response($avatars, 200);
   }
 }

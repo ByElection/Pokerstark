@@ -18,12 +18,12 @@
       return $sentencia;
     }
     public function addAvatar($url) {
-      $sentencia=$this->db->prepare("INSERT INTO avatars(url) VALUES(?)");
+      $sentencia=$this->db->prepare("INSERT INTO avatars(img) VALUES(?)");
       $sentencia->execute([$url]);
       return $this->db->lastInsertId();
     }
     public function addAvatars($url) {
-      $sentencia=$this->db->prepare("INSERT INTO avatars(url) VALUES(?)");
+      $sentencia=$this->db->prepare("INSERT INTO avatars(img) VALUES(?)");
       $sentencia->execute($url);
 
     }
