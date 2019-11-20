@@ -1,6 +1,6 @@
 <div class="row avatars">
   <div class="row">
-    <a v-for="avatar in avatars" class="avatar" href="#" v-bind:id="avatar.id_avatar">
+    <a v-for="avatar in avatars" class="avatar" href="profile" v-bind:id="avatar.id_avatar">
       <img v-bind:src="avatar.img" class="avatar">
     </a>
   </div>

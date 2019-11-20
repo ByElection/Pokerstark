@@ -3,8 +3,13 @@ let app = new Vue({
   el: "div.avatars",
   data: {
     avatars: [],
-    auth: true,
-    avatarprofile: []
+    auth: true
+  }
+});
+let avatarprofile = new Vue({
+  el: "img#useravatar",
+  data: {
+    avatar: []
   }
 });
 function showAvatars(){
@@ -49,10 +54,10 @@ function setAvatar(idavatar) {
   .catch(error => console.log(error));
 }
 function changeAvatar(){
-  fetch("api/setavatar")
+  fetch("api/getavatar")
   .then(response => response.json())
   .then(avatarprofile => {
-    app.avatarprofile = avatarprofile;
+    avatarprofile.avatar = avatarprofile;
   }).catch(error => console.log(error));
 }
 function selectAvatar() {
@@ -66,4 +71,5 @@ function selectAvatar() {
 window.onload = function(){
   showAvatars();
   getAvatars();
+  changeAvatar();
 }

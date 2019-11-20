@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-6">
       <div class="row">
-        <img class="avatar" src="./img/1.jpg" alt="foto de perfil">
+        <img class="avatar" id="useravatar" v-bind:src="avatar.img" alt="foto de perfil">
       </div>
       <div class="row">
         <button type="button" class="btn btn-primary avatars">Cambiar foto</button>

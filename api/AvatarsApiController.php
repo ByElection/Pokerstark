@@ -23,4 +23,7 @@ class AvatarsApiController extends ApiController{
     $avatar = $this->modelusuarios->setAvatar($userid,$params->avatarid);
     $this->view->response($avatar, 200);
   }
+  public function getAvatar(){
+    $this->$_SESSION['id_usuario']
+  }
 }
