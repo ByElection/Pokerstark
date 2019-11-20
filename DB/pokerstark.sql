@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-11-2019 a las 22:40:21
+-- Tiempo de generación: 20-11-2019 a las 21:27:49
 -- Versión del servidor: 10.4.6-MariaDB
 -- Versión de PHP: 7.3.9
 
@@ -21,6 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `pokerstark`
 --
+CREATE DATABASE IF NOT EXISTS `pokerstark` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `pokerstark`;
 
 -- --------------------------------------------------------
 
@@ -32,6 +34,16 @@ CREATE TABLE `avatars` (
   `id_avatar` int(11) NOT NULL,
   `img` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `avatars`
+--
+
+INSERT INTO `avatars` (`id_avatar`, `img`) VALUES
+(1, 'img/1.jpg'),
+(2, 'img/2.jpg'),
+(3, 'img/3.jpg'),
+(4, 'img/4.jpg');
 
 -- --------------------------------------------------------
 
@@ -102,7 +114,7 @@ CREATE TABLE `usuarios` (
   `apellido` text COLLATE latin1_spanish_ci NOT NULL,
   `pais` text COLLATE latin1_spanish_ci NOT NULL,
   `fichas` int(11) NOT NULL DEFAULT 2000,
-  `id_avatar` int(11) NOT NULL DEFAULT 1,
+  `id_avatar` int(11) DEFAULT 1,
   `admin` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
@@ -113,7 +125,8 @@ CREATE TABLE `usuarios` (
 INSERT INTO `usuarios` (`id_usuario`, `username`, `password`, `nombre`, `apellido`, `pais`, `fichas`, `id_avatar`, `admin`) VALUES
 (1, 'ByElection', '$2y$10$3ZZ.tShVVlrBwJw/iWwuBezFfj2r2KAUhhZSjNhsJqz4UENbFE6OC', 'Gonzalo', 'Zarzabal', 'Argentina', 207000, 1, 1),
 (2, 'robertito', '$2y$10$udMc/EsZsv4yPYMxYDbGruewerBP2tnzAn38HDqNuLroMDdhidGSa', 'roberto', 'carlos', 'Brasil', 30000, 1, 0),
-(3, 'pechofrio', '$2y$10$ICEY9uvast08K7SOs3G15OsZzuS7T3QXuYsswYiOkx2dXCSG6lQPq', 'Lionel', 'Messi', 'España', 10000, 1, 0);
+(3, 'pechofrio', '$2y$10$ICEY9uvast08K7SOs3G15OsZzuS7T3QXuYsswYiOkx2dXCSG6lQPq', 'Lionel', 'Messi', 'España', 10000, 1, 0),
+(4, 'EbolaKills', '$2y$10$jctRdE5GVKbcWAgg.8UzruWPntZNV3SmSgnzSBpmjh2ULJeiU7zhG', 'Juan', 'Grela', 'Bosnia y Herzegovina', 2000, 1, 1);
 
 --
 -- Índices para tablas volcadas
@@ -151,7 +164,8 @@ ALTER TABLE `mesas`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id_usuario`),
-  ADD UNIQUE KEY `id_usuario` (`id_usuario`);
+  ADD UNIQUE KEY `id_usuario` (`id_usuario`),
+  ADD KEY `id_avatar` (`id_avatar`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -161,7 +175,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `avatars`
 --
 ALTER TABLE `avatars`
-  MODIFY `id_avatar` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_avatar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `ciegas`
@@ -179,7 +193,7 @@ ALTER TABLE `mesas`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Restricciones para tablas volcadas
@@ -197,6 +211,12 @@ ALTER TABLE `jugadores`
 --
 ALTER TABLE `mesas`
   ADD CONSTRAINT `mesas_ibfk_1` FOREIGN KEY (`id_ciegas`) REFERENCES `ciegas` (`id_ciegas`) ON DELETE NO ACTION ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`id_avatar`) REFERENCES `avatars` (`id_avatar`) ON DELETE SET NULL ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
