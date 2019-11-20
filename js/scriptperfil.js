@@ -7,7 +7,7 @@ let app = new Vue({
   }
 });
 let avatarprofile = new Vue({
-  el: "img#useravatar",
+  el: "div#useravatar",
   data: {
     avatar: []
   }
@@ -56,8 +56,8 @@ function setAvatar(idavatar) {
 function changeAvatar(){
   fetch("api/getavatar")
   .then(response => response.json())
-  .then(avatarprofile => {
-    avatarprofile.avatar = avatarprofile;
+  .then(avatarper => {
+    avatarprofile.avatar = avatarper;
   }).catch(error => console.log(error));
 }
 function selectAvatar() {

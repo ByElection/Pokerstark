@@ -8,14 +8,14 @@
     public function getAvatars() {
       $sentencia=$this->db->prepare("SELECT * FROM avatars");
       $sentencia->execute();
-      $sentencia= $sentencia->fetchAll(PDO::FETCH_OBJ);
-      return $sentencia;
+      $avatars= $sentencia->fetchAll(PDO::FETCH_OBJ);
+      return $avatars;
     }
     public function getAvatar($id) {
-      $sentencia=$this->db->prepare("SELECT * FROM avatars WHERE id=?");
+      $sentencia=$this->db->prepare("SELECT img FROM avatars WHERE id_avatar=?");
       $sentencia->execute([$id]);
-      $sentencia=$sentencia->fetch(PDO::FETCH_OBJ);
-      return $sentencia;
+      $img=$sentencia->fetch(PDO::FETCH_OBJ);
+      return $img;
     }
     public function addAvatar($imagen) {
       $filepath = null;

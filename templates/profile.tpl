@@ -2,8 +2,8 @@
 <div class="container" style="margin-top: 64px;">
   <div class="row">
     <div class="col-6">
-      <div class="row">
-        <img class="avatar" id="useravatar" v-bind:src="avatar.img" alt="foto de perfil">
+      <div class="row" id="useravatar">
+        <img class="avatar" v-bind:src="avatar.img" alt="foto de perfil">
       </div>
       <div class="row">
         <button type="button" class="btn btn-primary avatars">Cambiar foto</button>
