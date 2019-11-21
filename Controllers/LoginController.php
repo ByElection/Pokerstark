@@ -26,25 +26,18 @@ class LoginController {
       }
     public function verifyUser() {
       $password = $_POST['password'];
-      $checkadmin =$_POST['check-admin'];
       $usuario = $this->modelusuarios->getUserByUsername($_POST['username']);
 
        if (isset($usuario) && $usuario != null && password_verify($password, $usuario->password)){
-         if(isset($checkadmin)&&$usuario->admin==0){
-           header("Location: " . LOGIN . "/admin");
-         }else{
            session_start();
            $_SESSION['username'] = $usuario->usuario;
            $_SESSION['id_usuario'] = $usuario->id_usuario;
-          if (isset($checkadmin) && $usuario->admin!=0) {
+          if ($usuario->admin!=0) {
             $_SESSION['admin'] = 1;
             header("Location: " . ADMIN);
-          }elseif(isset($checkadmin)){
-            header("Location: " . LOGIN . "/admin");
           }else{
-             header("Location: " . PROFILE);
+            header("Location: " . PROFILE);
            }
-         }
        }else {
            header("Location: " . LOGIN . "/userpass");
        }
