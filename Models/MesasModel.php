@@ -27,16 +27,15 @@ class MesasModel {
     return $mesas;
   }
 
-  public function addMesa($ciegas,$sillas) {
-    $sentencia = $this->db->prepare("INSERT INTO mesas(id_ciegas,sillas) VALUES(?,?)");
-    $sentencia->execute(array($ciegas,$sillas));
+  public function addMesa($ciegas,$sillas,$mazo) {
+    $sentencia = $this->db->prepare("INSERT INTO mesas(id_ciegas,sillas,mazo) VALUES(?,?,?)");
+    $sentencia->execute(array($ciegas,$sillas,$mazo));
   }
 
   public function editMesa($id,$ciegas,$sillas) {
       $sentencia =  $this->db->prepare("UPDATE mesas SET id_ciegas=?,sillas=? WHERE id_mesa=?");
       $sentencia->execute(array($ciegas,$sillas,$id));
   }
-
   public function deletMesaByMesa($id) {
       $sentencia = $this->db->prepare("DELETE FROM mesas WHERE id_mesa=?");
       $sentencia->execute(array($id));
@@ -44,6 +43,16 @@ class MesasModel {
   public function deletMesaByCiega($id) {
       $sentencia = $this->db->prepare("DELETE FROM mesas WHERE id_ciegas=?");
       $sentencia->execute(array($id));
+  }
+  public function getMazo($id){
+    $mazo=$this->db->prepare("SELECT mazo FROM mesas WHERE id_mesa = ?");
+    $mazo->execute(array($id));
+    $mazo = $mazo->fetch(PDO::FETCH_OBJ);
+    return $mazo;
+  }
+  public function setMazo($id,$mazo){
+      $sentencia =  $this->db->prepare("UPDATE mesas SET mazo=? WHERE id_mesa=?");
+      $sentencia->execute(array($mazo,$id));
   }
 }
 ?>

@@ -22,10 +22,7 @@ class MesaController {
 		$this->modelciegas = new CiegasModel();
 		$this->mazo = new Mazo();
 		/////////////////////
-    var_dump($this->mazo->getCartas());
-		echo "<br>";
-		echo "<br>";
-    $this->mazo->mezclar();
+		$this->mazo->cargarMazo(10);
 		var_dump($this->mazo->getCartas());
 		echo "<br>";
 		echo "<br>";

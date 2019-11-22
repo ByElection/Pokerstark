@@ -3,18 +3,21 @@ include_once('./Views/AdminView.php');
 include_once('./Models/JugadoresModel.php');
 include_once('./Models/MesasModel.php');
 include_once('./Models/CiegasModel.php');
+include_once('./IA/Mazo.php');
 
 class AdminController {
   private $view;
   private $modeljugadores;
   private $modelmesas;
   private $modelciegas;
+	private $mazo;
 
   public function __construct() {
     $this->view = new AdminView();
     $this->modeljugadores = new JugadoresModel();
     $this->modelmesas = new MesasModel();
     $this->modelciegas = new CiegasModel();
+		$this->mazo = new Mazo();
   }
 
   public function checkLogIn(){
@@ -48,7 +51,7 @@ class AdminController {
     $this->checkLogIn();
     $ciegas = $_POST['ciegas'];
     $sillas = $_POST['sillas'];
-    $this->modelmesas->addMesa($ciegas,$sillas);
+    $this->modelmesas->addMesa($ciegas,$sillas,$this->mazo->pasarJSON());
     header("Location: " . ADMIN);
   }
   public function addCiega() {
