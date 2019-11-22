@@ -4,6 +4,7 @@ include_once('./Models/UsuariosModel.php');
 include_once('./Models/JugadoresModel.php');
 include_once('./Models/MesasModel.php');
 include_once('./Models/CiegasModel.php');
+include_once('./IA/Mazo.php');
 
 class MesaController {
 	private $view;
@@ -11,6 +12,7 @@ class MesaController {
 	private $modeljugadores;
 	private $modelmesas;
 	private $modelciegas;
+	private $mazo;
 
 	public function __construct(){
 		$this->view = new MesaView();
@@ -18,6 +20,22 @@ class MesaController {
 		$this->modeljugadores = new JugadoresModel();
 		$this->modelmesas = new MesasModel();
 		$this->modelciegas = new CiegasModel();
+		$this->mazo = new Mazo();
+		/////////////////////
+    var_dump($this->mazo->getCartas());
+		echo "<br>";
+		echo "<br>";
+    $this->mazo->mezclar();
+		var_dump($this->mazo->getCartas());
+		echo "<br>";
+		echo "<br>";
+		var_dump($this->mazo->darCarta());
+		echo "<br>";
+		var_dump($this->mazo->darCarta());
+		echo "<br>";
+		var_dump($this->mazo->getCartas());
+		die();
+		////////////////////////
 	}
 	public function showMesa($id){
 		$admin=$this->checkAdmin();
