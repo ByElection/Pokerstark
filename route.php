@@ -31,6 +31,7 @@
   $r->addRoute("register/:error", "GET", "RegisterController", "showRegister");
   $r->addRoute("profile","GET", "ProfileController", "showProfile");
   $r->addRoute("profile/:fichas","GET", "ProfileController", "showProfile");
+  $r->addRoute("profile","POST","ProfileController","addAvatar");
   $r->addRoute("ciegas","GET","CiegasController", "showCiegas");
   $r->addRoute("tables", "GET", "TablesController", "showTables");
   $r->addRoute("tables", "POST", "TablesController", "showTablesFilter");
@@ -50,7 +51,6 @@
   $r->addRoute("mesa/:ID", "GET", "MesaController", "showMesa");
   $r->addRoute("mesa/sentarse/:IDMESA/:IDUSUARIO", "POST", "MesaController", "sentarse");
   $r->addRoute("mesa/pararse/:ID", "GET", "MesaController", "pararse");
-  $r->addRoute("profile/addavatar","POST","ProfileController","addAvatar");
 
   $r->setDefaultRoute("LoginController", "showLogin");
 

@@ -37,13 +37,13 @@ function getAvatars() {
     .then(response => response.json())
     .then(avatars => {
       app.avatars = avatars;
+    }).then(function(){
+      selectAvatar();
     }).catch(error => console.log(error));
 }
 function setAvatar(idavatar) {
   fetch("api/setavatar/"+idavatar,{
-    method: 'PUT',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify(data)
+    method: 'PUT'
   })
   .then(response => {
       changeAvatar();
@@ -58,9 +58,10 @@ function changeAvatar(){
   }).catch(error => console.log(error));
 }
 function selectAvatar() {
-  let avatars=document.querySelectorAll('a.avatari');
-  for  (let i=0;i<avatars.lenght;i++) {
-    avatars[i].addEventListener("click",function(){
+  let avatars=document.querySelectorAll('a.avatar');
+  for  (let i=0;i<avatars.length;i++) {
+    avatars[i].addEventListener("click",function(event){
+      event.preventDefault();
       setAvatar(avatars[i].id);
   });
   }
@@ -70,5 +71,3 @@ window.onload = function(){
   getAvatars();
   changeAvatar();
 }
-let avatares = document.querySelector("div.avatars");
-avatares.onload = selectAvatar();
