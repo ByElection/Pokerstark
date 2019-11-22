@@ -7,8 +7,8 @@
       </div>
       <div class="row">
         <button type="button" class="btn btn-primary avatars">Cambiar foto</button>
-        {include file="vue/avatars.tpl"}
       </div>
+      {include file="vue/avatars.tpl"}
     </div>
     <div class="col-6">
         <h4>Nombre: {$nombre}</h4>

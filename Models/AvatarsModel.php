@@ -18,7 +18,7 @@
       return $img;
     }
     public function addAvatar($imagen) {
-      $filepath = null;
+      $url = null;
       if ($imagen) {
           $url = $this->moveFile($imagen);
       }

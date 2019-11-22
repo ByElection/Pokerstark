@@ -6,9 +6,9 @@
   </div>
   {if $admin}
     <div class="row">
-      <form action="profile" method="post" enctype="multipart/form-data">
-        <input type="file" name="avatar">
-        <button type="submit" class="btn btn-primary" name="button">Agregar Avatar</button>
+      <form method="post" id="addavatar" enctype="multipart/form-data">
+        <input type="file" name="avatar" accept="image/png, .jpeg, .jpg">
+        <button type="button" class="btn btn-primary" id="addavatar">Agregar Avatar</button>
       </form>
     </div>
   {/if}

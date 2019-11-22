@@ -18,22 +18,18 @@ function showAvatars(){
   hideElemEvent(botonavatars,avatars);
 }
 function addAvatar() {
-  let data= {
-
-  }
-  fetch('api/addavatar', {
+  let form= new FormData(document.querySelector('form#addavatar'));
+  fetch('addavatar', {
        method: 'POST',
-       headers: {'Content-Type': 'application/json'},
-       body: JSON.stringify(data)
+       body: form
     })
     .then(response => {
         getAvatars();
     })
     .catch(error => console.log(error));
-
 }
 function getAvatars() {
-  fetch("api/getavatars")
+  fetch("api/avatars")
     .then(response => response.json())
     .then(avatars => {
       app.avatars = avatars;
@@ -42,7 +38,7 @@ function getAvatars() {
     }).catch(error => console.log(error));
 }
 function setAvatar(idavatar) {
-  fetch("api/setavatar/"+idavatar,{
+  fetch("api/usuario/avatar/"+idavatar,{
     method: 'PUT'
   })
   .then(response => {
@@ -51,7 +47,7 @@ function setAvatar(idavatar) {
   .catch(error => console.log(error));
 }
 function changeAvatar(){
-  fetch("api/getavatar")
+  fetch("api/avatar")
   .then(response => response.json())
   .then(avatarper => {
     avatarprofile.avatar = avatarper;
@@ -70,4 +66,12 @@ window.onload = function(){
   showAvatars();
   getAvatars();
   changeAvatar();
+  try{
+    let addavatar = document.querySelector('button#addavatar');
+    addavatar.addEventListener("click",function(){
+      addAvatar();
+    })
+  }catch(error){
+    console.log(error);
+  }
 }

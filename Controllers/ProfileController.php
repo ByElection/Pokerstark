@@ -49,13 +49,12 @@ class ProfileController {
   public function addAvatar() {
     if ($_FILES['avatar']['name']) {
           if ($_FILES['avatar']['type'] == "image/jpeg" || $_FILES['avatar']['type'] == "image/jpg" || $_FILES['avatar']['type'] == "image/png") {
-
               $this->modelavatars->addAvatar($_FILES['avatar']);
           }
-          /*else {
+          else {
               $this->view->showError("Formato no aceptado");
               die();
-          }*/
+          }
       }
   }
 }
