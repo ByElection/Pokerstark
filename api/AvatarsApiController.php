@@ -29,4 +29,8 @@ class AvatarsApiController extends ApiController{
     $img = $this->modelavatars->getAvatar($idavatar->id_avatar);
     $this->view->response($img, 200);
   }
+  public function deletAvatar($params=null){
+    $idavatar = $this->modelavatars->deletAvatar($params[":ID"]);
+    $this->view->response($idavatar,200);
+  }
 }

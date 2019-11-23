@@ -38,7 +38,7 @@
 
     }
     public function deletAvatar($id) {
-      $sentencia=$this->db->prepare("DELETE FROM avatars WHERE id=?");
+      $sentencia=$this->db->prepare("DELETE FROM avatars WHERE id_avatar=?");
       $sentencia->execute([$id]);
     }
   }

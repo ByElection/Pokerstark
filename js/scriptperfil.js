@@ -28,6 +28,14 @@ function addAvatar() {
     })
     .catch(error => console.log(error));
 }
+function deletAvatar(idavatar) {
+  fetch('api/avatar/'+idavatar,{
+    method: 'DELET'
+  })
+  .then(response=>{
+    getAvatars();
+  })
+}
 function getAvatars() {
   fetch("api/avatars")
     .then(response => response.json())
@@ -35,6 +43,7 @@ function getAvatars() {
       app.avatars = avatars;
     }).then(function(){
       selectAvatar();
+      selectAvatarD();
     }).catch(error => console.log(error));
 }
 function setAvatar(idavatar) {
@@ -62,6 +71,15 @@ function selectAvatar() {
   });
   }
 }
+function selectAvatarD() {
+  let avatars=document.querySelectorAll('button.deletavatar');
+  for  (let i=0;i<avatars.length;i++) {
+    avatars[i].addEventListener("click",function(event){
+      event.preventDefault();
+      deletAvatar(avatars[i].id);
+    });
+  }
+}
 window.onload = function(){
   showAvatars();
   getAvatars();
@@ -70,7 +88,7 @@ window.onload = function(){
     let addavatar = document.querySelector('button#addavatar');
     addavatar.addEventListener("click",function(){
       addAvatar();
-    })
+    });
   }catch(error){
     console.log(error);
   }

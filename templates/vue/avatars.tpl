@@ -1,8 +1,9 @@
 <div class="row avatars">
-  <div class="row">
-    <a v-for="avatar in avatars" class="avatar" href="#" v-bind:id="avatar.id_avatar">
+  <div v-for="avatar in avatars" class="row">
+    <a class="avatar" href="#" v-bind:id="avatar.id_avatar">
       <img v-bind:src="avatar.img" class="avatar">
     </a>
+    <button type="button" class="deletavatar" v-bind:id="avatar.id_avatar">Borrar Avatar</button>
   </div>
   {if $admin}
     <div class="row">
