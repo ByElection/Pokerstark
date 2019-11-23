@@ -5,6 +5,7 @@ include_once('./Models/JugadoresModel.php');
 include_once('./Models/MesasModel.php');
 include_once('./Models/CiegasModel.php');
 include_once('./IA/Mazo.php');
+include_once('./IA/Jugador.php');
 
 class MesaController {
 	private $view;
@@ -13,6 +14,7 @@ class MesaController {
 	private $modelmesas;
 	private $modelciegas;
 	private $mazo;
+	private $jugadores;
 
 	public function __construct(){
 		$this->view = new MesaView();
@@ -21,23 +23,27 @@ class MesaController {
 		$this->modelmesas = new MesasModel();
 		$this->modelciegas = new CiegasModel();
 		$this->mazo = new Mazo();
-		/////////////////////
-		$this->mazo->cargarMazo(10);
-		var_dump($this->mazo->getCartas());
-		echo "<br>";
-		echo "<br>";
-		var_dump($this->mazo->darCarta());
-		echo "<br>";
-		var_dump($this->mazo->darCarta());
-		echo "<br>";
-		var_dump($this->mazo->getCartas());
-		die();
-		////////////////////////
+		$this->jugadores = array();
 	}
 	public function showMesa($id){
 		$admin=$this->checkAdmin();
 		$jugadoresmesa = $this->modeljugadores->getJugadoresMesa($id[":ID"]);
 		$usuariosmesa=$this->modelusuarios->getUsuariosMesa($jugadoresmesa);
+		foreach ($jugadoresmesa as $jugador) {
+			array_push($this->jugadores, new Jugador($jugador));
+		}
+		/////////////////////
+		$this->mazo->cargarMazo(10);
+		echo "<br>";
+		echo "<br>";
+		$this->jugadores[0]->agarraCarta($this->mazo->darCarta());
+		$this->jugadores[0]->agarraCarta($this->mazo->darCarta());
+		var_dump($this->jugadores[0]->getCartas());
+		echo "<br>";
+		echo "<br>";
+		var_dump($this->mazo->getCartas());
+		die();
+		////////////////////////
 		$mesa=$this->modelmesas->getMesa($id[":ID"]);
 		$ciegas=$this->modelciegas->getCiegasById($mesa->id_ciegas);
 		session_start();
