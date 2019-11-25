@@ -4,6 +4,10 @@
   padding: 0;
   color: white;
 }
+div#chat{
+  border: 2px;
+  border-color: green;
+}
 img.avatar{
   width: 128px;
   height: 128px;

@@ -21,6 +21,13 @@
       return $usuario;
     }
 
+    public function getUsernameById($id){
+      $sentencia = $this->db->prepare( "SELECT username FROM usuarios WHERE id_usuario = ?");
+      $sentencia->execute(array($id));
+      $usuario = $sentencia->fetch(PDO::FETCH_OBJ);
+      return $usuario;
+    }
+
     public function addUsuario($user,$password,$nombre,$apellido,$pais){
       $password =  password_hash($password, PASSWORD_DEFAULT);
       $usuarios = $this->db->prepare("INSERT INTO usuarios (username, password, nombre, apellido, pais) VALUES (?,?,?,?,?)");

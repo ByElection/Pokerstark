@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-11-2019 a las 21:27:49
+-- Tiempo de generación: 26-11-2019 a las 00:50:24
 -- Versión del servidor: 10.4.6-MariaDB
 -- Versión de PHP: 7.3.9
 
@@ -48,6 +48,29 @@ INSERT INTO `avatars` (`id_avatar`, `img`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `chat`
+--
+
+CREATE TABLE `chat` (
+  `id_mesa` int(11) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
+  `mensaje` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `chat`
+--
+
+INSERT INTO `chat` (`id_mesa`, `id_usuario`, `mensaje`) VALUES
+(10, 1, 'hola'),
+(10, 1, 'asdadasd'),
+(10, 1, 'asdadasd'),
+(10, 1, 'asdadasd'),
+(10, 1, 'toma por curioso ..I.,');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `ciegas`
 --
 
@@ -76,8 +99,18 @@ INSERT INTO `ciegas` (`id_ciegas`, `ciega_chica`, `ciega_grande`) VALUES
 CREATE TABLE `jugadores` (
   `id_usuario` int(11) NOT NULL,
   `fichas_mesa` int(11) NOT NULL,
-  `id_mesa` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+  `apuesta` int(11) NOT NULL DEFAULT 0,
+  `id_mesa` int(11) NOT NULL,
+  `silla` int(11) NOT NULL,
+  `cartas` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL
+) ;
+
+--
+-- Volcado de datos para la tabla `jugadores`
+--
+
+INSERT INTO `jugadores` (`id_usuario`, `fichas_mesa`, `apuesta`, `id_mesa`, `silla`, `cartas`, `retirado`) VALUES
+(1, 400, 0, 10, 0, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -89,16 +122,16 @@ CREATE TABLE `mesas` (
   `id_mesa` int(11) NOT NULL,
   `id_ciegas` int(11) NOT NULL,
   `pozo` int(11) NOT NULL DEFAULT 0,
-  `sillas` int(11) NOT NULL DEFAULT 9
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+  `mazo` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL
+) ;
 
 --
 -- Volcado de datos para la tabla `mesas`
 --
 
-INSERT INTO `mesas` (`id_mesa`, `id_ciegas`, `pozo`, `sillas`) VALUES
-(10, 16, 0, 3),
-(11, 16, 0, 9);
+INSERT INTO `mesas` (`id_mesa`, `id_ciegas`, `pozo`, `mazo`, `sillas`) VALUES
+(10, 16, 0, '[{\"palo\":\"C\",\"valor\":\"10\"},{\"palo\":\"P\",\"valor\":\"3\"},{\"palo\":\"T\",\"valor\":\"12\"},{\"palo\":\"T\",\"valor\":\"13\"},{\"palo\":\"D\",\"valor\":\"13\"},{\"palo\":\"D\",\"valor\":\"3\"},{\"palo\":\"C\",\"valor\":\"11\"},{\"palo\":\"C\",\"valor\":\"4\"},{\"palo\":\"C\",\"valor\":\"8\"},{\"palo\":\"C\",\"valor\":\"6\"},{\"palo\":\"P\",\"valor\":\"4\"},{\"palo\":\"C\",\"valor\":\"12\"},{\"palo\":\"C\",\"valor\":\"3\"},{\"palo\":\"T\",\"valor\":\"2\"},{\"palo\":\"D\",\"valor\":\"9\"},{\"palo\":\"P\",\"valor\":\"8\"},{\"palo\":\"T\",\"valor\":\"3\"},{\"palo\":\"T\",\"valor\":\"1\"},{\"palo\":\"P\",\"valor\":\"7\"},{\"palo\":\"D\",\"valor\":\"1\"},{\"palo\":\"D\",\"valor\":\"5\"},{\"palo\":\"P\",\"valor\":\"6\"},{\"palo\":\"D\",\"valor\":\"8\"},{\"palo\":\"C\",\"valor\":\"13\"},{\"palo\":\"D\",\"valor\":\"11\"},{\"palo\":\"D\",\"valor\":\"10\"},{\"palo\":\"T\",\"valor\":\"7\"},{\"palo\":\"T\",\"valor\":\"5\"},{\"palo\":\"D\",\"valor\":\"7\"},{\"palo\":\"P\",\"valor\":\"11\"},{\"palo\":\"C\",\"valor\":\"9\"},{\"palo\":\"D\",\"valor\":\"4\"},{\"palo\":\"P\",\"valor\":\"13\"},{\"palo\":\"T\",\"valor\":\"8\"},{\"palo\":\"D\",\"valor\":\"2\"},{\"palo\":\"C\",\"valor\":\"1\"},{\"palo\":\"C\",\"valor\":\"2\"},{\"palo\":\"C\",\"valor\":\"7\"},{\"palo\":\"T\",\"valor\":\"9\"},{\"palo\":\"P\",\"valor\":\"1\"},{\"palo\":\"P\",\"valor\":\"2\"},{\"palo\":\"T\",\"valor\":\"4\"},{\"palo\":\"D\",\"valor\":\"6\"},{\"palo\":\"T\",\"valor\":\"10\"},{\"palo\":\"T\",\"valor\":\"11\"},{\"palo\":\"P\",\"valor\":\"9\"},{\"palo\":\"D\",\"valor\":\"12\"},{\"palo\":\"P\",\"valor\":\"10\"},{\"palo\":\"T\",\"valor\":\"6\"},{\"palo\":\"P\",\"valor\":\"12\"},{\"palo\":\"C\",\"valor\":\"5\"},{\"palo\":\"P\",\"valor\":\"5\"}]', 3),
+(11, 16, 0, NULL, 9);
 
 -- --------------------------------------------------------
 
@@ -123,7 +156,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id_usuario`, `username`, `password`, `nombre`, `apellido`, `pais`, `fichas`, `id_avatar`, `admin`) VALUES
-(1, 'ByElection', '$2y$10$3ZZ.tShVVlrBwJw/iWwuBezFfj2r2KAUhhZSjNhsJqz4UENbFE6OC', 'Gonzalo', 'Zarzabal', 'Argentina', 207000, 1, 1),
+(1, 'ByElection', '$2y$10$3ZZ.tShVVlrBwJw/iWwuBezFfj2r2KAUhhZSjNhsJqz4UENbFE6OC', 'Gonzalo', 'Zarzabal', 'Argentina', 210000, 3, 1),
 (2, 'robertito', '$2y$10$udMc/EsZsv4yPYMxYDbGruewerBP2tnzAn38HDqNuLroMDdhidGSa', 'roberto', 'carlos', 'Brasil', 30000, 1, 0),
 (3, 'pechofrio', '$2y$10$ICEY9uvast08K7SOs3G15OsZzuS7T3QXuYsswYiOkx2dXCSG6lQPq', 'Lionel', 'Messi', 'España', 10000, 1, 0),
 (4, 'EbolaKills', '$2y$10$jctRdE5GVKbcWAgg.8UzruWPntZNV3SmSgnzSBpmjh2ULJeiU7zhG', 'Juan', 'Grela', 'Bosnia y Herzegovina', 2000, 1, 1);
@@ -145,21 +178,6 @@ ALTER TABLE `ciegas`
   ADD PRIMARY KEY (`id_ciegas`);
 
 --
--- Indices de la tabla `jugadores`
---
-ALTER TABLE `jugadores`
-  ADD UNIQUE KEY `id_usuario_2` (`id_usuario`),
-  ADD KEY `id_mesa` (`id_mesa`),
-  ADD KEY `id_usuario` (`id_usuario`);
-
---
--- Indices de la tabla `mesas`
---
-ALTER TABLE `mesas`
-  ADD PRIMARY KEY (`id_mesa`),
-  ADD KEY `id_ciegas` (`id_ciegas`);
-
---
 -- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
@@ -175,7 +193,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `avatars`
 --
 ALTER TABLE `avatars`
-  MODIFY `id_avatar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_avatar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `ciegas`
@@ -187,7 +205,7 @@ ALTER TABLE `ciegas`
 -- AUTO_INCREMENT de la tabla `mesas`
 --
 ALTER TABLE `mesas`
-  MODIFY `id_mesa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_mesa` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
@@ -198,19 +216,6 @@ ALTER TABLE `usuarios`
 --
 -- Restricciones para tablas volcadas
 --
-
---
--- Filtros para la tabla `jugadores`
---
-ALTER TABLE `jugadores`
-  ADD CONSTRAINT `jugadores_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `jugadores_ibfk_2` FOREIGN KEY (`id_mesa`) REFERENCES `mesas` (`id_mesa`) ON DELETE NO ACTION ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `mesas`
---
-ALTER TABLE `mesas`
-  ADD CONSTRAINT `mesas_ibfk_1` FOREIGN KEY (`id_ciegas`) REFERENCES `ciegas` (`id_ciegas`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `usuarios`

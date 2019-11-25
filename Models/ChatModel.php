@@ -7,7 +7,7 @@
     }
     public function addMensaje($mensaje,$idmesa,$idusuario) {
       $sentencia = $this->db->prepare("INSERT INTO chat(id_mesa,id_usuario,mensaje) VALUES(?,?,?)");
-      $sentencia->execute([$mensaje,$idmesa,$idusuario]);
+      $sentencia->execute([$idmesa,$idusuario,$mensaje]);
     }
     public function getMensajes($id) {
       $sentencia =$this->db->prepare("SELECT * FROM chat WHERE id_mesa=?");

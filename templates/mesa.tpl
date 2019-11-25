@@ -1,4 +1,5 @@
-{include file="headermesa.tpl"}
+{include file="header.tpl"}
+<div class="fantasmin" id="{$usuariologeado->id_usuario}"></div>
 <div id="mesa">
 	<div class="row">
 		{$count=0}
@@ -41,6 +42,8 @@
 			<h3>Pozo: {$mesa->pozo}</h3>
 		</div>
 	</div>
+	{include file="vue/chat.tpl"}
 </div>
-<script src="../js/scriptmesa.js" type="text/javascript"></script>
+<script src="./js/scriptmesa.js" type="text/javascript"></script>
+<script src="./js/chat.js" type="text/javascript"></script>
 {include file="footer.tpl"}
