@@ -30,7 +30,7 @@ function addAvatar() {
 }
 function deletAvatar(idavatar) {
   fetch('api/avatar/'+idavatar,{
-    method: 'DELET'
+    method: 'DELETE'
   })
   .then(response=>{
     getAvatars();

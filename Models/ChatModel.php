@@ -15,5 +15,9 @@
       $mensajes=$sentencia->fetchAll(PDO::FETCH_OBJ);
       return $mensajes;
     }
+    public function deletMensaje($id){
+      $sentencia = $this->db->prepare("DELETE FROM chat WHERE id_mensaje=?");
+      $sentencia->execute([$id]);
+    }
   }
 ?>

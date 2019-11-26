@@ -20,6 +20,10 @@
       }
       $this->view->response($chat,200);
     }
+    public function deletMensaje($params = null){
+      $chat = $this->modelchat->deletMensaje($params[":idmensaje"]);
+      $this->view->response($chat,200);
+    }
   public function getUsuariosChat($params=null){
     $usuarios = JSON_decode($params[":ARRAY"]);
     $jugadores = array();
