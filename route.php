@@ -7,6 +7,7 @@
   require_once "Controllers/RankingController.php";
   require_once "Controllers/AdminController.php";
   require_once "Controllers/MesaController.php";
+  require_once "Controllers/UsersController.php";
   require_once "Router.php";
 
   define("BASE_URL", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/');
@@ -20,6 +21,7 @@
   define("ADMIN",BASE_URL . 'mesasadmin');
   define("CIEGASADMIN",BASE_URL . 'ciegasadmin');
   define("MESA",BASE_URL . 'mesa');
+  define("USERS",BASE_URL . 'users');
 
   $r = new Router();
 
@@ -51,6 +53,9 @@
   $r->addRoute("mesa/:ID", "GET", "MesaController", "showMesa");
   $r->addRoute("mesa/sentarse/:IDMESA/:IDUSUARIO", "POST", "MesaController", "sentarse");
   $r->addRoute("mesa/pararse/:ID", "GET", "MesaController", "pararse");
+  $r->addRoute("users", "GET", "UsersController", "showUsers");
+  $r->addRoute("setadmin/:username","GET","UsersController","setAdmin");
+  $r->addRoute("deletuser/:username","GET","UsersController","deletUser");
 
   $r->setDefaultRoute("LoginController", "showLogin");
 
