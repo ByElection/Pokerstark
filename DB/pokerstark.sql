@@ -1,4 +1,4 @@
--- phpMyAdmin SQL Dump
+﻿-- phpMyAdmin SQL Dump
 -- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
@@ -111,7 +111,8 @@ CREATE TABLE `mesas` (
   `id_mesa` int(11) NOT NULL,
   `id_ciegas` int(11) NOT NULL,
   `pozo` int(11) NOT NULL DEFAULT 0,
-  `mazo` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL
+  `mazo` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `sillas` int(11) NOT NULL DEFAULT 9
 ) ;
 
 --
