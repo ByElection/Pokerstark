@@ -7,6 +7,27 @@
         $this->db = new PDO('mysql:host=localhost;'.'dbname=pokerstark;charset=utf8', 'root', '');
     }
 
+    public function getUsers() {
+      $sentencia = $this->db->prepare("SELECT username,admin FROM usuarios ORDER BY username");
+      $sentencia->execute();
+      $usuarios=$sentencia->fetchAll(PDO::FETCH_OBJ);
+      return $usuarios;
+    }
+    public function setAdmin($user){
+      $usuario=$this->getUserByUsername($user);
+      if ($usuario->admin==0) {
+        $admin=1;
+      }
+      else {
+        $admin=0;
+      }
+      $sentencia = $this->db->prepare("UPDATE usuarios SET admin=? WHERE username = ?");
+      $sentencia->execute([$admin,$user]);
+    }
+    public function deletUser($user){
+      $sentencia = $this->db->prepare("DELETE FROM usuarios WHERE username=? ");
+      $sentencia->execute(array($user));
+    }
     public function getUserByUsername($user){
         $sentencia = $this->db->prepare("SELECT * FROM usuarios WHERE username = ?");
         $sentencia->execute(array($user));
