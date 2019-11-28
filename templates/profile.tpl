@@ -1,4 +1,5 @@
 {include file="nav.tpl"}
+<div class="fantasmin" id="{$usuariologeado->id_usuario}"></div>
 <div class="container" style="margin-top: 64px;">
   <div class="row">
     <div class="col-6">

@@ -34,7 +34,7 @@ class ProfileController {
       $this->modelusuarios->addFichas($id,$cargarfichas[":fichas"]);
     }
     $usuario = $this->modelusuarios->getUserById($id);
-    $this->view->showProfile($admin,$usuario->nombre.' '.$usuario->apellido,$usuario->pais,$usuario->fichas);
+    $this->view->showProfile($admin,$usuario,$usuario->nombre.' '.$usuario->apellido,$usuario->pais,$usuario->fichas);
   }
   public function checkAdmin() {
     if (isset($_SESSION['admin'])){

@@ -30,14 +30,9 @@ function getPuntajes(){
   }).catch(error => console.log(error));
 }
 function addPuntaje(){
-  let puntaje = document.querySelector('input.puntaje').value;
-  let data = {
-    puntaje:puntaje
-  }
-  fetch('api/mesa/'+idmesa+'/puntaje/'+idusuario,{
-    method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify(data)
+  let puntaje = document.querySelector('input.puntaje').value
+  fetch('api/puntaje/'+puntaje+'/mesa/'+idmesa+'/usuario/'+idusuario,{
+    method: 'POST'
   }).then(response=>{
     getPuntajes();
   }).catch(error => console.log(error));

@@ -18,14 +18,11 @@ class AvatarsApiController extends ApiController{
     $this->view->response($avatars, 200);
   }
   public function setAvatar($params=null) {
-    session_start();
-    $userid = $_SESSION['id_usuario']; //SACAR SESSION
-    $avatar = $this->modelusuarios->setAvatar($userid,$params[":avatar"]);
+    $avatar = $this->modelusuarios->setAvatar($params[":id_usuario"],$params[":avatar"]);
     $this->view->response($avatar, 200);
   }
-  public function getAvatar(){
-    session_start();
-    $idavatar = $this->modelusuarios->getAvatar($_SESSION['id_usuario']);
+  public function getAvatar($params=null){
+    $idavatar = $this->modelusuarios->getAvatar($params[":idusuario"]);
     $img = $this->modelavatars->getAvatar($idavatar->id_avatar);
     $this->view->response($img, 200);
   }

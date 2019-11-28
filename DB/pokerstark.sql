@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-11-2019 a las 02:07:59
+-- Tiempo de generación: 28-11-2019 a las 09:01:02
 -- Versión del servidor: 10.4.6-MariaDB
 -- Versión de PHP: 7.3.9
 
@@ -35,6 +35,16 @@ CREATE TABLE `avatars` (
   `img` text COLLATE latin1_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `avatars`
+--
+
+INSERT INTO `avatars` (`id_avatar`, `img`) VALUES
+(1, 'img/avatars/5ddf7956be1f1.jpg'),
+(2, 'img/avatars/5ddf795cb1a5a.jpg'),
+(3, 'img/avatars/5ddf79678bd00.jpg'),
+(4, 'img/avatars/5ddf796caf909.jpg');
+
 -- --------------------------------------------------------
 
 --
@@ -47,6 +57,13 @@ CREATE TABLE `chat` (
   `id_usuario` int(11) NOT NULL,
   `mensaje` text COLLATE latin1_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `chat`
+--
+
+INSERT INTO `chat` (`id_mensaje`, `id_mesa`, `id_usuario`, `mensaje`) VALUES
+(1, 11, 1, 'hola');
 
 -- --------------------------------------------------------
 
@@ -118,6 +135,13 @@ CREATE TABLE `puntajes` (
   `puntaje` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `puntajes`
+--
+
+INSERT INTO `puntajes` (`id_usuario`, `id_mesa`, `puntaje`) VALUES
+(1, 11, 5);
+
 -- --------------------------------------------------------
 
 --
@@ -141,7 +165,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id_usuario`, `username`, `password`, `nombre`, `apellido`, `pais`, `fichas`, `id_avatar`, `admin`) VALUES
-(1, 'ByElection', '$2y$10$TnHAZ4YQnl7zDkYQBRgXAe8uYO9vJ.K8DgdXMjRP.NPb3xZ/QvENe', 'Gonzalo', 'Zarzabal', 'Argentina', 5000, NULL, 1),
+(1, 'ByElection', '$2y$10$TnHAZ4YQnl7zDkYQBRgXAe8uYO9vJ.K8DgdXMjRP.NPb3xZ/QvENe', 'Gonzalo', 'Zarzabal', 'Argentina', 5000, 3, 1),
 (2, 'EbolaKills', '$2y$10$I7OG2JfOkXhV.kxI4wpMIOZRfkl12kuYmSSuZHPz4qPNNwLeEoFXO', 'Juan', 'Grela', 'Argentina', 500, NULL, 1);
 
 --
@@ -182,8 +206,7 @@ ALTER TABLE `puntajes`
 -- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`id_usuario`),
-  ADD KEY `id_avatar` (`id_avatar`);
+  ADD PRIMARY KEY (`id_usuario`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -193,13 +216,13 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `avatars`
 --
 ALTER TABLE `avatars`
-  MODIFY `id_avatar` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_avatar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `chat`
 --
 ALTER TABLE `chat`
-  MODIFY `id_mensaje` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_mensaje` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `ciegas`

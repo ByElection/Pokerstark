@@ -14,19 +14,18 @@ class PuntajesApiController extends ApiController{
     $puntaje=0;
     $cant=0;
     foreach ($puntajes as $punt){
-      $puntaje+=$punt->puntaje;
+      $puntaje= $puntaje+$punt->puntaje;
       $cant++;
     }
     if ($cant==0) {
       $puntaje=0;
     }else{
-      $puntaje=$puntaje/$puntajes.lenght;
+      $puntaje=$puntaje/$cant;
     }
     $this->view->response($puntaje,200);
   }
   public function addPuntaje($params=null){
-    $puntaje = $this->getData();
-    $puntaje=$this->moodelpuntajes->addPuntaje($params[":id_usuario"],$params[":id_mesa"],$puntaje->puntaje);
+    $puntaje=$this->modelpuntajes->addPuntaje($params[":id_usuario"],$params[":id_mesa"],$params[":puntaje"]);
     $this->view->response($puntaje,200);
   }
 }

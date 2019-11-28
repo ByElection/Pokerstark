@@ -12,6 +12,7 @@ let avatarprofile = new Vue({
     avatar: []
   }
 });
+let idusuario = document.querySelector('div.fantasmin').id;
 function showAvatars(){
   let botonavatars = document.querySelector("button.avatars");
   let avatars = document.querySelector("div.avatars");
@@ -47,7 +48,7 @@ function getAvatars() {
     }).catch(error => console.log(error));
 }
 function setAvatar(idavatar) {
-  fetch("api/usuario/avatar/"+idavatar,{
+  fetch('api/usuario/'+idusuario+'/avatar/'+idavatar,{
     method: 'PUT'
   })
   .then(response => {
@@ -56,7 +57,7 @@ function setAvatar(idavatar) {
   .catch(error => console.log(error));
 }
 function changeAvatar(){
-  fetch("api/avatar")
+  fetch('api/usuario/'+idusuario+'/avatar')
   .then(response => response.json())
   .then(avatarper => {
     avatarprofile.avatar = avatarper;
