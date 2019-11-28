@@ -31,7 +31,7 @@ class AdminController {
       $this->view->mesasAdmin($this->admin,$mesas,$ciegas,$jugadores);
   }
   else {
-    header("Location :" . PROFILE);
+    header("Location: " . PROFILE);
   }
 }
   public function ciegasAdmin() {
@@ -40,7 +40,7 @@ class AdminController {
       $this->view->ciegasAdmin($admin,$ciegas);
     }
     else {
-      header("Location :" . PROFILE);
+      header("Location: " . PROFILE);
   }
 }
   public function addMesa() {
