@@ -34,9 +34,8 @@ class MesaController {
 		$this->modeljugadores->pararse($id[":ID"]);
 	}
 	public function sentarse($parametros){
-		var_dump($parametros);
 		$fichas = $_POST["checkin"];
-		$this->modeljugadores->sentarse($parametros[":IDUSUARIO"],$fichas,$parametros[":IDMESA"]);
+		$this->modeljugadores->sentarse($parametros[":IDUSUARIO"],$fichas,$parametros[":IDMESA"],$parametros[":SILLA"]);
 	}
   public function checkAdmin() {
     if (isset($_SESSION['admin'])){

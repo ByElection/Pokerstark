@@ -51,7 +51,7 @@
   $r->addRoute("deletciega/:ID", "GET", "AdminController","deletCiega");
   $r->addRoute("tables", "POST", "TablesController", "enterTable");
   $r->addRoute("mesa/:ID", "GET", "MesaController", "showMesa");
-  $r->addRoute("mesa/sentarse/:IDMESA/:IDUSUARIO", "POST", "MesaController", "sentarse");
+  $r->addRoute("mesa/:IDMESA/USUARIO/:IDUSUARIO/sentarse/:SILLA", "POST", "MesaController", "sentarse");
   $r->addRoute("mesa/pararse/:ID", "GET", "MesaController", "pararse");
   $r->addRoute("users", "GET", "UsersController", "showUsers");
   $r->addRoute("setadmin/:username","GET","UsersController","setAdmin");

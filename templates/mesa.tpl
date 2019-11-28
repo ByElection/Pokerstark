@@ -25,7 +25,7 @@
 			<div class="jugador col">
 				<h4>Silla Vacia</h4>
 				{if !$estasentado}
-					<form id="form{$formidnum}" action="sentarse/{$mesa->id_mesa}/{$usuariologeado->id_usuario}" method="POST">
+					<form id="form{$formidnum}" action="mesa/{$mesa->id_mesa}/USUARIO/{$usuariologeado->id_usuario}/sentarse/1" method="POST">
 						<input type="range" onchange="cambiaLabel({$formidnum})" value="{$ciegas->ciega_grande}" name="checkin" min="{$ciegas->ciega_grande}" max="{$usuariologeado->fichas}" step="1">
 						<label>{$ciegas->ciega_grande}</label>
 						<button type="submit" class="btn btn-primary stretched-link">Sentarce</button>
