@@ -16,19 +16,9 @@ class RankingController {
   public function showRanking() {
     session_start();
     $esta=$this->check->logeado();
-    $admin=$this->checkAdmin();
+    $admin=$this->check->checkAdmin();
     $users=$this->modelusuarios->getUsersRanking();
     $this->view->showRanking($admin,$esta,$users);
-  }
-  public function checkAdmin() {
-    if (isset($_SESSION['admin'])){
-      if ($_SESSION['admin']!=0) {
-        return true;
-      }
-      else {
-        return false;
-      }
-    }
   }
 }
 ?>
