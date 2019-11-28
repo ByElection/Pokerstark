@@ -24,7 +24,7 @@
     }
     public function showCiegas() {
       $this->check->checkLogIn();
-      $admin=$this->checkAdmin();
+      $admin=$this->check->checkAdmin();
       $ciegas=$this->modelciegas->getCiegas();
       $this->view->showCiegas($admin,$ciegas);
     }
