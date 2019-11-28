@@ -6,6 +6,12 @@ let chat = new Vue({
     invertido: false
   }
 })
+let puntajevue = new Vue({
+  el:"div.puntaje",
+  data: {
+    puntaje: 1
+  }
+})
 let idmesa = window.location.href.slice(-2);
 let idusuario = document.querySelector('div.fantasmin').id;
 function invertirOrden() {
@@ -15,6 +21,26 @@ function invertirOrden() {
     chat.invertido = true;
   }
   getMensajes();
+}
+function getPuntajes(){
+  fetch('api/mesa/'+idmesa+'/puntaje')
+  .then(response=>response.json())
+  .then(puntaje=>{
+    puntajevue.puntaje=puntaje;
+  }).catch(error => console.log(error));
+}
+function addPuntaje(){
+  let puntaje = document.querySelector('input.puntaje').value;
+  let data = {
+    puntaje:puntaje
+  }
+  fetch('api/mesa/'+idmesa+'/puntaje/'+idusuario,{
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(data)
+  }).then(response=>{
+    getPuntajes();
+  }).catch(error => console.log(error));
 }
 function getMensajes(){
   fetch('api/mesa/'+idmesa+'/chat')
@@ -43,7 +69,6 @@ function addMensaje(){
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify(data)
-
   }).then(response => {
     getMensajes();
   }).catch(error => console.log(error));
@@ -68,10 +93,15 @@ window.onload = function(){
   let enviamensaje = document.querySelector('button.mensaje');
   enviamensaje.addEventListener("click",function() {
     addMensaje();
-  })
+  });
   let invertir = document.querySelector('button#invertir');
   invertir.addEventListener("click",function() {
     invertirOrden();
-  })
+  });
+  let botonpuntaje = document.querySelector('button.puntaje');
+  botonpuntaje.addEventListener("click",function() {
+    addPuntaje();
+  });
+  getPuntajes();
   getMensajes();
 }

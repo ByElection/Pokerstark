@@ -2,6 +2,7 @@
     require_once('Router.php');
     require_once('api/AvatarsApiController.php');
     require_once('api/ChatApiController.php');
+    require_once('api/PuntajesApiController.php');
 
     // CONSTANTES PARA RUTEO
     define("BASE_URL", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/');
@@ -18,7 +19,8 @@
     $r->addRoute("mesa/:ID/chat","GET","ChatApiController","getMensajes");
     $r->addRoute("usuarios/chat/:ARRAY","GET","ChatApiController","getUsuariosChat");
     $r->addRoute("chat/:idmensaje","DELETE","ChatApiController","deletMensaje");
-
+    $r->addRoute("mesa/:ID/puntaje","GET","PuntajesApiController","getPuntajes");
+    $r->addRoute("mesa/:id_mesa/puntaje/:id_usuario","POST","PuntajesApiController","addPuntaje");
 
     //run
     $r->route($_GET['resource'], $_SERVER['REQUEST_METHOD']);

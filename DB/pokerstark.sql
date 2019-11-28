@@ -1,9 +1,9 @@
-﻿-- phpMyAdmin SQL Dump
+-- phpMyAdmin SQL Dump
 -- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-11-2019 a las 20:54:11
+-- Tiempo de generación: 28-11-2019 a las 02:07:59
 -- Versión del servidor: 10.4.6-MariaDB
 -- Versión de PHP: 7.3.9
 
@@ -21,7 +21,7 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `pokerstark`
 --
-CREATE DATABASE IF NOT EXISTS `pokerstark` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+CREATE DATABASE IF NOT EXISTS `pokerstark` DEFAULT CHARACTER SET latin1 COLLATE latin1_spanish_ci;
 USE `pokerstark`;
 
 -- --------------------------------------------------------
@@ -32,17 +32,8 @@ USE `pokerstark`;
 
 CREATE TABLE `avatars` (
   `id_avatar` int(11) NOT NULL,
-  `img` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `avatars`
---
-
-INSERT INTO `avatars` (`id_avatar`, `img`) VALUES(1, 'img/1.jpg');
-INSERT INTO `avatars` (`id_avatar`, `img`) VALUES(2, 'img/2.jpg');
-INSERT INTO `avatars` (`id_avatar`, `img`) VALUES(3, 'img/3.jpg');
-INSERT INTO `avatars` (`id_avatar`, `img`) VALUES(4, 'img/4.jpg');
+  `img` text COLLATE latin1_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -54,16 +45,8 @@ CREATE TABLE `chat` (
   `id_mensaje` int(11) NOT NULL,
   `id_mesa` int(11) NOT NULL,
   `id_usuario` int(11) NOT NULL,
-  `mensaje` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `chat`
---
-
-INSERT INTO `chat` (`id_mensaje`, `id_mesa`, `id_usuario`, `mensaje`) VALUES(1, 10, 1, 'hola');
-INSERT INTO `chat` (`id_mensaje`, `id_mesa`, `id_usuario`, `mensaje`) VALUES(4, 10, 1, 'asdadasd');
-INSERT INTO `chat` (`id_mensaje`, `id_mesa`, `id_usuario`, `mensaje`) VALUES(5, 10, 1, 'toma por curioso ..I.,');
+  `mensaje` text COLLATE latin1_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -81,10 +64,11 @@ CREATE TABLE `ciegas` (
 -- Volcado de datos para la tabla `ciegas`
 --
 
-INSERT INTO `ciegas` (`id_ciegas`, `ciega_chica`, `ciega_grande`) VALUES(13, 4545, 9090);
-INSERT INTO `ciegas` (`id_ciegas`, `ciega_chica`, `ciega_grande`) VALUES(15, 55, 110);
-INSERT INTO `ciegas` (`id_ciegas`, `ciega_chica`, `ciega_grande`) VALUES(16, 200, 400);
-INSERT INTO `ciegas` (`id_ciegas`, `ciega_chica`, `ciega_grande`) VALUES(17, 100, 200);
+INSERT INTO `ciegas` (`id_ciegas`, `ciega_chica`, `ciega_grande`) VALUES
+(1, 50, 100),
+(2, 200, 400),
+(3, 500, 1000),
+(4, 1000, 2000);
 
 -- --------------------------------------------------------
 
@@ -113,14 +97,14 @@ CREATE TABLE `mesas` (
   `pozo` int(11) NOT NULL DEFAULT 0,
   `mazo` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
   `sillas` int(11) NOT NULL DEFAULT 9
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `mesas`
 --
 
-INSERT INTO `mesas` (`id_mesa`, `id_ciegas`, `pozo`, `mazo`, `sillas`) VALUES(10, 16, 0, '[{\"palo\":\"C\",\"valor\":\"10\"},{\"palo\":\"P\",\"valor\":\"3\"},{\"palo\":\"T\",\"valor\":\"12\"},{\"palo\":\"T\",\"valor\":\"13\"},{\"palo\":\"D\",\"valor\":\"13\"},{\"palo\":\"D\",\"valor\":\"3\"},{\"palo\":\"C\",\"valor\":\"11\"},{\"palo\":\"C\",\"valor\":\"4\"},{\"palo\":\"C\",\"valor\":\"8\"},{\"palo\":\"C\",\"valor\":\"6\"},{\"palo\":\"P\",\"valor\":\"4\"},{\"palo\":\"C\",\"valor\":\"12\"},{\"palo\":\"C\",\"valor\":\"3\"},{\"palo\":\"T\",\"valor\":\"2\"},{\"palo\":\"D\",\"valor\":\"9\"},{\"palo\":\"P\",\"valor\":\"8\"},{\"palo\":\"T\",\"valor\":\"3\"},{\"palo\":\"T\",\"valor\":\"1\"},{\"palo\":\"P\",\"valor\":\"7\"},{\"palo\":\"D\",\"valor\":\"1\"},{\"palo\":\"D\",\"valor\":\"5\"},{\"palo\":\"P\",\"valor\":\"6\"},{\"palo\":\"D\",\"valor\":\"8\"},{\"palo\":\"C\",\"valor\":\"13\"},{\"palo\":\"D\",\"valor\":\"11\"},{\"palo\":\"D\",\"valor\":\"10\"},{\"palo\":\"T\",\"valor\":\"7\"},{\"palo\":\"T\",\"valor\":\"5\"},{\"palo\":\"D\",\"valor\":\"7\"},{\"palo\":\"P\",\"valor\":\"11\"},{\"palo\":\"C\",\"valor\":\"9\"},{\"palo\":\"D\",\"valor\":\"4\"},{\"palo\":\"P\",\"valor\":\"13\"},{\"palo\":\"T\",\"valor\":\"8\"},{\"palo\":\"D\",\"valor\":\"2\"},{\"palo\":\"C\",\"valor\":\"1\"},{\"palo\":\"C\",\"valor\":\"2\"},{\"palo\":\"C\",\"valor\":\"7\"},{\"palo\":\"T\",\"valor\":\"9\"},{\"palo\":\"P\",\"valor\":\"1\"},{\"palo\":\"P\",\"valor\":\"2\"},{\"palo\":\"T\",\"valor\":\"4\"},{\"palo\":\"D\",\"valor\":\"6\"},{\"palo\":\"T\",\"valor\":\"10\"},{\"palo\":\"T\",\"valor\":\"11\"},{\"palo\":\"P\",\"valor\":\"9\"},{\"palo\":\"D\",\"valor\":\"12\"},{\"palo\":\"P\",\"valor\":\"10\"},{\"palo\":\"T\",\"valor\":\"6\"},{\"palo\":\"P\",\"valor\":\"12\"},{\"palo\":\"C\",\"valor\":\"5\"},{\"palo\":\"P\",\"valor\":\"5\"}]', 3);
-INSERT INTO `mesas` (`id_mesa`, `id_ciegas`, `pozo`, `mazo`, `sillas`) VALUES(11, 16, 0, NULL, 9);
+INSERT INTO `mesas` (`id_mesa`, `id_ciegas`, `pozo`, `mazo`, `sillas`) VALUES
+(11, 1, 0, NULL, 5);
 
 -- --------------------------------------------------------
 
@@ -132,7 +116,7 @@ CREATE TABLE `puntajes` (
   `id_usuario` int(11) NOT NULL,
   `id_mesa` int(11) NOT NULL,
   `puntaje` tinyint(4) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -147,8 +131,8 @@ CREATE TABLE `usuarios` (
   `nombre` text COLLATE latin1_spanish_ci NOT NULL,
   `apellido` text COLLATE latin1_spanish_ci NOT NULL,
   `pais` text COLLATE latin1_spanish_ci NOT NULL,
-  `fichas` int(11) NOT NULL DEFAULT 2000,
-  `id_avatar` int(11) DEFAULT 1,
+  `fichas` int(11) NOT NULL,
+  `id_avatar` int(11) DEFAULT NULL,
   `admin` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
@@ -156,10 +140,9 @@ CREATE TABLE `usuarios` (
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`id_usuario`, `username`, `password`, `nombre`, `apellido`, `pais`, `fichas`, `id_avatar`, `admin`) VALUES(1, 'ByElection', '$2y$10$3ZZ.tShVVlrBwJw/iWwuBezFfj2r2KAUhhZSjNhsJqz4UENbFE6OC', 'Gonzalo', 'Zarzabal', 'Argentina', 210000, 3, 1);
-INSERT INTO `usuarios` (`id_usuario`, `username`, `password`, `nombre`, `apellido`, `pais`, `fichas`, `id_avatar`, `admin`) VALUES(2, 'robertito', '$2y$10$udMc/EsZsv4yPYMxYDbGruewerBP2tnzAn38HDqNuLroMDdhidGSa', 'roberto', 'carlos', 'Brasil', 30000, 1, 0);
-INSERT INTO `usuarios` (`id_usuario`, `username`, `password`, `nombre`, `apellido`, `pais`, `fichas`, `id_avatar`, `admin`) VALUES(3, 'pechofrio', '$2y$10$ICEY9uvast08K7SOs3G15OsZzuS7T3QXuYsswYiOkx2dXCSG6lQPq', 'Lionel', 'Messi', 'España', 10000, 1, 0);
-INSERT INTO `usuarios` (`id_usuario`, `username`, `password`, `nombre`, `apellido`, `pais`, `fichas`, `id_avatar`, `admin`) VALUES(4, 'EbolaKills', '$2y$10$jctRdE5GVKbcWAgg.8UzruWPntZNV3SmSgnzSBpmjh2ULJeiU7zhG', 'Juan', 'Grela', 'Bosnia y Herzegovina', 2000, 1, 1);
+INSERT INTO `usuarios` (`id_usuario`, `username`, `password`, `nombre`, `apellido`, `pais`, `fichas`, `id_avatar`, `admin`) VALUES
+(1, 'ByElection', '$2y$10$TnHAZ4YQnl7zDkYQBRgXAe8uYO9vJ.K8DgdXMjRP.NPb3xZ/QvENe', 'Gonzalo', 'Zarzabal', 'Argentina', 5000, NULL, 1),
+(2, 'EbolaKills', '$2y$10$I7OG2JfOkXhV.kxI4wpMIOZRfkl12kuYmSSuZHPz4qPNNwLeEoFXO', 'Juan', 'Grela', 'Argentina', 500, NULL, 1);
 
 --
 -- Índices para tablas volcadas
@@ -184,6 +167,12 @@ ALTER TABLE `ciegas`
   ADD PRIMARY KEY (`id_ciegas`);
 
 --
+-- Indices de la tabla `mesas`
+--
+ALTER TABLE `mesas`
+  ADD PRIMARY KEY (`id_mesa`);
+
+--
 -- Indices de la tabla `puntajes`
 --
 ALTER TABLE `puntajes`
@@ -194,7 +183,6 @@ ALTER TABLE `puntajes`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id_usuario`),
-  ADD UNIQUE KEY `id_usuario` (`id_usuario`),
   ADD KEY `id_avatar` (`id_avatar`);
 
 --
@@ -205,41 +193,31 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `avatars`
 --
 ALTER TABLE `avatars`
-  MODIFY `id_avatar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_avatar` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `chat`
 --
 ALTER TABLE `chat`
-  MODIFY `id_mensaje` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_mensaje` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `ciegas`
 --
 ALTER TABLE `ciegas`
-  MODIFY `id_ciegas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_ciegas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `mesas`
 --
 ALTER TABLE `mesas`
-  MODIFY `id_mesa` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_mesa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- Restricciones para tablas volcadas
---
-
---
--- Filtros para la tabla `usuarios`
---
-ALTER TABLE `usuarios`
-  ADD CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`id_avatar`) REFERENCES `avatars` (`id_avatar`) ON DELETE SET NULL ON UPDATE CASCADE;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
