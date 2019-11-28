@@ -98,5 +98,5 @@ window.onload = function(){
     addPuntaje();
   });
   getPuntajes();
-  getMensajes();
+  setInterval(getMensajes,1000);
 }

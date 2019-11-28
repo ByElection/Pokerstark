@@ -13,7 +13,7 @@
 				{/foreach}
 				<h5>Fichas: {$jugador->fichas_mesa}</h5>
 				{if $jugador->id_usuario == $usuariologeado->id_usuario}
-					<a href="pararse/{$usuariologeado->id_usuario}" class="btn btn-primary stretched-link">Pararse</a>
+					<a href="mesa/pararse/{$usuariologeado->id_usuario}" class="btn btn-primary stretched-link">Pararse</a>
 					{$estasentado=true}
 				{/if}
 				{$count=$count+1}
