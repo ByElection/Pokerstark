@@ -33,7 +33,10 @@ class LoginController {
            $_SESSION['username'] = $usuario->usuario;
            $_SESSION['id_usuario'] = $usuario->id_usuario;
           if ($usuario->admin!=0) {
-            $_SESSION['admin'] = 1;
+            $_SESSION['admin'] = 1; /*-----------------------ESTO YA NO SE SETEA ACA DESPUES QUE CAMBIES TODO LO QUE USA $_SESSION['admin'] BORRALO
+            -------------------------------------------------TENES QUE USAR DONDE SE USA ESTO $this->modelusuarios->getUserByUsername($user)->admin
+            -------------------------------------------------O $this->modelusuarios->getUserById($id)->admin para chequear si es un admin (SOLO EN PHP)
+            -------------------------------------------------no te olvides de los checkadmin a los controller que sean para admin*/
             header("Location: " . ADMIN);
           }else{
             header("Location: " . PROFILE);
