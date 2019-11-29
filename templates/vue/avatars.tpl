@@ -3,9 +3,9 @@
     <a class="avatar" href="#" v-bind:id="avatar.id_avatar">
       <img v-bind:src="avatar.img" class="avatar">
     </a>
+    {if $admin}
     <button type="button" class="deletavatar" v-bind:id="avatar.id_avatar">Borrar Avatar</button>
   </div>
-  {if $admin}
     <div class="row">
       <form method="post" id="addavatar" enctype="multipart/form-data">
         <input type="file" name="avatar" accept="image/png, .jpeg, .jpg">

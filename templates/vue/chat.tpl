@@ -8,7 +8,7 @@
       <button type="button" id="invertir">↑↓</button>
       <li v-for="mensaje in mensajes">
         <b>{{mensaje.username}}: </b>{{mensaje.mensaje}}
-        <a href="#" class="mensaje" v-bind:id="mensaje.id_mensaje">borrar</a>
+        <a v-if="admin===1" href="#" class="mensaje" v-bind:id="mensaje.id_mensaje">borrar</a>
       </li>
     </ul>
     <input type="text" class="mensaje" placeholder="mensaje"><button class="mensaje" type="button">←</button>

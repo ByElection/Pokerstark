@@ -28,6 +28,7 @@ class ProfileController {
     $this->view->showProfile($admin,$usuario,$usuario->nombre.' '.$usuario->apellido,$usuario->pais,$usuario->fichas);
   }
   public function addAvatar() {
+    $this->check->checkLogIn();
     if ($_FILES['avatar']['name'] && $this->check->checkAdmin()) {
           if ($_FILES['avatar']['type'] == "image/jpeg" || $_FILES['avatar']['type'] == "image/jpg" || $_FILES['avatar']['type'] == "image/png") {
               $this->modelavatars->addAvatar($_FILES['avatar']);

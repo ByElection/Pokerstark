@@ -20,6 +20,7 @@
       $this->modelciegas = new CiegasModel();
     }
     public function showTables() {
+      $this->check->checkLogIn();
       $admin=$this->check->checkAdmin();
       $mesas = $this->modelmesas->getMesas();
 	    $ciegas = $this->modelciegas->getCiegas();
@@ -39,5 +40,6 @@
         $this->view->showTables($admin,$mesas,$ciegas,$jugadores,$filtraciegas);
       }
     }
-  }
+
+    }
 ?>

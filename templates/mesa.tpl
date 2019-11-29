@@ -1,5 +1,6 @@
 {include file="header.tpl"}
 <div class="fantasmin" id="{$usuariologeado->id_usuario}"></div>
+<div class="soyadmin" id="{$usuariologeado->admin}"></div>
 <div id="mesa">
 	<div class="row">
 		{$count=0}
