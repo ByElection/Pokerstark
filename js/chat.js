@@ -1,9 +1,11 @@
 "use strict"
+let admin = document.querySelector('div.soyadmin').id;
 let chat = new Vue({
   el: "div#chat",
   data: {
     mensajes: [],
-    invertido: false
+    invertido: false,
+    admin:admin
   }
 })
 let puntajevue = new Vue({
@@ -14,6 +16,7 @@ let puntajevue = new Vue({
 })
 let idmesa = window.location.href.slice(-2);
 let idusuario = document.querySelector('div.fantasmin').id;
+
 function invertirOrden() {
   if (chat.invertido) {
     chat.invertido = false;

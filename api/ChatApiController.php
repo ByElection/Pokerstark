@@ -3,12 +3,15 @@
   require_once("./api/ApiController.php");
   include_once('./Models/UsuariosModel.php');
   require_once("./api/JSONView.php");
+  require_once("./Controllers/LoginController.php");
 
   class ChatApiController extends ApiController{
+    private $admin;
     private $modelchat;
   	private $modelusuarios;
     public function __construct(){
       parent::__construct();
+      $this->admin = new LoginController();
       $this->modelchat = new ChatModel();
   		$this->modelusuarios = new UsuariosModel();
     }
@@ -21,8 +24,10 @@
       $this->view->response($chat,200);
     }
     public function deletMensaje($params = null){
-      $chat = $this->modelchat->deletMensaje($params[":idmensaje"]);
-      $this->view->response($chat,200);
+      if ($this->admin->checkAdmin) {
+        $chat = $this->modelchat->deletMensaje($params[":idmensaje"]);
+        $this->view->response($chat,200);
+      }
     }
   public function getUsuariosChat($params=null){
     $usuarios = JSON_decode($params[":ARRAY"]);

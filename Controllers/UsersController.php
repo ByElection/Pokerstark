@@ -29,5 +29,4 @@ class UsersController {
     header("Location: " . USERS);
   }
 }
-
 ?>

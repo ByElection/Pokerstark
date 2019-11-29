@@ -4,8 +4,10 @@ include_once('./Models/UsuariosModel.php');
 include_once('./Models/JugadoresModel.php');
 include_once('./Models/MesasModel.php');
 include_once('./Models/CiegasModel.php');
+include_once('LoginController.php');
 
 class MesaController {
+	private $check;
 	private $view;
 	private $modelusuarios;
 	private $modeljugadores;
@@ -13,6 +15,7 @@ class MesaController {
 	private $modelciegas;
 
 	public function __construct(){
+		$this->check = new LoginController();
 		$this->view = new MesaView();
 		$this->modelusuarios = new UsuariosModel();
 		$this->modeljugadores = new JugadoresModel();
@@ -20,7 +23,7 @@ class MesaController {
 		$this->modelciegas = new CiegasModel();
 	}
 	public function showMesa($id){
-		$admin=$this->checkAdmin();
+		$admin=$this->check->checkAdmin();
 		$jugadoresmesa = $this->modeljugadores->getJugadoresMesa($id[":ID"]);
 		$usuariosmesa=$this->modelusuarios->getUsuariosMesa($jugadoresmesa);
 		$mesa=$this->modelmesas->getMesa($id[":ID"]);
@@ -36,16 +39,6 @@ class MesaController {
 	public function sentarse($parametros){
 		$fichas = $_POST["checkin"];
 		$this->modeljugadores->sentarse($parametros[":IDUSUARIO"],$fichas,$parametros[":IDMESA"],$parametros[":SILLA"]);
-	}
-  public function checkAdmin() {
-    if (isset($_SESSION['admin'])){
-	    if ($_SESSION['admin']!=0) {
-	      return true;
-	    }
-	    else {
-	      return false;
-	    }
-	  }
 	}
 }
 ?>

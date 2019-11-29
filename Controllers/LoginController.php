@@ -2,7 +2,6 @@
 include_once('./Views/LoginView.php');
 include_once('./Models/UsuariosModel.php');
 
-
 class LoginController {
 
   private $view;
@@ -12,7 +11,6 @@ class LoginController {
     $this->view = new LoginView();
     $this->modelusuarios = new UsuariosModel();
   }
-
 
   public function logeado() {
 

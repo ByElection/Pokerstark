@@ -28,15 +28,5 @@
       $ciegas=$this->modelciegas->getCiegas();
       $this->view->showCiegas($admin,$ciegas);
     }
-    public function checkAdmin() {
-      if (isset($_SESSION['admin'])){
-        if ($_SESSION['admin']!=0) {
-          return true;
-        }
-        else {
-          return false;
-        }
-      }
-    }
   }
 ?>
