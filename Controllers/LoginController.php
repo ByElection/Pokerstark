@@ -27,10 +27,9 @@ class LoginController {
   public function verifyUser() {
     $password = $_POST['password'];
     $usuario = $this->modelusuarios->getUserByUsername($_POST['username']);
-
     if (isset($usuario) && $usuario != null && password_verify($password, $usuario->password)){
       session_start();
-      $_SESSION['username'] = $usuario->usuario;
+      $_SESSION['username'] = $usuario->username;
       $_SESSION['id_usuario'] = $usuario->id_usuario;
       if ($usuario->admin!=0) {
         $_SESSION['admin'] = 1; /*-----------------------ESTO YA NO SE SETEA ACA DESPUES QUE CAMBIES TODO LO QUE USA $_SESSION['admin'] BORRALO

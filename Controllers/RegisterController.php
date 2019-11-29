@@ -1,14 +1,17 @@
 <?php
 include_once('./Views/RegisterView.php');
 include_once('./Models/UsuariosModel.php');
+include_once('LoginController.php');
 
 class RegisterController {
   private $view;
   private $modelusuarios;
+  private $check;
 
   public function __construct() {
     $this->view = new RegisterView();
     $this->modelusuarios = new UsuariosModel();
+    $this->check = new LoginController();
   }
 
   public function showRegister($error=null) {
@@ -36,7 +39,11 @@ class RegisterController {
       header("Location: " . REGISTER . "/password");
     }else{
       $this->modelusuarios->addUsuario($user,$password_1,$nombre,$apellido,$pais);
-      header("Location: " . LOGIN);
+      $usuario = $this->modelusuarios->getUserByUsername($user);
+      session_start();
+      $_SESSION['username'] = $usuario->username;
+      $_SESSION['id_usuario'] = $usuario->id_usuario;
+      header("Location: " . PROFILE);
     }
   }
   public function checkAdmin() {

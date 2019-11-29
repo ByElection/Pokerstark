@@ -1,7 +1,8 @@
 {include file="header.tpl"}
 <div class="fantasmin" id="{$usuariologeado->id_usuario}"></div>
 <div id="mesa">
-	<div class="row">
+
+	<div class="silla row">
 		{$count=0}
 		{$estasentado=false}
 		{foreach from=$jugadoresmesa item=jugador}
