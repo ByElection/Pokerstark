@@ -18,6 +18,7 @@ function getJugadoresMesa() {
     .then(response=>response.json())
     .then(jugadores=>{
       mesavue.jugadores=jugadores;
+      console.log(jugadores);
     }).then(function() {
       addEvents();
     }).catch(error => console.log(error));
@@ -38,7 +39,7 @@ function sentarse(idsilla,fichas) {
     getJugadoresMesa();
   }).catch(error => console.log(error));
 }
-function pararse() {
+function pararse(){
   fetch('api/usuario/'+idusuario+'/pararse',{
     method: 'DELETE'
   }).then( response => {
@@ -53,15 +54,15 @@ function getUsuarioLogeado() {
     }).catch(error => console.log(error));
 }
 function addEvents() {
-  let sentarse = document.querySelectorAll("button.sentarse");
+  let sentarseboton = document.querySelectorAll("button.sentarse");
   let input = document.querySelectorAll("input[name='checkin']");
-  for (var i = 0; i < sentarse.length; i++) {
-    sentarse[i].addEventListener("click",function(){
+  for (var i = 0; i < sentarseboton.length; i++) {
+    sentarseboton[i].addEventListener("click",function(){
       sentarse(input[i].id,input[i].value);
     })
   }
-  let pararse = document.querySelector("button#pararse");
-  pararse.addEventListener("click",function(){
+  let pararseboton = document.querySelector("button#pararse");
+  pararseboton.addEventListener("click",function(){
     pararse();
   })
 }

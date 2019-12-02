@@ -2,7 +2,10 @@
 <div class="fantasmin" id="{$usuariologeado->id_usuario}"></div>
 <div class="soyadmin" id="{$usuariologeado->admin}"></div>
 <div id="mesa">
-
+	<div class="sillas">
+		{include file="vue/sillas.tpl"}
+	</div>
+	<!--
 	<div class="silla row">
 		{$count=0}
 		{$estasentado=false}
@@ -37,7 +40,7 @@
 			</div>
 		{/for}
 		{/if}
-	</div>
+	</div>-->
 	<div class="container-fluid row mesa">
 		<div class="col">
 			<h2>Ciega Chica/Grande: {$ciegas->ciega_chica}/{$ciegas->ciega_grande}</h2>

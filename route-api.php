@@ -24,7 +24,7 @@
     $r->addRoute("puntaje/:puntaje/mesa/:id_mesa/usuario/:id_usuario","POST","PuntajesApiController","addPuntaje");
     $r->addRoute("mesa/:idmesa/jugadores","GET","MesaApiController","getJugadoresMesa");
     $r->addRoute("mesa/:idmesa","GET","MesaApiController","getMesa");
-    $r->addRoute("mesa/:idmesa/usuario/:idusuario/sentarse/:idsilla/fichas/:fichas","POST","MesaApiController","sentarse");
+    $r->addRoute("mesa/:idmesa/usuario/:idusuario/sentarse/:silla/fichas/:fichas","POST","MesaApiController","sentarse");
     $r->addRoute("usuario/:idusuario/pararse","DELETE","MesaApiController","pararse");
     $r->addRoute("usuariologeado","GET","MesaApiController","getUsuarioLogeado");
 

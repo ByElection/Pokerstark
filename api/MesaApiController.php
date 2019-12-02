@@ -35,14 +35,14 @@
       $this->view->response($mesa,200);
     }
     public function pararse($params=null){
-  		$pararse = $this->modeljugadores->pararse($id[":idusuario"]);
+  		$pararse = $this->modeljugadores->pararse($params[":idusuario"]);
       $this->view->response($pararse,200);
   	}
   	public function sentarse($params=null){
-  	   $sentarse = $this->modeljugadores->sentarse($params[":idusuario"],$params[":idfichas"],$params[":idmesa"],$parametros[":silla"]);
+  	   $sentarse = $this->modeljugadores->sentarse($params[":idusuario"],$params[":fichas"],$params[":idmesa"],$params[":silla"]);
        $this->view->response($sentarse,200);
   	}
-    public function FunctionName($params=null){
+    public function getUsuarioLogeado($params=null){
       session_start();
       $usuariologeado = $this->modelusuarios->getUserById($_SESSION["id_usuario"]);
       $this->view->response($usuariologeado,200);

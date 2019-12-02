@@ -101,5 +101,7 @@ window.onload = function(){
     addPuntaje();
   });
   getPuntajes();
+  getMesa();
+  getUsuarioLogeado();
   setInterval(getMensajes,1000);
 }

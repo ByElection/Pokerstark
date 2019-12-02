@@ -22,12 +22,10 @@
       public function pararse($id){
         $jugadores = $this->db->prepare("DELETE FROM jugadores WHERE id_usuario = ?");
         $jugadores->execute(array($id));
-        header("Location: " . TABLES);
       }
       public function sentarse($id_usuario,$fichas,$id_mesa,$silla){
         $jugadores= $this->db->prepare("INSERT INTO jugadores (id_usuario,fichas_mesa,id_mesa,silla) VALUES (?,?,?,?)");
         $jugadores->execute(array($id_usuario,$fichas,$id_mesa,$silla));
-        header("Location: " . MESA . "/" . $id_mesa);
       }
       public function deletJugadoresByMesa($id) {
           $sentencia = $this->db->prepare("DELETE FROM jugadores WHERE id_mesa=?");
