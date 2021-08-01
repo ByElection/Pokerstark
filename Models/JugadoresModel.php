@@ -8,7 +8,7 @@
       }
 
       public function getJugadoresMesa($id){
-        $mesas = $this->db->prepare("SELECT * FROM jugadores WHERE id_mesa = ?");
+        $mesas = $this->db->prepare("SELECT * FROM jugadores WHERE id_mesa = ? ORDER BY silla");
         $mesas->execute(array($id));
         $mesa = $mesas->fetchAll(PDO::FETCH_OBJ);
         return $mesa;
@@ -31,11 +31,11 @@
       }
       public function deletJugadoresByMesa($id) {
           $sentencia = $this->db->prepare("DELETE FROM jugadores WHERE id_mesa=?");
-          $ok=$sentencia->execute(array($id));
-          if (!$ok){
-            var_dump($sentencia);
-            die;
-          }
+          $sentencia->execute(array($id));
+      }
+      public function guardarJugador($id,$fichas,$apuesta,$cartas,$retirado){
+        $jugadores= $this->db->prepare("UPDATE jugadores SET fichas_mesa=?,apuesta=?,cartas=?,retirado=? WHERE id_usuario=?");
+        $jugadores->execute(array($fichas,$apuesta,$cartas,$retirado,$id));
       }
   }
 ?>

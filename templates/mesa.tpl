@@ -7,7 +7,7 @@
 		{$count=0}
 		{$estasentado=false}
 		{foreach from=$jugadoresmesa item=jugador}
-			<div class="jugador col">
+			<div class="silla col">
 				{foreach from=$usuariosmesa item=usuario}
 					{if $usuario->id_usuario == $jugador->id_usuario}
 						<h4>{$usuario->username}</h4>
@@ -24,7 +24,7 @@
 		{if $count != $mesa->sillas}
 		{$formidnum=1}
 		{for $i=$count to $mesa->sillas-1}
-			<div class="jugador col">
+			<div class="sillavacia col">
 				<h4>Silla Vacia</h4>
 				{if !$estasentado}
 					<form id="form{$formidnum}" action="mesa/{$mesa->id_mesa}/USUARIO/{$usuariologeado->id_usuario}/sentarse/1" method="POST">
