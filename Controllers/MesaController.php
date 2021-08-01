@@ -4,12 +4,10 @@ include_once('./Models/UsuariosModel.php');
 include_once('./Models/JugadoresModel.php');
 include_once('./Models/MesasModel.php');
 include_once('./Models/CiegasModel.php');
-include_once('LoginController.php');
 include_once('./IA/Mazo.php');
 include_once('./IA/Jugador.php');
 
 class MesaController {
-	private $check;
 	private $view;
 	private $modelusuarios;
 	private $modeljugadores;
@@ -19,7 +17,6 @@ class MesaController {
 	private $jugadores;
 
 	public function __construct(){
-		$this->check = new LoginController();
 		$this->view = new MesaView();
 		$this->modelusuarios = new UsuariosModel();
 		$this->modeljugadores = new JugadoresModel();
@@ -29,7 +26,7 @@ class MesaController {
 		$this->jugadores = array();
 	}
 	public function showMesa($id){
-		$admin=$this->check->checkAdmin();
+		$admin=$this->checkAdmin();
 		$jugadoresmesa = $this->modeljugadores->getJugadoresMesa($id[":ID"]);
 		$usuariosmesa=$this->modelusuarios->getUsuariosMesa($jugadoresmesa);
 		foreach ($jugadoresmesa as $jugador) {
@@ -58,8 +55,19 @@ class MesaController {
 		$this->modeljugadores->pararse($id[":ID"]);
 	}
 	public function sentarse($parametros){
+		var_dump($parametros);
 		$fichas = $_POST["checkin"];
-		$this->modeljugadores->sentarse($parametros[":IDUSUARIO"],$fichas,$parametros[":IDMESA"],$parametros[":SILLA"]);
+		$this->modeljugadores->sentarse($parametros[":IDUSUARIO"],$fichas,$parametros[":IDMESA"]);
+	}
+  public function checkAdmin() {
+    if (isset($_SESSION['admin'])){
+	    if ($_SESSION['admin']!=0) {
+	      return true;
+	    }
+	    else {
+	      return false;
+	    }
+	  }
 	}
 }
 ?>

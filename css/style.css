@@ -1,0 +1,70 @@
+* {
+  background-color: black;
+  margin: 0;
+  padding: 0;
+  color: white;
+}
+img.avatar{
+  width: 128px;
+  height: 128px;
+}
+div.avatars{
+  display: none;
+}
+div.mesa{
+  background-color: transparent;
+  background-image: url("../img/mesa.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 80vh;
+}
+div.mesa *{
+    background-color: transparent;
+}
+div.mesa div.col{
+  margin-top: 20%;
+  margin-left: 20%;
+}
+img.full {
+    width: 100%;
+}
+img {
+    vertical-align: middle;
+    border-style: none;
+}
+html {
+  background-color: black;
+ }
+
+form {
+  background-color: black;
+}
+
+label {
+  color: white;
+}
+
+.navbar {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background-color: black;
+}
+#addmesa {
+  display: inline-block;
+   text-align: center;
+}
+/*div.avatars div {
+  position: relative;
+  overflow: hidden;
+}
+div.avatars input {
+  position: absolute;
+  font-size: 50px;
+  opacity: 0;
+  right: 0;
+  top: 0;
+}*/

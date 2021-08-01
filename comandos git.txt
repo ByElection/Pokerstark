@@ -1,0 +1,19 @@
+git init: empezar un proyecto nuevo
+git add (archivo): es para subir los archivos del working directory(donde estoy trabajando ahora) al staging area
+git add . : agrega todos los archivos que faltan agregar
+git status: te dice donde estan tus archivos
+git commit: para subirlos desde el staging area al repositorio,crea un primer punto de control de nuestro codigo
+git commit -m: me ahorro de entrar al editor de texto
+git push: para subirlo a un repositorio remoto
+git pull: trae los cambios que han echo otros desarolladores
+git clone: copia del codigo repositorio remoto a tu pc
+git log: para ver todos los commits que hemos creado
+git checkout -- (archivo): para revertir los cambios de los archivos
+git diff (archivo): para ver las diferencias hechas en los archivos
+.gitignore: es un archivo que dentro de el van todos los archivos que queres que git ignore
+git branch: muestra las "versiones"
+git branch nombreDeRama: agrega otra version
+git checkout nombreDeRama: es para moverme a esa "version" o rama, los archivos que estan en una rama no se ven en otra, si los comitie solamente en esa rama
+git remote add origin (pagina): Esto sube tu repositorio local al remoto
+git push -u origin master: lo termina de subir
+git clone direccion: copia del repositorio remoto al local
