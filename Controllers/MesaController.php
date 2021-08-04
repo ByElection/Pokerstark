@@ -15,6 +15,8 @@ class MesaController {
 	private $modelciegas;
 	private $mazo;
 	private $jugadores;
+	private $dealer;/////
+	private $turno;//////
 
 	public function __construct(){
 		$this->view = new MesaView();
@@ -34,22 +36,24 @@ class MesaController {
 		}
 		/////////////////////
 		$this->mazo->cargarMazo(10);
-		echo "<br>";
-		echo "<br>";
-		$this->jugadores[0]->agarraCarta($this->mazo->darCarta());
-		$this->jugadores[0]->agarraCarta($this->mazo->darCarta());
-		var_dump($this->jugadores[0]->getCartas());
-		echo "<br>";
-		echo "<br>";
-		var_dump($this->mazo->getCartas());
-		die();
-		////////////////////////
-		$mesa=$this->modelmesas->getMesa($id[":ID"]);
-		$ciegas=$this->modelciegas->getCiegasById($mesa->id_ciegas);
-		session_start();
-		$idusuario=$_SESSION['id_usuario'];
-		$usuario=$this->modelusuarios->getUserById($idusuario);
-		$this->view->showMesa($admin,$jugadoresmesa,$usuariosmesa,$mesa,$ciegas,$usuario);
+		if ($this->jugadores!=null){
+			echo "<br>";
+			echo "<br>";
+				$this->jugadores[0]->agarraCarta($this->mazo->darCarta());
+				$this->jugadores[0]->agarraCarta($this->mazo->darCarta());
+			var_dump($this->jugadores[0]->getCartas());
+			echo "<br>";
+			echo "<br>";
+			var_dump($this->mazo->getCartas());
+			die();
+		}
+			////////////////////////
+			$mesa=$this->modelmesas->getMesa($id[":ID"]);
+			$ciegas=$this->modelciegas->getCiegasById($mesa->id_ciegas);
+			session_start();
+			$idusuario=$_SESSION['id_usuario'];
+			$usuario=$this->modelusuarios->getUserById($idusuario);
+			$this->view->showMesa($admin,$jugadoresmesa,$usuariosmesa,$mesa,$ciegas,$usuario);
 	}
 	public function pararse($id){
 		$this->modeljugadores->pararse($id[":ID"]);
@@ -57,7 +61,7 @@ class MesaController {
 	public function sentarse($parametros){
 		var_dump($parametros);
 		$fichas = $_POST["checkin"];
-		$this->modeljugadores->sentarse($parametros[":IDUSUARIO"],$fichas,$parametros[":IDMESA"]);
+		$this->modeljugadores->sentarse($parametros[":IDUSUARIO"],$fichas,$parametros[":IDMESA"],$parametros[":SILLA"]);
 	}
   public function checkAdmin() {
     if (isset($_SESSION['admin'])){

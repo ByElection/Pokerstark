@@ -51,7 +51,7 @@ class AdminController {
     $this->checkLogIn();
     $ciegas = $_POST['ciegas'];
     $sillas = $_POST['sillas'];
-    $this->modelmesas->addMesa($ciegas,$sillas,$this->mazo->pasarJSON());
+    $this->modelmesas->addMesa($ciegas,$sillas,$this->mazo->generarMazo());
     header("Location: " . ADMIN);
   }
   public function addCiega() {

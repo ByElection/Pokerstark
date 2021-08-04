@@ -29,6 +29,11 @@ class Jugador{
     array_push($this->cartas,$carta);
     $this->guardarJugador();
   }
+  public function devolverCartas(){
+    $cartas = $this->cartas;
+    $this->cartas= array();
+    return $cartas;
+  }
   public function apostar($fichas){
     if ($fichas<=$this->fichas) {
       $this->fichas -= $fichas;
