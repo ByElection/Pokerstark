@@ -13,4 +13,5 @@
     </ul>
     <input type="text" class="mensaje" placeholder="mensaje"><button class="mensaje" type="button">←</button>
   </div>
+  <script src="js/chat.js" type="text/javascript"></script>
 {/literal}

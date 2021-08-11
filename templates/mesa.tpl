@@ -41,6 +41,11 @@
 			<h3>Pozo: {$mesa->pozo}</h3>
 		</div>
 	</div>
+	<div class="container-fluid row">
+		<div class="col-3">
+			{include file="vue\chat.tpl"}
+		</div>
+	</div>
 </div>
-<script src="../js/scriptmesa.js" type="text/javascript"></script>
+<script src="js/scriptmesa.js" type="text/javascript"></script>
 {include file="footer.tpl"}

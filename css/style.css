@@ -11,6 +11,10 @@ img.avatar{
 div.avatars{
   display: none;
 }
+#chat{
+  background-color: #111111;
+
+}
 div.mesa{
   background-color: transparent;
   background-image: url("../img/mesa.jpg");

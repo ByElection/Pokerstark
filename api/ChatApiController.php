@@ -19,7 +19,7 @@
       $chat = $this->modelchat->getMensajes($params[":ID"]);
       $jugadores = array();
       foreach ($chat as $chit) {
-        $chit->username = $this->modelusuarios->getUsernameById($chit->id_usuario)->username;
+        $chit->username = $this->modelusuarios->getUserById($chit->id_usuario)->username;
       }
       $this->view->response($chat,200);
     }
